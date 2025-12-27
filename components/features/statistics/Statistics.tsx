@@ -39,7 +39,7 @@ export const Statistics = ({
     {loading ? (
       <SectionHeaderSkeleton />
     ) : (
-      <section className="animate-fade-in">
+      <section>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Statistics</h2>
       </section>
     )}
@@ -62,7 +62,7 @@ export const Statistics = ({
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
           <div className="space-y-2 mb-4 sm:mb-6">
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-20 rounded" />
@@ -71,8 +71,7 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up"
-          style={{ animationDelay: '100ms' }}
+          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
@@ -83,7 +82,7 @@ export const Statistics = ({
       )}
 
       {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
           <div className="space-y-2 mb-4 sm:mb-6">
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-20 rounded" />
@@ -92,8 +91,7 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up"
-          style={{ animationDelay: '200ms' }}
+          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Type Distribution</h3>
@@ -130,7 +128,7 @@ export const Statistics = ({
       )}
 
       {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
           <div className="space-y-2 mb-4 sm:mb-6">
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-16 rounded" />
@@ -139,8 +137,7 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up"
-          style={{ animationDelay: '300ms' }}
+          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
@@ -173,7 +170,7 @@ export const Statistics = ({
       )}
 
       {loading ? (
-        <section className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm animate-slide-up">
+        <section className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm">
           <div className="space-y-3 mb-4 sm:mb-6">
             <Skeleton className="h-8 w-10 rounded-xl" />
             <div className="space-y-2">
@@ -189,11 +186,10 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm animate-slide-up"
-          style={{ animationDelay: '400ms' }}
+          className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm"
         >
           <div className="flex items-center gap-3 mb-4 sm:mb-6">
-            <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl animate-float">
+            <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl">
               <Award size={20} className="text-white sm:w-6 sm:h-6" />
             </div>
             <div>
@@ -241,7 +237,7 @@ export const Statistics = ({
     </div>
 
     {loading ? (
-      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="space-y-2 mb-4 sm:mb-6">
           <Skeleton className="h-5 w-40 rounded" />
           <Skeleton className="h-4 w-24 rounded" />
@@ -254,8 +250,7 @@ export const Statistics = ({
       </section>
     ) : (
       <section
-        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up"
-        style={{ animationDelay: '500ms' }}
+        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
       >
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>

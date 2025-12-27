@@ -11,7 +11,7 @@ export type StatCardProps = {
 export const StatCard = ({ icon: Icon, value, label, color, delay = 0 }: StatCardProps) => (
   <div
     style={{ animationDelay: `${delay}ms` }}
-    className="bg-white rounded-2xl p-3 sm:p-4 md:p-5 border-2 border-gray-100 shadow-sm flex items-center gap-3 sm:gap-4 card-hover animate-slide-up"
+    className="bg-white rounded-2xl p-3 sm:p-4 md:p-5 border-2 border-gray-100 shadow-sm flex items-center gap-3 sm:gap-4 card-hover"
   >
     <div className={`p-2 sm:p-3 rounded-xl ${color} transition-transform duration-300 hover:rotate-12`}>
       <Icon size={20} className="text-white sm:w-6 sm:h-6" />

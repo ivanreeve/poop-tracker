@@ -33,17 +33,16 @@ export const Dashboard = ({
   profilesById,
 }: DashboardProps) => (
   <>
-    <section className="animate-fade-in">
+    <section>
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, {greetingName}!</h2>
     </section>
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       <section
-        className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between animate-slide-up"
-        style={{ animationDelay: '200ms' }}
+        className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between"
       >
         <div className="flex items-center gap-3">
-          <Flame className="text-orange-400 fill-orange-400 animate-pulse-slow" size={32} />
+          <Flame className="text-orange-400 fill-orange-400" size={32} />
           <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-500">{streak}</span>
         </div>
         <div className="mt-3">
@@ -53,7 +52,7 @@ export const Dashboard = ({
       </section>
     </div>
 
-    <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
+    <section>
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
         <button
@@ -77,7 +76,7 @@ export const Dashboard = ({
               No logs yet. Tap &quot;LOG NOW&quot; to add your first entry.
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
               {visibleLogs.map((log) => {
                 const logType = stoolTypes.find((type) => type.type === log.type);
 
@@ -107,8 +106,8 @@ export const Dashboard = ({
       )}
     </section>
 
-    {acceptedFriendsCount > 0 && (
-      <section className="animate-slide-up" style={{ animationDelay: '350ms' }}>
+      {acceptedFriendsCount > 0 && (
+      <section>
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends&apos; Logs</h3>
           <span className="text-[10px] sm:text-xs font-bold text-gray-400">{acceptedFriendsCount} friends</span>

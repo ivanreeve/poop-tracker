@@ -25,8 +25,8 @@ export const LogModal = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-lg bg-[#FFF9F9] rounded-3xl shadow-2xl overflow-hidden animate-scale-in max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+      <div className="w-full max-w-lg bg-[#FFF9F9] rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
         <div className="px-4 sm:px-6 py-4 bg-white border-b border-gray-100 flex items-center justify-between shrink-0">
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-xl transition-colors">
             <X size={24} className="text-gray-400 hover:text-gray-600" strokeWidth={3} />
@@ -64,7 +64,7 @@ export const LogModal = ({
             fullWidth
             disabled={!selectedType || isSaving}
             onClick={onConfirm}
-            className={selectedType ? 'animate-pulse-slow' : ''}
+            className={''}
           >
             {isSaving ? (
               <>

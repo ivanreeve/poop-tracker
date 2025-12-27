@@ -44,12 +44,12 @@ export const ProfileSection = ({
   onDeclineRequest,
 }: ProfileSectionProps) => (
   <>
-    <section className="animate-fade-in">
+    <section>
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Profile & Friends</h2>
     </section>
 
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-4 mb-4">
           <Avatar className="h-14 w-14 rounded-2xl bg-[#FFF0F3] border-2 border-[#FFE8EC]">
             {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
@@ -64,7 +64,7 @@ export const ProfileSection = ({
         </div>
       </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-3 mb-3">
           <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
             <UserPlus size={18} className="text-white" />
@@ -94,7 +94,7 @@ export const ProfileSection = ({
     </section>
 
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#FF8096]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friend Requests</h3>
@@ -165,7 +165,7 @@ export const ProfileSection = ({
         )}
       </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#A6D8D4]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>

@@ -18,7 +18,7 @@ export const Sidebar = ({
 }: SidebarProps) => (
   <aside className="hidden lg:flex lg:w-72 xl:w-80 bg-white border-r-2 border-gray-100 flex-col fixed h-full z-20">
     <div className="px-6 py-6 flex items-center gap-3 border-b border-gray-100">
-      <div className="bg-[#FF8096] p-3 rounded-xl animate-float">
+      <div className="bg-[#FF8096] p-3 rounded-xl">
         <span className="text-2xl">💩</span>
       </div>
       <div>
@@ -44,9 +44,8 @@ export const Sidebar = ({
         <button
           key={item.id}
           onClick={() => onChangeView(item.id as AppView)}
-          style={{ animationDelay: `${index * 100}ms` }}
           className={`
-            cursor-pointer w-full flex items-center gap-4 p-4 rounded-md transition-all duration-200 animate-slide-up
+            cursor-pointer w-full flex items-center gap-4 p-4 rounded-md transition-all duration-200
             ${view === item.id ? 'bg-[#FFF0F3] text-[#FF8096]' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'}
           `}
         >

@@ -12,12 +12,12 @@ type SettingsProps = {
 
 export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsProps) => (
   <>
-    <section className="animate-fade-in">
+    <section>
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Settings</h2>
     </section>
 
     <div className="grid grid-cols-1 gap-4 sm:gap-6">
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
             <UserIcon size={18} className="text-white" />
@@ -44,7 +44,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
         </div>
       </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl">
             <LogOut size={18} className="text-white" />

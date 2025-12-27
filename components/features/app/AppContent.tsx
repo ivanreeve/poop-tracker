@@ -83,7 +83,7 @@ export const AppContent = ({
         <div className="space-y-6 sm:space-y-8">
           <SectionHeaderSkeleton />
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-            <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+            <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
               <div className="flex items-center gap-4 mb-4">
                 <div className="animate-pulse h-14 w-14 rounded-2xl bg-gray-200 border-2 border-gray-100" />
                 <div className="space-y-2">
@@ -93,7 +93,7 @@ export const AppContent = ({
               </div>
             </div>
           </section>
-          <section className="animate-slide-up">
+          <section>
             <div className="flex justify-between items-center mb-4">
               <div className="animate-pulse h-6 w-24 bg-gray-200 rounded" />
               <div className="animate-pulse h-4 w-16 bg-gray-200 rounded" />
@@ -108,7 +108,7 @@ export const AppContent = ({
       )}
 
       {hasError && (
-        <div className="bg-white/80 border-2 border-[#FFE8EC] rounded-2xl p-3 sm:p-4 text-xs sm:text-sm font-bold text-[#D65D73] animate-slide-up">
+        <div className="bg-white/80 border-2 border-[#FFE8EC] rounded-2xl p-3 sm:p-4 text-xs sm:text-sm font-bold text-[#D65D73]">
           {authError && <div>{authError}</div>}
           {profileError && <div>{profileError}</div>}
           {logsError && <div>{logsError}</div>}
@@ -117,7 +117,7 @@ export const AppContent = ({
       )}
 
       {!user && !authLoading && (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
             <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
               <LogIn size={20} className="text-white" />
