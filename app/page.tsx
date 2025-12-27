@@ -13,7 +13,10 @@ import {
   Droplets,
   TrendingUp,
   Clock,
-  Sparkles
+  Sparkles,
+  Target,
+  Award,
+  Activity
 } from 'lucide-react';
 
 /**
@@ -32,6 +35,14 @@ const JuicyButton = ({
   className = '',
   fullWidth = false,
   disabled = false
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'success';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
+  className?: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
 }) => {
   // Color Schemas (Flo Inspired)
   const variants = {
@@ -105,7 +116,19 @@ const JuicyButton = ({
 };
 
 // Bristol Scale Card (Responsive)
-const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }) => (
+const StoolTypeCard = ({
+  label,
+  selected,
+  onClick,
+  emoji,
+  delay = 0
+}: {
+  label: string;
+  selected: boolean;
+  onClick: () => void;
+  emoji: string;
+  delay?: number;
+}) => (
   <div
     onClick={onClick}
     style={{ animationDelay: `${delay}ms` }}
@@ -132,7 +155,19 @@ const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }) => (
 );
 
 // Stat Card (Responsive)
-const StatCard = ({ icon: Icon, value, label, color, delay = 0 }) => (
+const StatCard = ({
+  icon: Icon,
+  value,
+  label,
+  color,
+  delay = 0
+}: {
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+  value: string | number;
+  label: string;
+  color: string;
+  delay?: number;
+}) => (
   <div
     style={{ animationDelay: `${delay}ms` }}
     className="bg-white rounded-2xl p-3 sm:p-4 md:p-5 border-2 border-gray-100 shadow-sm flex items-center gap-3 sm:gap-4 card-hover animate-slide-up"
@@ -148,7 +183,7 @@ const StatCard = ({ icon: Icon, value, label, color, delay = 0 }) => (
 );
 
 // Weekly Chart Component
-const WeeklyChart = ({ logs }) => {
+const WeeklyChart = ({ logs }: { logs: Array<{ id: number; type: number; date: string; notes: string }> }) => {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const today = new Date();
 
@@ -191,17 +226,20 @@ const WeeklyChart = ({ logs }) => {
 
 export default function App() {
   const [view, setView] = useState('dashboard'); // dashboard, log, stats
-  const [logs, setLogs] = useState([
-    { id: 1, type: 3, date: new Date().toISOString(), notes: "Healthy start!" },
-    { id: 2, type: 4, date: new Date(Date.now() - 86400000).toISOString(), notes: "All good." },
-    { id: 3, type: 4, date: new Date(Date.now() - 172800000).toISOString(), notes: "Regular." },
-    { id: 4, type: 5, date: new Date(Date.now() - 259200000).toISOString(), notes: "" },
-  ]);
+  const [logs, setLogs] = useState(() => {
+    const now = Date.now();
+    return [
+      { id: 1, type: 3, date: new Date().toISOString(), notes: "Healthy start!" },
+      { id: 2, type: 4, date: new Date(now - 86400000).toISOString(), notes: "All good." },
+      { id: 3, type: 4, date: new Date(now - 172800000).toISOString(), notes: "Regular." },
+      { id: 4, type: 5, date: new Date(now - 259200000).toISOString(), notes: "" },
+    ];
+  });
   const [streak, setStreak] = useState(12);
   const [showAllLogs, setShowAllLogs] = useState(false);
 
   // Logging State
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState<number | null>(null);
   const [isLogging, setIsLogging] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -234,7 +272,7 @@ export default function App() {
     setStreak(prev => prev + 1); // Mock streak logic
   };
 
-  const getDayName = (dateStr) => {
+  const getDayName = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { weekday: 'short' });
   };
@@ -314,137 +352,357 @@ export default function App() {
           {/* Content Area */}
           <div className="p-4 sm:p-6 lg:p-8 xl:p-10 pb-24 lg:pb-10 space-y-6 sm:space-y-8 max-w-6xl mx-auto">
 
-            {/* Greeting */}
-            <section className="animate-fade-in">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, User! 👋</h2>
-              <p className="text-gray-400 font-bold text-sm sm:text-base">Time to listen to your body.</p>
-            </section>
+            {view === 'dashboard' && (
+              <>
+                {/* Greeting */}
+                <section className="animate-fade-in">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, User! 👋</h2>
+                  <p className="text-gray-400 font-bold text-sm sm:text-base">Time to listen to your body.</p>
+                </section>
 
-            {/* Stats Row - Responsive Grid */}
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <StatCard
-                icon={Check}
-                value={logs.filter(l => new Date(l.date).getDate() === new Date().getDate()).length}
-                label="Today"
-                color="bg-[#A6D8D4]"
-                delay={100}
-              />
-              <StatCard
-                icon={Calendar}
-                value={logs.length}
-                label="Total"
-                color="bg-[#FFB7B2]"
-                delay={200}
-              />
-              <StatCard
-                icon={TrendingUp}
-                value="4.2"
-                label="Avg Consistency"
-                color="bg-[#B4A7D6]"
-                delay={300}
-              />
-              <StatCard
-                icon={Clock}
-                value="8am"
-                label="Best Time"
-                color="bg-[#FFD966]"
-                delay={400}
-              />
-            </section>
+                {/* Stats Row - Responsive Grid */}
+                <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                  <StatCard
+                    icon={Check}
+                    value={logs.filter(l => new Date(l.date).getDate() === new Date().getDate()).length}
+                    label="Today"
+                    color="bg-[#A6D8D4]"
+                    delay={100}
+                  />
+                  <StatCard
+                    icon={Calendar}
+                    value={logs.length}
+                    label="Total"
+                    color="bg-[#FFB7B2]"
+                    delay={200}
+                  />
+                  <StatCard
+                    icon={TrendingUp}
+                    value="4.2"
+                    label="Avg Consistency"
+                    color="bg-[#B4A7D6]"
+                    delay={300}
+                  />
+                  <StatCard
+                    icon={Clock}
+                    value="8am"
+                    label="Best Time"
+                    color="bg-[#FFD966]"
+                    delay={400}
+                  />
+                </section>
 
-            {/* Main Content Grid - Desktop: 2 columns */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                {/* Main Content Grid - Desktop: 2 columns */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
 
-              {/* Main Action Card */}
-              <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm flex flex-col items-center gap-4 sm:gap-6 text-center animate-scale-in glow-pink">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFF0F3] rounded-full flex items-center justify-center animate-float">
-                  <span className="text-4xl sm:text-5xl lg:text-6xl">🚽</span>
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-gray-700">Track your movement</h3>
-                  <p className="text-gray-400 font-medium text-xs sm:text-sm mt-1 max-w-xs mx-auto">Keep your streak alive and understand your digestive health better.</p>
-                </div>
-                <JuicyButton
-                  variant="primary"
-                  size="lg"
-                  fullWidth
-                  onClick={() => setIsLogging(true)}
-                  className="animate-pulse-slow max-w-xs"
-                >
-                  <Plus size={24} className="mr-1" />
-                  LOG NOW
-                </JuicyButton>
-              </section>
-
-              {/* Day Streak */}
-              <section
-                className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between animate-slide-up"
-                style={{ animationDelay: '200ms' }}
-              >
-                <div className="flex items-center gap-3">
-                  <Flame className="text-orange-400 fill-orange-400 animate-pulse-slow" size={32} />
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-500">{streak}</span>
-                </div>
-                <div className="mt-3">
-                  <p className="text-sm sm:text-base font-extrabold text-orange-400">Day Streak! 🔥</p>
-                  <p className="text-xs sm:text-sm font-medium text-orange-300 mt-1">Keep it going!</p>
-                </div>
-              </section>
-            </div>
-
-            {/* Statistics */}
-            <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
-              <div className="flex justify-between items-center mb-4 sm:mb-6">
-                <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Statistics</h3>
-              </div>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-                <div className="flex justify-between items-center mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-lg font-extrabold text-gray-700">This Week</h4>
-                  <span className="text-xs sm:text-sm font-bold text-[#FF8096]">View Details</span>
-                </div>
-                <WeeklyChart logs={logs} />
-              </div>
-            </section>
-
-            {/* Recent History */}
-            <section className="animate-slide-up" style={{ animationDelay: '400ms' }}>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
-                <button
-                  onClick={() => setShowAllLogs(prev => !prev)}
-                  className="text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all"
-                >
-                  {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
-                </button>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
-                {visibleLogs.map((log) => {
-                  const logType = stoolTypes.find(t => t.type === log.type);
-
-                  return (
-                    <div
-                      key={log.id}
-                      className="bg-white p-4 rounded-2xl border-2 border-gray-100 flex items-center justify-between card-hover"
+                  {/* Main Action Card */}
+                  <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm flex flex-col items-center gap-4 sm:gap-6 text-center animate-scale-in glow-pink">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFF0F3] rounded-full flex items-center justify-center animate-float">
+                      <span className="text-4xl sm:text-5xl lg:text-6xl">🚽</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-gray-700">Track your movement</h3>
+                      <p className="text-gray-400 font-medium text-xs sm:text-sm mt-1 max-w-xs mx-auto">Keep your streak alive and understand your digestive health better.</p>
+                    </div>
+                    <JuicyButton
+                      variant="primary"
+                      size="lg"
+                      fullWidth
+                      onClick={() => setIsLogging(true)}
+                      className="animate-pulse-slow max-w-xs"
                     >
-                      <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="bg-[#F0F8FF] p-2.5 sm:p-3 rounded-xl text-lg sm:text-xl">
-                          {logType?.emoji}
+                      <Plus size={24} className="mr-1" />
+                      LOG NOW
+                    </JuicyButton>
+                  </section>
+
+                  {/* Day Streak */}
+                  <section
+                    className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between animate-slide-up"
+                    style={{ animationDelay: '200ms' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Flame className="text-orange-400 fill-orange-400 animate-pulse-slow" size={32} />
+                      <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-500">{streak}</span>
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-sm sm:text-base font-extrabold text-orange-400">Day Streak! 🔥</p>
+                      <p className="text-xs sm:text-sm font-medium text-orange-300 mt-1">Keep it going!</p>
+                    </div>
+                  </section>
+                </div>
+
+                {/* Statistics */}
+                <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
+                  <div className="flex justify-between items-center mb-4 sm:mb-6">
+                    <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Statistics</h3>
+                  </div>
+                  <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <h4 className="text-base sm:text-lg font-extrabold text-gray-700">This Week</h4>
+                      <span className="text-xs sm:text-sm font-bold text-[#FF8096]">View Details</span>
+                    </div>
+                    <WeeklyChart logs={logs} />
+                  </div>
+                </section>
+
+                {/* Recent History */}
+                <section className="animate-slide-up" style={{ animationDelay: '400ms' }}>
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
+                    <button
+                      onClick={() => setShowAllLogs(prev => !prev)}
+                      className="text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all"
+                    >
+                      {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
+                    {visibleLogs.map((log) => {
+                      const logType = stoolTypes.find(t => t.type === log.type);
+
+                      return (
+                        <div
+                          key={log.id}
+                          className="bg-white p-4 rounded-2xl border-2 border-gray-100 flex items-center justify-between card-hover"
+                        >
+                          <div className="flex items-center gap-3 sm:gap-4">
+                            <div className="bg-[#F0F8FF] p-2.5 sm:p-3 rounded-xl text-lg sm:text-xl">
+                              {logType?.emoji}
+                            </div>
+                            <div>
+                              <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
+                              <div className="text-[10px] sm:text-xs font-bold text-gray-400">
+                                {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="font-extrabold text-gray-300 text-xs sm:text-sm">
+                            {getDayName(log.date)}
+                          </div>
                         </div>
-                        <div>
-                          <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
-                          <div className="text-[10px] sm:text-xs font-bold text-gray-400">
-                            {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      );
+                    })}
+                  </div>
+                </section>
+              </>
+            )}
+
+            {view === 'stats' && (
+              <>
+                {/* Stats Page Header */}
+                <section className="animate-fade-in">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Statistics 📊</h2>
+                  <p className="text-gray-400 font-bold text-sm sm:text-base">Track your digestive health journey.</p>
+                </section>
+
+                {/* Overview Stats Grid */}
+                <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                  <StatCard
+                    icon={Check}
+                    value={logs.length}
+                    label="Total Logs"
+                    color="bg-[#A6D8D4]"
+                    delay={100}
+                  />
+                  <StatCard
+                    icon={Flame}
+                    value={streak}
+                    label="Day Streak"
+                    color="bg-[#FFB7B2]"
+                    delay={200}
+                  />
+                  <StatCard
+                    icon={Activity}
+                    value={(logs.reduce((sum, log) => sum + log.type, 0) / logs.length).toFixed(1) || '0'}
+                    label="Avg Type"
+                    color="bg-[#B4A7D6]"
+                    delay={300}
+                  />
+                  <StatCard
+                    icon={Target}
+                    value="4"
+                    label="Healthy Score"
+                    color="bg-[#98DE8F]"
+                    delay={400}
+                  />
+                </section>
+
+                {/* Main Charts Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+
+                  {/* Weekly Overview */}
+                  <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up" style={{ animationDelay: '100ms' }}>
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
+                      <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Last 7 Days</span>
+                    </div>
+                    <WeeklyChart logs={logs} />
+                  </section>
+
+                  {/* Bristol Scale Distribution */}
+                  <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up" style={{ animationDelay: '200ms' }}>
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Type Distribution</h3>
+                      <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Bristol Scale</span>
+                    </div>
+                    <div className="space-y-3">
+                      {stoolTypes.map((type) => {
+                        const count = logs.filter(log => log.type === type.type).length;
+                        const percentage = logs.length > 0 ? (count / logs.length * 100).toFixed(0) : 0;
+                        return (
+                          <div key={type.type} className="flex items-center gap-3">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#F0F8FF] rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
+                              {type.emoji}
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex justify-between items-center mb-1">
+                                <span className="font-bold text-sm sm:text-base text-gray-700">{type.label}</span>
+                                <span className="font-bold text-xs sm:text-sm text-gray-400">{percentage}%</span>
+                              </div>
+                              <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full transition-all duration-500 ${
+                                    Number(percentage) > 0 ? 'bg-gradient-to-r from-[#FF8096] to-[#A6D8D4]' : 'bg-gray-200'
+                                  }`}
+                                  style={{ width: `${percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
+
+                  {/* Daily Pattern */}
+                  <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up" style={{ animationDelay: '300ms' }}>
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
+                      <span className="text-xs sm:text-sm font-bold text-[#FF8096]">By Time</span>
+                    </div>
+                    <div className="space-y-3">
+                      {['Morning', 'Afternoon', 'Evening', 'Night'].map((timePeriod) => {
+                        const hours = timePeriod === 'Morning' ? [6, 7, 8, 9, 10, 11] :
+                                     timePeriod === 'Afternoon' ? [12, 13, 14, 15, 16, 17] :
+                                     timePeriod === 'Evening' ? [18, 19, 20, 21] :
+                                     [22, 23, 0, 1, 2, 3, 4, 5];
+                        const count = logs.filter(log => {
+                          const hour = new Date(log.date).getHours();
+                          return hours.includes(hour);
+                        }).length;
+                        const percentage = logs.length > 0 ? (count / logs.length * 100).toFixed(0) : 0;
+                        
+                        const periodEmoji = timePeriod === 'Morning' ? '🌅' :
+                                          timePeriod === 'Afternoon' ? '☀️' :
+                                          timePeriod === 'Evening' ? '🌆' : '🌙';
+                        
+                        return (
+                          <div key={timePeriod} className="flex items-center gap-3">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFF9F3] rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
+                              {periodEmoji}
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex justify-between items-center mb-1">
+                                <span className="font-bold text-sm sm:text-base text-gray-700">{timePeriod}</span>
+                                <span className="font-bold text-xs sm:text-sm text-gray-400">{count} logs</span>
+                              </div>
+                              <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full transition-all duration-500 ${
+                                    Number(percentage) > 0 ? 'bg-gradient-to-r from-[#FFD966] to-[#FFB7B2]' : 'bg-gray-200'
+                                  }`}
+                                  style={{ width: `${percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
+
+                  {/* Health Insights */}
+                  <section className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm animate-slide-up" style={{ animationDelay: '400ms' }}>
+                    <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                      <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl animate-float">
+                        <Award size={20} className="text-white sm:w-6 sm:h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Health Insights</h3>
+                        <p className="text-xs sm:text-sm font-bold text-gray-400">Your digestive wellness</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="bg-white/70 rounded-2xl p-3 sm:p-4 border border-white/50">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="bg-[#98DE8F] p-1.5 sm:p-2 rounded-lg">
+                            <Check size={12} className="text-white" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-xs sm:text-sm text-gray-700">Great consistency!</p>
+                            <p className="text-[10px] sm:text-xs font-medium text-gray-400">Your average type is 4 (ideal)</p>
                           </div>
                         </div>
                       </div>
-                      <div className="font-extrabold text-gray-300 text-xs sm:text-sm">
-                        {getDayName(log.date)}
+                      <div className="bg-white/70 rounded-2xl p-3 sm:p-4 border border-white/50">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="bg-[#FFD966] p-1.5 sm:p-2 rounded-lg">
+                            <Flame size={12} className="text-white" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-xs sm:text-sm text-gray-700">Strong streak!</p>
+                            <p className="text-[10px] sm:text-xs font-medium text-gray-400">{streak} days of tracking</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white/70 rounded-2xl p-3 sm:p-4 border border-white/50">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="bg-[#A6D8D4] p-1.5 sm:p-2 rounded-lg">
+                            <Activity size={12} className="text-white" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-xs sm:text-sm text-gray-700">Regular pattern</p>
+                            <p className="text-[10px] sm:text-xs font-medium text-gray-400">Morning is your best time</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-            </section>
+                  </section>
+
+                </div>
+
+                {/* Monthly Trend */}
+                <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up" style={{ animationDelay: '500ms' }}>
+                  <div className="flex justify-between items-center mb-4 sm:mb-6">
+                    <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>
+                    <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Last 30 Days</span>
+                  </div>
+                  <div className="grid grid-cols-10 gap-1 sm:gap-2">
+                    {Array.from({ length: 30 }, (_, i) => {
+                      const date = new Date();
+                      date.setDate(date.getDate() - (29 - i));
+                      const hasLog = logs.some(log => new Date(log.date).toDateString() === date.toDateString());
+                      const isToday = date.toDateString() === new Date().toDateString();
+                      return (
+                        <div
+                          key={i}
+                          className={`aspect-square rounded-lg sm:rounded-xl flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all hover:scale-110 cursor-default ${
+                            hasLog 
+                              ? `bg-gradient-to-br ${isToday ? 'from-[#FF8096] to-[#D65D73]' : 'from-[#A6D8D4] to-[#7CB2AE]'} text-white shadow-md`
+                              : 'bg-gray-100 text-gray-300'
+                          }`}
+                          title={date.toLocaleDateString()}
+                        >
+                          {isToday ? '📍' : hasLog ? '✓' : ''}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+
+              </>
+            )}
 
           </div>
         </main>
