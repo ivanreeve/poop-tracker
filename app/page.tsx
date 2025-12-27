@@ -6,13 +6,11 @@ import {
   Calendar,
   BarChart2,
   Settings,
-  Trophy,
   Flame,
   Check,
   X,
   ChevronRight,
   Droplets,
-  Wind,
   TrendingUp,
   Clock,
   Sparkles
@@ -150,20 +148,6 @@ const StatCard = ({ icon: Icon, value, label, color, delay = 0 }) => (
   </div>
 );
 
-// Feature Card for Desktop View
-const FeatureCard = ({ icon: Icon, title, description, color, delay = 0 }) => (
-  <div
-    style={{ animationDelay: `${delay}ms` }}
-    className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-sm card-hover animate-slide-up group"
-  >
-    <div className={`p-4 rounded-2xl ${color} inline-block mb-4 transition-transform duration-300 group-hover:scale-110`}>
-      <Icon size={28} className="text-white" />
-    </div>
-    <h4 className="font-extrabold text-lg text-gray-700 mb-2">{title}</h4>
-    <p className="text-gray-400 text-sm font-medium">{description}</p>
-  </div>
-);
-
 // Weekly Chart Component
 const WeeklyChart = ({ logs }) => {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -215,6 +199,7 @@ export default function App() {
     { id: 4, type: 5, date: new Date(Date.now() - 259200000).toISOString(), notes: "" },
   ]);
   const [streak, setStreak] = useState(12);
+  const [showAllLogs, setShowAllLogs] = useState(false);
 
   // Logging State
   const [selectedType, setSelectedType] = useState(null);
@@ -254,6 +239,8 @@ export default function App() {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { weekday: 'short' });
   };
+
+  const visibleLogs = showAllLogs ? logs : logs.slice(0, 4);
 
   if (!mounted) return null;
 
@@ -302,17 +289,6 @@ export default function App() {
             ))}
           </nav>
 
-          {/* Streak Widget */}
-          <div className="p-4">
-            <div className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-2xl p-5 border-2 border-orange-100">
-              <div className="flex items-center gap-3 mb-3">
-                <Flame className="text-orange-400 fill-orange-400 animate-pulse-slow" size={28} />
-                <span className="text-3xl font-black text-orange-500">{streak}</span>
-              </div>
-              <p className="text-sm font-bold text-orange-400">Day Streak! 🔥</p>
-              <p className="text-xs font-medium text-orange-300 mt-1">Keep it going!</p>
-            </div>
-          </div>
         </aside>
 
         {/* Main Content Area */}
@@ -401,24 +377,49 @@ export default function App() {
                 </JuicyButton>
               </section>
 
-              {/* Weekly Chart */}
-              <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up" style={{ animationDelay: '200ms' }}>
-                <div className="flex justify-between items-center mb-4 sm:mb-6">
-                  <h3 className="text-base sm:text-lg font-extrabold text-gray-700">This Week</h3>
-                  <span className="text-xs sm:text-sm font-bold text-[#FF8096]">View Details</span>
+              {/* Day Streak */}
+              <section
+                className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between animate-slide-up"
+                style={{ animationDelay: '200ms' }}
+              >
+                <div className="flex items-center gap-3">
+                  <Flame className="text-orange-400 fill-orange-400 animate-pulse-slow" size={32} />
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-500">{streak}</span>
                 </div>
-                <WeeklyChart logs={logs} />
+                <div className="mt-3">
+                  <p className="text-sm sm:text-base font-extrabold text-orange-400">Day Streak! 🔥</p>
+                  <p className="text-xs sm:text-sm font-medium text-orange-300 mt-1">Keep it going!</p>
+                </div>
               </section>
             </div>
 
-            {/* Recent History */}
+            {/* Statistics */}
             <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
+              <div className="flex justify-between items-center mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Statistics</h3>
+              </div>
+              <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h4 className="text-base sm:text-lg font-extrabold text-gray-700">This Week</h4>
+                  <span className="text-xs sm:text-sm font-bold text-[#FF8096]">View Details</span>
+                </div>
+                <WeeklyChart logs={logs} />
+              </div>
+            </section>
+
+            {/* Recent History */}
+            <section className="animate-slide-up" style={{ animationDelay: '400ms' }}>
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
-                <button className="text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all">VIEW ALL</button>
+                <button
+                  onClick={() => setShowAllLogs(prev => !prev)}
+                  className="text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all"
+                >
+                  {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
+                </button>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
-                {logs.slice(0, 4).map((log, index) => (
+                {visibleLogs.map((log) => (
                   <div
                     key={log.id}
                     className="bg-white p-4 rounded-2xl border-2 border-gray-100 flex items-center justify-between card-hover"
@@ -439,34 +440,6 @@ export default function App() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </section>
-
-            {/* Features Grid - Desktop Only */}
-            <section className="hidden lg:block animate-slide-up" style={{ animationDelay: '400ms' }}>
-              <h3 className="text-lg font-extrabold text-gray-700 mb-4">Explore Features</h3>
-              <div className="grid grid-cols-3 gap-4">
-                <FeatureCard
-                  icon={TrendingUp}
-                  title="Trends"
-                  description="Track patterns over time"
-                  color="bg-[#A6D8D4]"
-                  delay={100}
-                />
-                <FeatureCard
-                  icon={Trophy}
-                  title="Achievements"
-                  description="Earn badges for consistency"
-                  color="bg-[#FFB7B2]"
-                  delay={200}
-                />
-                <FeatureCard
-                  icon={Calendar}
-                  title="Calendar"
-                  description="View your monthly history"
-                  color="bg-[#B4A7D6]"
-                  delay={300}
-                />
               </div>
             </section>
 
