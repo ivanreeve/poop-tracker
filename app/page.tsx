@@ -406,7 +406,7 @@ export default function App() {
                     <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
                     <button
                       onClick={() => setShowAllLogs(prev => !prev)}
-                      className="text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all"
+                      className="cursor-pointer text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all"
                     >
                       {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
                     </button>
