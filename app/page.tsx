@@ -737,7 +737,7 @@ export default function App() {
                       label={t.label}
                       emoji={t.emoji}
                       selected={selectedType === t.type}
-                      onClick={() => setSelectedType(t.type)}
+                      onClick={() => setSelectedType(prev => (prev === t.type ? null : t.type))}
                       delay={index * 50}
                     />
                   ))}
