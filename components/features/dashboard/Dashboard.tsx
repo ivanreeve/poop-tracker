@@ -33,8 +33,7 @@ export const Dashboard = ({
 }: DashboardProps) => (
   <>
     <section className="animate-fade-in">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, {greetingName}! 👋</h2>
-      <p className="text-gray-400 font-bold text-sm sm:text-base">Time to listen to your body.</p>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, {greetingName}!</h2>
     </section>
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">

@@ -43,7 +43,6 @@ export const ProfileSection = ({
   <>
     <section className="animate-fade-in">
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Profile & Friends</h2>
-      <p className="text-gray-400 font-bold text-sm sm:text-base">Manage your account and share logs with friends.</p>
     </section>
 
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">

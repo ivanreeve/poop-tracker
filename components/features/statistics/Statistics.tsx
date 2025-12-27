@@ -34,8 +34,7 @@ export const Statistics = ({
 }: StatisticsProps) => (
   <>
     <section className="animate-fade-in">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Statistics 📊</h2>
-      <p className="text-gray-400 font-bold text-sm sm:text-base">Track your digestive health journey.</p>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Statistics</h2>
     </section>
 
     <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
