@@ -8,6 +8,7 @@ import {
   AvatarImage,
 } from '../../ui/avatar';
 import { JuicyButton } from '../../ui/JuicyButton';
+import { FriendCardSkeleton } from '../../ui/skeleton';
 
 type ProfileSectionProps = {
   user: User;
@@ -99,9 +100,9 @@ export const ProfileSection = ({
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friend Requests</h3>
         </div>
         {friendsLoading ? (
-          <div className="text-xs sm:text-sm font-bold text-gray-400 flex items-center gap-2">
-            <Loader2 size={16} className="animate-spin" />
-            Loading requests...
+          <div className="space-y-3">
+            <FriendCardSkeleton />
+            <FriendCardSkeleton />
           </div>
         ) : (
           <>
@@ -170,9 +171,10 @@ export const ProfileSection = ({
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>
         </div>
         {friendsLoading ? (
-          <div className="text-xs sm:text-sm font-bold text-gray-400 flex items-center gap-2">
-            <Loader2 size={16} className="animate-spin" />
-            Loading friends...
+          <div className="space-y-3">
+            <FriendCardSkeleton />
+            <FriendCardSkeleton />
+            <FriendCardSkeleton />
           </div>
         ) : (
           <>

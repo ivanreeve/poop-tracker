@@ -1,6 +1,7 @@
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
-import { Flame, Loader2 } from 'lucide-react';
+import { Flame } from 'lucide-react';
+import { LogCardSkeleton } from '../../ui/skeleton';
 
 type DashboardProps = {
   greetingName: string;
@@ -64,15 +65,16 @@ export const Dashboard = ({
         </button>
       </div>
       {logsLoading ? (
-        <div className="bg-white rounded-2xl border-2 border-gray-100 p-4 text-xs sm:text-sm font-bold text-gray-400 flex items-center gap-2">
-          <Loader2 size={16} className="animate-spin" />
-          Loading your logs...
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <LogCardSkeleton key={i} />
+          ))}
         </div>
       ) : (
         <>
           {visibleLogs.length === 0 ? (
             <div className="bg-white rounded-2xl border-2 border-dashed border-gray-200 p-6 text-center text-xs sm:text-sm font-bold text-gray-400">
-              No logs yet. Tap "LOG NOW" to add your first entry.
+              No logs yet. Tap &quot;LOG NOW&quot; to add your first entry.
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
@@ -108,13 +110,14 @@ export const Dashboard = ({
     {acceptedFriendsCount > 0 && (
       <section className="animate-slide-up" style={{ animationDelay: '350ms' }}>
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends' Logs</h3>
+          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends&apos; Logs</h3>
           <span className="text-[10px] sm:text-xs font-bold text-gray-400">{acceptedFriendsCount} friends</span>
         </div>
         {friendsLoading ? (
-          <div className="bg-white rounded-2xl border-2 border-gray-100 p-4 text-xs sm:text-sm font-bold text-gray-400 flex items-center gap-2">
-            <Loader2 size={16} className="animate-spin" />
-            Loading friends...
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <LogCardSkeleton key={i} />
+            ))}
           </div>
         ) : (
           <>

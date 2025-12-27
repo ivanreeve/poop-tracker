@@ -1,6 +1,6 @@
 import type { User } from '@supabase/supabase-js';
 import type { FormEvent } from 'react';
-import { Loader2, LogIn } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { STOOL_TYPES } from '../../../lib/constants';
 import type { AppView, Friendship, PoopLog, Profile, StatsSummary } from '../../../types/models';
 import { Dashboard } from '../dashboard/Dashboard';
@@ -8,6 +8,7 @@ import { Statistics } from '../statistics/Statistics';
 import { ProfileSection } from '../profile/Profile';
 import { Settings } from '../settings/Settings';
 import { JuicyButton } from '../../ui/JuicyButton';
+import { SectionHeaderSkeleton, LogCardSkeleton } from '../../ui/skeleton';
 
 type AppContentProps = {
   user: User | null;
@@ -79,9 +80,30 @@ export const AppContent = ({
   return (
     <div className="p-4 sm:p-6 lg:p-8 xl:p-10 pb-24 lg:pb-10 space-y-6 sm:space-y-8 max-w-6xl mx-auto">
       {authLoading && (
-        <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-gray-400">
-          <Loader2 size={16} className="animate-spin" />
-          Checking your session...
+        <div className="space-y-6 sm:space-y-8">
+          <SectionHeaderSkeleton />
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="animate-pulse h-14 w-14 rounded-2xl bg-gray-200 border-2 border-gray-100" />
+                <div className="space-y-2">
+                  <div className="animate-pulse h-6 w-32 bg-gray-200 rounded" />
+                  <div className="animate-pulse h-4 w-48 bg-gray-200 rounded" />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="animate-slide-up">
+            <div className="flex justify-between items-center mb-4">
+              <div className="animate-pulse h-6 w-24 bg-gray-200 rounded" />
+              <div className="animate-pulse h-4 w-16 bg-gray-200 rounded" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <LogCardSkeleton key={i} />
+              ))}
+            </div>
+          </section>
         </div>
       )}
 
@@ -145,6 +167,7 @@ export const AppContent = ({
           streakInsightSubtitle={stats.streakInsightSubtitle}
           bestPeriodInsightTitle={stats.bestPeriodInsightTitle}
           bestPeriodInsightSubtitle={stats.bestPeriodInsightSubtitle}
+          loading={logsLoading}
         />
       )}
 
