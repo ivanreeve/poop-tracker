@@ -1,6 +1,6 @@
 import React from 'react';
 import type { User } from '@supabase/supabase-js';
-import { Loader2, Mail, UserPlus, Users, LogOut } from 'lucide-react';
+import { Loader2, Mail, UserPlus, Users } from 'lucide-react';
 import type { Friendship, Profile } from '../../../types/models';
 import {
   Avatar,
@@ -24,7 +24,6 @@ type ProfileSectionProps = {
   profilesById: Record<string, Profile>;
   onAcceptRequest: (id: string) => void;
   onDeclineRequest: (id: string) => void;
-  onSignOut: () => void;
 };
 
 export const ProfileSection = ({
@@ -42,7 +41,6 @@ export const ProfileSection = ({
   profilesById,
   onAcceptRequest,
   onDeclineRequest,
-  onSignOut,
 }: ProfileSectionProps) => (
   <>
     <section className="animate-fade-in">
@@ -63,10 +61,6 @@ export const ProfileSection = ({
             <div className="text-xs sm:text-sm font-bold text-gray-400">{user.email}</div>
           </div>
         </div>
-        <JuicyButton variant="outline" size="sm" onClick={onSignOut}>
-          <LogOut size={16} />
-          SIGN OUT
-        </JuicyButton>
       </div>
 
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">

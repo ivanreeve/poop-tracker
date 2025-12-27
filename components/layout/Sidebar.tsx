@@ -1,35 +1,20 @@
 import type { User } from '@supabase/supabase-js';
-import { BarChart2, ChevronRight, Droplets, Loader2, LogIn, LogOut, Plus, Settings, Sparkles, Users } from 'lucide-react';
-import type { AppView, Profile } from '../../types/models';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '../ui/avatar';
+import { BarChart2, ChevronRight, Droplets, Plus, Settings, Users } from 'lucide-react';
+import type { AppView } from '../../types/models';
 import { JuicyButton } from '../ui/JuicyButton';
 
 type SidebarProps = {
   user: User | null;
-  profile: Profile | null;
-  greetingName: string;
-  authLoading: boolean;
   view: AppView;
   onChangeView: (view: AppView) => void;
   onOpenLogging: () => void;
-  onSignIn: () => void;
-  onSignOut: () => void;
 };
 
 export const Sidebar = ({
   user,
-  profile,
-  greetingName,
-  authLoading,
   view,
   onChangeView,
   onOpenLogging,
-  onSignIn,
-  onSignOut,
 }: SidebarProps) => (
   <aside className="hidden lg:flex lg:w-72 xl:w-80 bg-white border-r-2 border-gray-100 flex-col fixed h-full z-20">
     <div className="px-6 py-6 flex items-center gap-3 border-b border-gray-100">
@@ -42,39 +27,10 @@ export const Sidebar = ({
       </div>
     </div>
 
-    <div className="px-6 py-4 border-b border-gray-100">
-      {user ? (
-        <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10 rounded-xl bg-[#FFF0F3] border-2 border-[#FFE8EC]">
-            {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
-            <AvatarFallback className="rounded-xl bg-[#FFF0F3]">
-              <Users size={18} className="text-[#FF8096]" />
-            </AvatarFallback>
-          </Avatar>
-          <div className="min-w-0 flex-1">
-            <div className="font-bold text-sm text-gray-700 truncate">{greetingName}</div>
-            <div className="text-[10px] font-bold text-gray-400 truncate">{user.email}</div>
-          </div>
-          <button
-            onClick={onSignOut}
-            className="p-2 rounded-xl border border-gray-100 text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
-            aria-label="Sign out"
-          >
-            <LogOut size={16} />
-          </button>
-        </div>
-      ) : (
-        <JuicyButton variant="secondary" size="sm" fullWidth onClick={onSignIn} disabled={authLoading}>
-          {authLoading ? <Loader2 size={16} className="animate-spin" /> : <LogIn size={16} />}
-          {authLoading ? 'CHECKING...' : 'SIGN IN WITH GOOGLE'}
-        </JuicyButton>
-      )}
-    </div>
-
     <div className="p-4">
       <JuicyButton variant="primary" size="md" fullWidth onClick={onOpenLogging} disabled={!user}>
         <Plus size={20} />
-        {user ? 'LOG NOW' : 'SIGN IN TO LOG'}
+        {user ? 'ADD NEW' : 'SIGN IN TO LOG'}
       </JuicyButton>
     </div>
 

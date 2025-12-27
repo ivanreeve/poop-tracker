@@ -6,6 +6,7 @@ import type { AppView, Friendship, PoopLog, Profile, StatsSummary } from '../../
 import { Dashboard } from '../dashboard/Dashboard';
 import { Statistics } from '../statistics/Statistics';
 import { ProfileSection } from '../profile/Profile';
+import { Settings } from '../settings/Settings';
 import { JuicyButton } from '../../ui/JuicyButton';
 
 type AppContentProps = {
@@ -163,6 +164,14 @@ export const AppContent = ({
           profilesById={profilesById}
           onAcceptRequest={onAcceptRequest}
           onDeclineRequest={onDeclineRequest}
+        />
+      )}
+
+      {user && view === 'settings' && (
+        <Settings
+          user={user}
+          profile={profile}
+          greetingName={greetingName}
           onSignOut={onSignOut}
         />
       )}

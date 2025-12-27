@@ -102,14 +102,9 @@ export default function App() {
       <div className="w-full min-h-screen flex flex-col lg:flex-row">
         <Sidebar
           user={user}
-          profile={profile}
-          greetingName={greetingName}
-          authLoading={authLoading}
           view={view}
           onChangeView={setView}
           onOpenLogging={openLogging}
-          onSignIn={signInWithGoogle}
-          onSignOut={signOut}
         />
 
         <main className="flex-1 lg:ml-72 xl:ml-80">
