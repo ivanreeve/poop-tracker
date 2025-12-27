@@ -8,7 +8,7 @@ type BottomNavProps = {
 };
 
 export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps) => (
-  <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t-2 border-gray-100 px-2 py-2 flex items-center justify-around z-20 pb-safe">
+  <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t-2 border-gray-100 px-2 py-2 flex items-center gap-1 z-20 pb-safe">
     {[
       { id: 'dashboard', icon: Droplets, label: 'Track' },
       { id: 'stats', icon: BarChart2, label: 'Stats' },
@@ -17,7 +17,7 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
         key={item.id}
         onClick={() => onChangeView(item.id as AppView)}
         className={`
-          flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200
+          flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
           ${view === item.id ? 'bg-[#FFF0F3]' : 'bg-transparent'}
         `}
       >
@@ -42,7 +42,7 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
     <button
       onClick={() => onChangeView('profile')}
       className={`
-        flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200
+        flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
         ${view === 'profile' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
       `}
     >
@@ -58,7 +58,7 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
     <button
       onClick={() => onChangeView('settings')}
       className={`
-        flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200
+        flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
         ${view === 'settings' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
       `}
     >
