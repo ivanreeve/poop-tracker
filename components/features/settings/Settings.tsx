@@ -55,7 +55,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
           </div>
         </div>
 
-        <JuicyButton variant="danger" size="sm" onClick={onSignOut} fullWidth className="hover:!bg-[#FF8080] hover:!border-[#D66060]">
+        <JuicyButton variant="outline" size="sm" onClick={onSignOut} fullWidth className="hover:!bg-[#FF8080] hover:!border-[#D66060] hover:!text-white cursor-pointer">
           <LogOut size={16} />
           SIGN OUT
         </JuicyButton>
