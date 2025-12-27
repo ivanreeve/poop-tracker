@@ -56,10 +56,10 @@ const JuicyButton = ({
       hover: 'hover:bg-[#B8E6E2]',
     },
     outline: {
-      bg: 'bg-white',
-      border: 'border-[#E5E5E5]',
-      text: 'text-[#5A5A5A]',
-      hover: 'hover:bg-[#F9F9F9]',
+      bg: 'bg-[#F5F5F5]',
+      border: 'border-[#E0E0E0]',
+      text: 'text-[#7A7A7A]',
+      hover: 'hover:bg-[#ECECEC]',
     },
     danger: {
       bg: 'bg-[#FFB7B2]', // Soft Red
