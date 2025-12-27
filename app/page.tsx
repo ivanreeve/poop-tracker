@@ -320,9 +320,9 @@ export default function App() {
                 onClick={() => setView(item.id)}
                 style={{ animationDelay: `${index * 100}ms` }}
                 className={`
-                  w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-200 animate-slide-up
+                  cursor-pointer w-full flex items-center gap-4 p-4 rounded-md transition-all duration-200 animate-slide-up
                   ${view === item.id
-                    ? 'bg-[#FFF0F3] text-[#FF8096] shadow-sm'
+                    ? 'bg-[#FFF0F3] text-[#FF8096]'
                     : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'}
                 `}
               >
