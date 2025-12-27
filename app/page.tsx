@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Plus,
-  Calendar,
   BarChart2,
   Settings,
   Flame,
@@ -11,8 +10,6 @@ import {
   X,
   ChevronRight,
   Droplets,
-  TrendingUp,
-  Clock,
   Sparkles,
   Target,
   Award,
@@ -326,6 +323,18 @@ export default function App() {
             ))}
           </nav>
 
+          <div className="p-4">
+            <JuicyButton
+              variant="primary"
+              size="md"
+              fullWidth
+              onClick={() => setIsLogging(true)}
+            >
+              <Plus size={20} />
+              LOG NOW
+            </JuicyButton>
+          </div>
+
         </aside>
 
         {/* Main Content Area */}
@@ -360,62 +369,8 @@ export default function App() {
                   <p className="text-gray-400 font-bold text-sm sm:text-base">Time to listen to your body.</p>
                 </section>
 
-                {/* Stats Row - Responsive Grid */}
-                <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                  <StatCard
-                    icon={Check}
-                    value={logs.filter(l => new Date(l.date).getDate() === new Date().getDate()).length}
-                    label="Today"
-                    color="bg-[#A6D8D4]"
-                    delay={100}
-                  />
-                  <StatCard
-                    icon={Calendar}
-                    value={logs.length}
-                    label="Total"
-                    color="bg-[#FFB7B2]"
-                    delay={200}
-                  />
-                  <StatCard
-                    icon={TrendingUp}
-                    value="4.2"
-                    label="Avg Consistency"
-                    color="bg-[#B4A7D6]"
-                    delay={300}
-                  />
-                  <StatCard
-                    icon={Clock}
-                    value="8am"
-                    label="Best Time"
-                    color="bg-[#FFD966]"
-                    delay={400}
-                  />
-                </section>
-
-                {/* Main Content Grid - Desktop: 2 columns */}
+                {/* Main Content Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-
-                  {/* Main Action Card */}
-                  <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm flex flex-col items-center gap-4 sm:gap-6 text-center animate-scale-in glow-pink">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-[#FFF0F3] rounded-full flex items-center justify-center animate-float">
-                      <span className="text-4xl sm:text-5xl lg:text-6xl">🚽</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-gray-700">Track your movement</h3>
-                      <p className="text-gray-400 font-medium text-xs sm:text-sm mt-1 max-w-xs mx-auto">Keep your streak alive and understand your digestive health better.</p>
-                    </div>
-                    <JuicyButton
-                      variant="primary"
-                      size="lg"
-                      fullWidth
-                      onClick={() => setIsLogging(true)}
-                      className="animate-pulse-slow max-w-xs"
-                    >
-                      <Plus size={24} className="mr-1" />
-                      LOG NOW
-                    </JuicyButton>
-                  </section>
-
                   {/* Day Streak */}
                   <section
                     className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between animate-slide-up"
@@ -432,22 +387,8 @@ export default function App() {
                   </section>
                 </div>
 
-                {/* Statistics */}
-                <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
-                  <div className="flex justify-between items-center mb-4 sm:mb-6">
-                    <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Statistics</h3>
-                  </div>
-                  <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-                    <div className="flex justify-between items-center mb-4 sm:mb-6">
-                      <h4 className="text-base sm:text-lg font-extrabold text-gray-700">This Week</h4>
-                      <span className="text-xs sm:text-sm font-bold text-[#FF8096]">View Details</span>
-                    </div>
-                    <WeeklyChart logs={logs} />
-                  </div>
-                </section>
-
                 {/* Recent History */}
-                <section className="animate-slide-up" style={{ animationDelay: '400ms' }}>
+                <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
                     <button
@@ -712,7 +653,6 @@ export default function App() {
           {[
             { id: 'dashboard', icon: Droplets, label: 'Track' },
             { id: 'stats', icon: BarChart2, label: 'Stats' },
-            { id: 'profile', icon: Settings, label: 'Profile' }
           ].map(item => (
             <button
               key={item.id}
@@ -732,6 +672,31 @@ export default function App() {
               </span>
             </button>
           ))}
+
+          <button
+            onClick={() => setIsLogging(true)}
+            className="flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 bg-[#FF8096] text-white shadow-sm"
+          >
+            <Plus size={24} strokeWidth={3} />
+            <span className="text-[10px] sm:text-xs font-bold mt-1">Log</span>
+          </button>
+
+          <button
+            onClick={() => setView('profile')}
+            className={`
+              flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200
+              ${view === 'profile' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
+            `}
+          >
+            <Settings
+              size={24}
+              strokeWidth={2.5}
+              className={`transition-all duration-200 ${view === 'profile' ? 'text-[#FF8096] scale-110' : 'text-gray-300'}`}
+            />
+            <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#FF8096]' : 'text-gray-300'}`}>
+              Profile
+            </span>
+          </button>
         </nav>
 
         {/* Logging Modal Overlay */}
