@@ -105,7 +105,7 @@ const JuicyButton = ({
 };
 
 // Bristol Scale Card (Responsive)
-const StoolTypeCard = ({ label, description, selected, onClick, emoji, delay = 0 }) => (
+const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }) => (
   <div
     onClick={onClick}
     style={{ animationDelay: `${delay}ms` }}
@@ -122,7 +122,6 @@ const StoolTypeCard = ({ label, description, selected, onClick, emoji, delay = 0
     <div className={`text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm transition-transform duration-200 ${selected ? 'animate-wiggle' : ''}`}>{emoji}</div>
     <div className="text-center">
       <div className={`font-bold text-sm sm:text-base ${selected ? 'text-[#FF8096]' : 'text-gray-600'}`}>{label}</div>
-      <div className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight mt-1">{description}</div>
     </div>
     {selected && (
       <div className="absolute top-2 right-2 bg-[#FF8096] text-white rounded-full p-1 animate-bounce-in">
@@ -212,13 +211,13 @@ export default function App() {
 
   // Bristol Scale Data
   const stoolTypes = [
-    { type: 1, label: 'Hard', emoji: '🪨', desc: 'Hard lumps' },
-    { type: 2, label: 'Lumpy', emoji: '🥜', desc: 'Lumpy sausage' },
-    { type: 3, label: 'Cracked', emoji: '🌽', desc: 'Cracked sausage' },
-    { type: 4, label: 'Smooth', emoji: '🌭', desc: 'Smooth snake' },
-    { type: 5, label: 'Soft', emoji: '☁️', desc: 'Soft blobs' },
-    { type: 6, label: 'Mushy', emoji: '🍦', desc: 'Mushy solids' },
-    { type: 7, label: 'Liquid', emoji: '💧', desc: 'Watery' },
+    { type: 1, label: 'Hard', emoji: '🪨' },
+    { type: 2, label: 'Lumpy', emoji: '🥜' },
+    { type: 3, label: 'Cracked', emoji: '🌽' },
+    { type: 4, label: 'Smooth', emoji: '🌭' },
+    { type: 5, label: 'Soft', emoji: '☁️' },
+    { type: 6, label: 'Mushy', emoji: '🍦' },
+    { type: 7, label: 'Liquid', emoji: '💧' },
   ];
 
   const handleLog = () => {
@@ -502,7 +501,6 @@ export default function App() {
                       key={t.type}
                       label={t.label}
                       emoji={t.emoji}
-                      description={t.desc}
                       selected={selectedType === t.type}
                       onClick={() => setSelectedType(t.type)}
                       delay={index * 50}
