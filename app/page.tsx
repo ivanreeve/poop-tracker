@@ -105,7 +105,7 @@ const JuicyButton = ({
 };
 
 // Bristol Scale Card (Responsive)
-const StoolTypeCard = ({ type, description, selected, onClick, emoji, delay = 0 }) => (
+const StoolTypeCard = ({ label, description, selected, onClick, emoji, delay = 0 }) => (
   <div
     onClick={onClick}
     style={{ animationDelay: `${delay}ms` }}
@@ -121,7 +121,7 @@ const StoolTypeCard = ({ type, description, selected, onClick, emoji, delay = 0 
   >
     <div className={`text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm transition-transform duration-200 ${selected ? 'animate-wiggle' : ''}`}>{emoji}</div>
     <div className="text-center">
-      <div className={`font-bold text-sm sm:text-base ${selected ? 'text-[#FF8096]' : 'text-gray-600'}`}>Type {type}</div>
+      <div className={`font-bold text-sm sm:text-base ${selected ? 'text-[#FF8096]' : 'text-gray-600'}`}>{label}</div>
       <div className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight mt-1">{description}</div>
     </div>
     {selected && (
@@ -212,13 +212,13 @@ export default function App() {
 
   // Bristol Scale Data
   const stoolTypes = [
-    { type: 1, emoji: '🪨', desc: 'Hard lumps' },
-    { type: 2, emoji: '🥜', desc: 'Lumpy sausage' },
-    { type: 3, emoji: '🌽', desc: 'Cracked sausage' },
-    { type: 4, emoji: '🌭', desc: 'Smooth snake' },
-    { type: 5, emoji: '☁️', desc: 'Soft blobs' },
-    { type: 6, emoji: '🍦', desc: 'Mushy solids' },
-    { type: 7, emoji: '💧', desc: 'Watery' },
+    { type: 1, label: 'Hard', emoji: '🪨', desc: 'Hard lumps' },
+    { type: 2, label: 'Lumpy', emoji: '🥜', desc: 'Lumpy sausage' },
+    { type: 3, label: 'Cracked', emoji: '🌽', desc: 'Cracked sausage' },
+    { type: 4, label: 'Smooth', emoji: '🌭', desc: 'Smooth snake' },
+    { type: 5, label: 'Soft', emoji: '☁️', desc: 'Soft blobs' },
+    { type: 6, label: 'Mushy', emoji: '🍦', desc: 'Mushy solids' },
+    { type: 7, label: 'Liquid', emoji: '💧', desc: 'Watery' },
   ];
 
   const handleLog = () => {
@@ -340,7 +340,7 @@ export default function App() {
               <StatCard
                 icon={TrendingUp}
                 value="4.2"
-                label="Avg Type"
+                label="Avg Consistency"
                 color="bg-[#B4A7D6]"
                 delay={300}
               />
@@ -419,27 +419,31 @@ export default function App() {
                 </button>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 stagger-children">
-                {visibleLogs.map((log) => (
-                  <div
-                    key={log.id}
-                    className="bg-white p-4 rounded-2xl border-2 border-gray-100 flex items-center justify-between card-hover"
-                  >
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="bg-[#F0F8FF] p-2.5 sm:p-3 rounded-xl text-lg sm:text-xl">
-                        {stoolTypes.find(t => t.type === log.type)?.emoji}
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-700 text-sm sm:text-base">Type {log.type}</div>
-                        <div className="text-[10px] sm:text-xs font-bold text-gray-400">
-                          {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {visibleLogs.map((log) => {
+                  const logType = stoolTypes.find(t => t.type === log.type);
+
+                  return (
+                    <div
+                      key={log.id}
+                      className="bg-white p-4 rounded-2xl border-2 border-gray-100 flex items-center justify-between card-hover"
+                    >
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="bg-[#F0F8FF] p-2.5 sm:p-3 rounded-xl text-lg sm:text-xl">
+                          {logType?.emoji}
+                        </div>
+                        <div>
+                          <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
+                          <div className="text-[10px] sm:text-xs font-bold text-gray-400">
+                            {new Date(log.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </div>
                         </div>
                       </div>
+                      <div className="font-extrabold text-gray-300 text-xs sm:text-sm">
+                        {getDayName(log.date)}
+                      </div>
                     </div>
-                    <div className="font-extrabold text-gray-300 text-xs sm:text-sm">
-                      {getDayName(log.date)}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
 
@@ -496,7 +500,7 @@ export default function App() {
                   {stoolTypes.map((t, index) => (
                     <StoolTypeCard
                       key={t.type}
-                      type={t.type}
+                      label={t.label}
                       emoji={t.emoji}
                       description={t.desc}
                       selected={selectedType === t.type}
