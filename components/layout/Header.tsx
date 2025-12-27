@@ -54,7 +54,7 @@ export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOu
               </Avatar>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" side="bottom" sideOffset={12} className="min-w-[200px] bg-white border-gray-200">
+          <DropdownMenuContent align="end" sideOffset={32} className="min-w-[200px] bg-white border-gray-200">
             <div className="flex items-center gap-3 px-2 py-3">
               <Avatar className="h-10 w-10 border border-gray-200">
                 {profile?.avatar_url ? (
