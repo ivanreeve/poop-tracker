@@ -1,5 +1,5 @@
 import type { User } from '@supabase/supabase-js';
-import { BarChart2, ChevronRight, Droplets, Loader2, LogIn, LogOut, Plus, Users } from 'lucide-react';
+import { BarChart2, ChevronRight, Droplets, Loader2, LogIn, LogOut, Plus, Settings, Users } from 'lucide-react';
 import type { AppView, Profile } from '../../types/models';
 import { Avatar } from '../ui/Avatar';
 import { JuicyButton } from '../ui/JuicyButton';
@@ -79,6 +79,7 @@ export const Sidebar = ({
         { id: 'dashboard', icon: Droplets, label: 'Dashboard' },
         { id: 'stats', icon: BarChart2, label: 'Statistics' },
         { id: 'profile', icon: Users, label: 'Friends' },
+        { id: 'settings', icon: Settings, label: 'Settings' },
       ].map((item, index) => (
         <button
           key={item.id}

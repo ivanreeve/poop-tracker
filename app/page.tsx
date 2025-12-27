@@ -119,7 +119,8 @@ export default function App() {
             profile={profile}
             greetingName={greetingName}
             onSignIn={signInWithGoogle}
-            onOpenProfile={() => setView('profile')}
+            onSignOut={signOut}
+            onChangeView={setView}
           />
 
           <AppContent
