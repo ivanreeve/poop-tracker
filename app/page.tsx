@@ -244,6 +244,19 @@ export default function App() {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (!isLogging) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsLogging(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLogging]);
+
   // Bristol Scale Data
   const stoolTypes = [
     { type: 1, label: 'Hard', emoji: '🪨' },
