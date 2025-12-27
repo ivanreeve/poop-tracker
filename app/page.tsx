@@ -296,6 +296,18 @@ export default function App() {
             </div>
           </div>
 
+          <div className="p-4">
+            <JuicyButton
+              variant="primary"
+              size="md"
+              fullWidth
+              onClick={() => setIsLogging(true)}
+            >
+              <Plus size={20} />
+              LOG NOW
+            </JuicyButton>
+          </div>
+
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2">
             {[
@@ -322,18 +334,6 @@ export default function App() {
               </button>
             ))}
           </nav>
-
-          <div className="p-4">
-            <JuicyButton
-              variant="primary"
-              size="md"
-              fullWidth
-              onClick={() => setIsLogging(true)}
-            >
-              <Plus size={20} />
-              LOG NOW
-            </JuicyButton>
-          </div>
 
         </aside>
 
@@ -649,7 +649,7 @@ export default function App() {
         </main>
 
         {/* Mobile/Tablet Bottom Navigation */}
-        <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t-2 border-gray-100 px-2 py-2 flex justify-around z-20 pb-safe">
+        <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t-2 border-gray-100 px-2 py-2 flex items-center justify-around z-20 pb-safe">
           {[
             { id: 'dashboard', icon: Droplets, label: 'Track' },
             { id: 'stats', icon: BarChart2, label: 'Stats' },
@@ -675,10 +675,9 @@ export default function App() {
 
           <button
             onClick={() => setIsLogging(true)}
-            className="flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 bg-[#FF8096] text-white shadow-sm"
+            className="mx-2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FF8096] text-white border-b-4 border-[#D65D73] shadow-lg transition-all duration-150 active:border-b-0 active:translate-y-[4px] hover:scale-[1.03]"
           >
-            <Plus size={24} strokeWidth={3} />
-            <span className="text-[10px] sm:text-xs font-bold mt-1">Log</span>
+            <Plus size={26} strokeWidth={3} />
           </button>
 
           <button
