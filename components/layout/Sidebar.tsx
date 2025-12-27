@@ -1,7 +1,11 @@
 import type { User } from '@supabase/supabase-js';
-import { BarChart2, ChevronRight, Droplets, Loader2, LogIn, LogOut, Plus, Settings, Users } from 'lucide-react';
+import { BarChart2, ChevronRight, Droplets, Loader2, LogIn, LogOut, Plus, Settings, Sparkles, Users } from 'lucide-react';
 import type { AppView, Profile } from '../../types/models';
-import { Avatar } from '../ui/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../ui/avatar';
 import { JuicyButton } from '../ui/JuicyButton';
 
 type SidebarProps = {
@@ -41,12 +45,12 @@ export const Sidebar = ({
     <div className="px-6 py-4 border-b border-gray-100">
       {user ? (
         <div className="flex items-center gap-3">
-          <Avatar
-            src={profile?.avatar_url}
-            alt={greetingName}
-            fallback={<Users size={18} className="text-[#FF8096]" />}
-            className="w-10 h-10 rounded-xl bg-[#FFF0F3] border-2 border-[#FFE8EC] flex items-center justify-center overflow-hidden"
-          />
+          <Avatar className="h-10 w-10 rounded-xl bg-[#FFF0F3] border-2 border-[#FFE8EC]">
+            {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
+            <AvatarFallback className="rounded-xl bg-[#FFF0F3]">
+              <Users size={18} className="text-[#FF8096]" />
+            </AvatarFallback>
+          </Avatar>
           <div className="min-w-0 flex-1">
             <div className="font-bold text-sm text-gray-700 truncate">{greetingName}</div>
             <div className="text-[10px] font-bold text-gray-400 truncate">{user.email}</div>

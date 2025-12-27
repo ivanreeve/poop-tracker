@@ -30,7 +30,7 @@ export const useStats = (logs: PoopLog[]): StatsSummary => {
   const bestPeriodLabel = bestPeriod && bestPeriod.count > 0 ? bestPeriod.label : null;
   const bestPeriodInsightTitle = bestPeriodLabel ? `Top time: ${bestPeriodLabel}` : 'No time pattern yet';
   const bestPeriodInsightSubtitle = bestPeriodLabel
-    ? `${bestPeriod.count} logs during the ${bestPeriodLabel.toLowerCase()}.`
+    ? `${bestPeriod!.count} logs during the ${bestPeriodLabel.toLowerCase()}.`
     : 'Add more logs to reveal a pattern.';
 
   return {

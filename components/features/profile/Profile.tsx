@@ -2,7 +2,11 @@ import React from 'react';
 import type { User } from '@supabase/supabase-js';
 import { Loader2, Mail, UserPlus, Users, LogOut } from 'lucide-react';
 import type { Friendship, Profile } from '../../../types/models';
-import { Avatar } from '../../ui/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '../../ui/avatar';
 import { JuicyButton } from '../../ui/JuicyButton';
 
 type ProfileSectionProps = {
@@ -48,12 +52,12 @@ export const ProfileSection = ({
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm animate-slide-up">
         <div className="flex items-center gap-4 mb-4">
-          <Avatar
-            src={profile?.avatar_url}
-            alt={greetingName}
-            fallback={<Users size={24} className="text-[#FF8096]" />}
-            className="w-14 h-14 rounded-2xl bg-[#FFF0F3] border-2 border-[#FFE8EC] flex items-center justify-center overflow-hidden"
-          />
+          <Avatar className="h-14 w-14 rounded-2xl bg-[#FFF0F3] border-2 border-[#FFE8EC]">
+            {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
+            <AvatarFallback className="rounded-2xl bg-[#FFF0F3]">
+              <Users size={24} className="text-[#FF8096]" />
+            </AvatarFallback>
+          </Avatar>
           <div>
             <div className="text-lg sm:text-xl font-extrabold text-gray-700">{greetingName}</div>
             <div className="text-xs sm:text-sm font-bold text-gray-400">{user.email}</div>
@@ -193,12 +197,12 @@ export const ProfileSection = ({
                       key={friendship.id}
                       className="flex items-center gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
                     >
-                      <Avatar
-                        src={friendProfile?.avatar_url}
-                        alt={friendName}
-                        fallback={<Users size={16} className="text-[#A6D8D4]" />}
-                        className="w-10 h-10 rounded-xl bg-white border-2 border-[#E8F4F3] flex items-center justify-center overflow-hidden"
-                      />
+                      <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
+                        {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
+                        <AvatarFallback className="rounded-xl bg-white">
+                          <Users size={16} className="text-[#A6D8D4]" />
+                        </AvatarFallback>
+                      </Avatar>
                       <div>
                         <div className="font-bold text-sm text-gray-700">{friendName}</div>
                         <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
