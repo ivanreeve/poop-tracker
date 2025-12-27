@@ -44,7 +44,7 @@ export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOu
             <button
               type="button"
               aria-label="Open account menu"
-              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8096] focus-visible:ring-offset-2"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8096] focus-visible:ring-offset-2 cursor-pointer"
             >
               <Avatar className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-[#D65D73] bg-[#FF8096]">
                 {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
@@ -54,7 +54,7 @@ export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOu
               </Avatar>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" sideOffset={32} className="min-w-[200px] bg-white border-gray-200">
+          <DropdownMenuContent align="end" sideOffset={32} className="min-w-[200px] bg-white border-gray-200 shadow-none">
             <div className="flex items-center gap-3 px-2 py-3">
               <Avatar className="h-10 w-10 border border-gray-200">
                 {profile?.avatar_url ? (
@@ -75,18 +75,18 @@ export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOu
               </div>
             </div>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onChangeView('profile')}>
+            <DropdownMenuItem onClick={() => onChangeView('profile')} className="hover:bg-gray-100 cursor-pointer">
               <UserIcon className="h-4 w-4" />
               <span>Profile</span>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onChangeView('settings')}>
+            <DropdownMenuItem onClick={() => onChangeView('settings')} className="hover:bg-gray-100 cursor-pointer">
               <Settings className="h-4 w-4" />
               <span>Settings</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={onSignOut}
-              className="text-red-500 focus:text-red-500 data-[variant=destructive]:text-red-500"
+              className="text-red-500 focus:text-red-500 data-[variant=destructive]:text-red-500 hover:bg-red-50 cursor-pointer"
             >
               <LogOut className="h-4 w-4" />
               <span>Sign out</span>
