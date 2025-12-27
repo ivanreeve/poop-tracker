@@ -19,6 +19,7 @@ export default function App() {
   const [selectedType, setSelectedType] = useState<number | null>(null);
   const [isLogging, setIsLogging] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [selectedFriendId, setSelectedFriendId] = useState<string | null>(null);
 
   const {
     user,
@@ -51,6 +52,16 @@ export default function App() {
   } = useFriends(user);
 
   const stats = useStats(userLogs);
+
+  const viewFriendStats = (friendId: string) => {
+    setSelectedFriendId(friendId);
+    setView('friend-profile');
+  };
+
+  const closeFriendStats = () => {
+    setSelectedFriendId(null);
+    setView('profile');
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -149,6 +160,9 @@ export default function App() {
             onDeclineRequest={declineRequest}
             onSignOut={signOut}
             onSignIn={signInWithGoogle}
+            selectedFriendId={selectedFriendId}
+            onViewFriendStats={viewFriendStats}
+            onCloseFriendStats={closeFriendStats}
           />
         </main>
 

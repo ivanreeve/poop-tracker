@@ -6,6 +6,7 @@ import type { AppView, Friendship, PoopLog, Profile, StatsSummary } from '../../
 import { Dashboard } from '../dashboard/Dashboard';
 import { Statistics } from '../statistics/Statistics';
 import { ProfileSection } from '../profile/Profile';
+import { FriendProfile } from '../profile/FriendProfile';
 import { Settings } from '../settings/Settings';
 import { JuicyButton } from '../../ui/JuicyButton';
 import { SectionHeaderSkeleton, LogCardSkeleton } from '../../ui/skeleton';
@@ -41,6 +42,9 @@ type AppContentProps = {
   onDeclineRequest: (id: string) => void;
   onSignOut: () => void;
   onSignIn: () => void;
+  selectedFriendId: string | null;
+  onViewFriendStats: (friendId: string) => void;
+  onCloseFriendStats: () => void;
 };
 
 export const AppContent = ({
@@ -74,6 +78,9 @@ export const AppContent = ({
   onDeclineRequest,
   onSignOut,
   onSignIn,
+  selectedFriendId,
+  onViewFriendStats,
+  onCloseFriendStats,
 }: AppContentProps) => {
   const hasError = authError || profileError || logsError || friendsError;
 
@@ -187,6 +194,17 @@ export const AppContent = ({
           profilesById={profilesById}
           onAcceptRequest={onAcceptRequest}
           onDeclineRequest={onDeclineRequest}
+          onViewFriendStats={onViewFriendStats}
+        />
+      )}
+
+      {user && view === 'friend-profile' && selectedFriendId && (
+        <FriendProfile
+          friendProfile={profilesById[selectedFriendId]}
+          friendLogs={friendLogs.filter((log) => log.user_id === selectedFriendId)}
+          stoolTypes={STOOL_TYPES}
+          loading={friendsLoading}
+          onBack={onCloseFriendStats}
         />
       )}
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { User } from '@supabase/supabase-js';
-import { Loader2, Mail, UserPlus, Users } from 'lucide-react';
+import { BarChart, Loader2, Mail, UserPlus, Users } from 'lucide-react';
 import type { Friendship, Profile } from '../../../types/models';
 import {
   Avatar,
@@ -25,6 +25,7 @@ type ProfileSectionProps = {
   profilesById: Record<string, Profile>;
   onAcceptRequest: (id: string) => void;
   onDeclineRequest: (id: string) => void;
+  onViewFriendStats: (friendId: string) => void;
 };
 
 export const ProfileSection = ({
@@ -42,6 +43,7 @@ export const ProfileSection = ({
   profilesById,
   onAcceptRequest,
   onDeclineRequest,
+  onViewFriendStats,
 }: ProfileSectionProps) => (
   <>
     <section>
@@ -191,18 +193,28 @@ export const ProfileSection = ({
                   return (
                     <div
                       key={friendship.id}
-                      className="flex items-center gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
+                      className="flex items-center justify-between gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
                     >
-                      <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
-                        {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
-                        <AvatarFallback className="rounded-xl bg-white">
-                          <Users size={16} className="text-[#A6D8D4]" />
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <div className="font-bold text-sm text-gray-700">{friendName}</div>
-                        <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
+                          {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
+                          <AvatarFallback className="rounded-xl bg-white">
+                            <Users size={16} className="text-[#A6D8D4]" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-bold text-sm text-gray-700">{friendName}</div>
+                          <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
+                        </div>
                       </div>
+                      <JuicyButton
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onViewFriendStats(friendId)}
+                      >
+                        <BarChart size={14} />
+                        VIEW STATS
+                      </JuicyButton>
                     </div>
                   );
                 })}
