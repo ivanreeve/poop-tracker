@@ -1,4 +1,4 @@
-export type AppView = 'dashboard' | 'stats' | 'profile';
+export type AppView = 'dashboard' | 'stats' | 'profile' | 'settings';
 
 export type StoolType = {
   type: number;

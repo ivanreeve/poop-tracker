@@ -1,4 +1,4 @@
-import { BarChart2, Droplets, Plus, Users } from 'lucide-react';
+import { BarChart2, Droplets, Plus, Settings, Users } from 'lucide-react';
 import type { AppView } from '../../types/models';
 
 type BottomNavProps = {
@@ -34,7 +34,7 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
 
     <button
       onClick={onOpenLogging}
-      className="mx-2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FF8096] text-white border-b-4 border-[#D65D73] shadow-lg transition-all duration-150 active:border-b-0 active:translate-y-[4px] hover:scale-[1.03]"
+      className="absolute left-1/2 -translate-x-1/2 -top-7 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FF8096] text-white border-b-4 border-[#D65D73] shadow-lg transition-all duration-150 active:border-b-0 active:translate-y-[4px] hover:scale-[1.03] z-30 cursor-pointer"
     >
       <Plus size={26} strokeWidth={3} />
     </button>
@@ -53,6 +53,22 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
       />
       <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#FF8096]' : 'text-gray-300'}`}>
         Friends
+      </span>
+    </button>
+    <button
+      onClick={() => onChangeView('settings')}
+      className={`
+        flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200
+        ${view === 'settings' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
+      `}
+    >
+      <Settings
+        size={24}
+        strokeWidth={2.5}
+        className={`transition-all duration-200 ${view === 'settings' ? 'text-[#FF8096] scale-110' : 'text-gray-300'}`}
+      />
+      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'settings' ? 'text-[#FF8096]' : 'text-gray-300'}`}>
+        Settings
       </span>
     </button>
   </nav>
