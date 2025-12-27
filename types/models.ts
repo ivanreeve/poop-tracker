@@ -38,3 +38,16 @@ export type TimePeriodStat = {
   count: number;
   percentage: number;
 };
+
+export type StatsSummary = {
+  streak: number;
+  avgTypeDisplay: string;
+  timePeriodStats: TimePeriodStat[];
+  healthScoreDisplay: string;
+  averageInsightTitle: string;
+  averageInsightSubtitle: string;
+  streakInsightTitle: string;
+  streakInsightSubtitle: string;
+  bestPeriodInsightTitle: string;
+  bestPeriodInsightSubtitle: string;
+};
