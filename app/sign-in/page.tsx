@@ -15,8 +15,21 @@ export default function SignInPage() {
     }
   }, [authLoading, router, user]);
 
+  useEffect(() => {
+    const setAppHeight = () => {
+      document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+    };
+
+    setAppHeight();
+    window.addEventListener('resize', setAppHeight);
+
+    return () => {
+      window.removeEventListener('resize', setAppHeight);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen min-h-[100svh] bg-[#5c1916] font-sans text-slate-800 flex flex-col">
+    <div className="min-h-[var(--app-height,100svh)] bg-[#5c1916] font-sans text-slate-800 flex flex-col">
       <div className="flex-1" />
 
       <div className="px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
