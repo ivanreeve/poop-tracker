@@ -32,7 +32,7 @@ export const LogModal = ({
             <X size={24} className="text-gray-400 hover:text-gray-600" strokeWidth={3} />
           </button>
           <div className="bg-gray-100 rounded-full h-2 w-full max-w-[50%] mx-4">
-            <div className="bg-[#5c1916] h-2 rounded-full transition-all duration-500 w-1/2" />
+            <div className={`bg-[#5c1916] h-2 rounded-full transition-all duration-500 ${selectedType ? 'w-full' : 'w-1/2'}`} />
           </div>
           <div className="w-10"></div>
         </div>
