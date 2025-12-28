@@ -16,8 +16,8 @@ export default function SignInPage() {
   }, [authLoading, router, user]);
 
   return (
-    <div className="min-h-screen bg-[#5c1916] font-sans text-slate-800">
-      <div className="min-h-screen flex flex-col">
+    <div className="h-screen bg-[#5c1916] font-sans text-slate-800">
+      <div className="h-screen flex flex-col">
         <div className="flex-1" />
 
         <div className="px-4 sm:px-6 lg:px-8 py-16">
