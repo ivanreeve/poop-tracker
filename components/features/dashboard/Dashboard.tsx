@@ -51,7 +51,7 @@ export const Dashboard = ({
 
   return (
     <>
-      <section className="relative w-full min-h-[320px] sm:min-h-[360px] lg:min-h-[420px] overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
+      <section className="relative w-full min-h-[320px] sm:min-h-[360px] lg:min-h-[420px] -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-10 overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-none p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
         <div className="space-y-4 sm:space-y-5">
           <div className="grid grid-cols-3 items-center">
             <div className="flex items-center">
