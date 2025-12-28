@@ -1,13 +1,12 @@
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
-import { Calendar, Flame } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { LogCardSkeleton } from '../../ui/skeleton';
 
 type DashboardProps = {
   greetingName: string;
   profile: Profile | null;
-  streak: number;
   userLogs: PoopLog[];
   visibleLogs: PoopLog[];
   showAllLogs: boolean;
@@ -23,7 +22,6 @@ type DashboardProps = {
 export const Dashboard = ({
   greetingName,
   profile,
-  streak,
   userLogs,
   visibleLogs,
   showAllLogs,
@@ -38,18 +36,22 @@ export const Dashboard = ({
   const today = new Date();
   const todayKey = today.toDateString();
   const todayCount = userLogs.filter((log) => new Date(log.occurred_at).toDateString() === todayKey).length;
+  const startOfWeek = new Date(today);
+  const dayIndex = startOfWeek.getDay();
+  const offsetToMonday = dayIndex === 0 ? -6 : 1 - dayIndex;
+  startOfWeek.setDate(today.getDate() + offsetToMonday);
   const weekDates = Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(today);
-    date.setDate(today.getDate() - (6 - i));
+    const date = new Date(startOfWeek);
+    date.setDate(startOfWeek.getDate() + i);
     return date;
   });
   const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-  const dayLabels = ['SU', 'M', 'T', 'W', 'TH', 'F', 'S'];
+  const dayLabels = ['M', 'T', 'W', 'TH', 'F', 'S', 'SU'];
   const avatarInitial = greetingName.trim().charAt(0).toUpperCase();
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6">
         <section className="relative overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg">
           <div className="grid grid-cols-3 items-center">
             <div className="flex items-center">
@@ -70,9 +72,9 @@ export const Dashboard = ({
           </div>
 
           <div className="mt-4 sm:mt-5 grid grid-cols-7 gap-2 sm:gap-3 text-center">
-            {weekDates.map((date) => {
+            {weekDates.map((date, index) => {
               const isToday = date.toDateString() === todayKey;
-              const dayLabel = dayLabels[date.getDay()];
+              const dayLabel = dayLabels[index];
               return (
                 <div key={date.toISOString()} className="flex flex-col items-center gap-1">
                   <span className="text-[10px] sm:text-xs font-semibold text-white/70">{dayLabel}</span>
@@ -97,19 +99,6 @@ export const Dashboard = ({
             <p className="text-lg sm:text-xl font-bold">You Pooped</p>
             <p className="mt-2 text-6xl sm:text-7xl lg:text-8xl font-black text-[#d9d9d9]">{todayCount}</p>
             <p className="mt-2 text-sm sm:text-base font-semibold text-white/80">Times Today</p>
-          </div>
-        </section>
-
-        <section
-          className="bg-gradient-to-br from-orange-100 to-yellow-50 rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-orange-100 shadow-sm flex flex-col justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <Flame className="text-orange-400 fill-orange-400" size={32} />
-            <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-500">{streak}</span>
-          </div>
-          <div className="mt-3">
-            <p className="text-sm sm:text-base font-extrabold text-orange-400">Day Streak! 🔥</p>
-            <p className="text-xs sm:text-sm font-medium text-orange-300 mt-1">Keep it going!</p>
           </div>
         </section>
       </div>

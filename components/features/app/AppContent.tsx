@@ -104,7 +104,6 @@ export const AppContent = ({
         <Dashboard
           greetingName={greetingName}
           profile={profile}
-          streak={stats.streak}
           userLogs={userLogs}
           visibleLogs={visibleLogs}
           showAllLogs={showAllLogs}
