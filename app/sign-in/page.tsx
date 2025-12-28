@@ -33,7 +33,7 @@ export default function SignInPage() {
               fullWidth
               onClick={signInWithGoogle}
               disabled={authLoading}
-              className="bg-white text-gray-900 border-gray-200 hover:bg-gray-50"
+              className="bg-white text-[#352315] border-gray-200 hover:bg-gray-50 active:border-b-[6px] cursor-pointer"
             >
               <svg
                 aria-hidden="true"
