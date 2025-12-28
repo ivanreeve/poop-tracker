@@ -36,7 +36,7 @@ export const Sidebar = ({
 
     <nav className="flex-1 p-4 space-y-2">
       {[
-        { id: 'dashboard', icon: Droplets, label: 'Dashboard' },
+        { id: 'dashboard', icon: Droplets, label: 'Track' },
         { id: 'stats', icon: BarChart2, label: 'Statistics' },
         { id: 'profile', icon: Users, label: 'Friends' },
         { id: 'settings', icon: Settings, label: 'Settings' },
