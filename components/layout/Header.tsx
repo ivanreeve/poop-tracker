@@ -1,4 +1,4 @@
-import { Flame, LogIn, LogOut, Settings, Sparkles, User as UserIcon } from 'lucide-react';
+import { Flame, LogOut, Settings, Sparkles, User as UserIcon } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
 import type { Profile } from '../../types/models';
 import type { AppView } from '../../types/models';
@@ -20,12 +20,11 @@ type HeaderProps = {
   user: User | null;
   profile: Profile | null;
   greetingName: string;
-  onSignIn: () => void;
   onSignOut: () => void;
   onChangeView: (view: AppView) => void;
 };
 
-export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOut, onChangeView }: HeaderProps) => (
+export const Header = ({ streak, user, profile, greetingName, onSignOut, onChangeView }: HeaderProps) => (
   <header className="lg:hidden px-4 sm:px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-lg border-b border-gray-100 z-10 sticky top-0">
     <div className="flex items-center gap-2 sm:gap-3">
       <div className="bg-[#FF8096] p-2 sm:p-2.5 rounded-xl">
@@ -93,15 +92,7 @@ export const Header = ({ streak, user, profile, greetingName, onSignIn, onSignOu
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      ) : (
-        <button
-          onClick={onSignIn}
-          className="bg-[#A6D8D4] w-8 h-8 sm:w-9 sm:h-9 rounded-full border-2 border-[#7CB2AE] flex items-center justify-center"
-          aria-label="Sign in with Google"
-        >
-          <LogIn size={16} className="text-white" />
-        </button>
-      )}
+      ) : null}
     </div>
   </header>
 );

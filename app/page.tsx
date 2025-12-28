@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { AppView } from '../types/models';
 import { STOOL_TYPES } from '../lib/constants';
 import { useAuth } from '../hooks/useAuth';
@@ -20,6 +21,7 @@ export default function App() {
   const [isLogging, setIsLogging] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [selectedFriendId, setSelectedFriendId] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     user,
@@ -27,8 +29,6 @@ export default function App() {
     authLoading,
     authError,
     profileError,
-    setAuthError,
-    signInWithGoogle,
     signOut,
     greetingName,
   } = useAuth();
@@ -87,10 +87,15 @@ export default function App() {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.replace('/sign-in');
+    }
+  }, [authLoading, router, user]);
+
   const openLogging = () => {
     if (!user) {
-      setAuthError('Sign in to log your entries.');
-      setView('profile');
+      router.replace('/sign-in');
       return;
     }
     setIsLogging(true);
@@ -106,7 +111,7 @@ export default function App() {
 
   const visibleLogs = showAllLogs ? userLogs : userLogs.slice(0, 4);
 
-  if (!mounted) return null;
+  if (!mounted || (!user && !authLoading)) return null;
 
   return (
     <div className="min-h-screen bg-gradient-flo font-sans text-slate-800">
@@ -124,7 +129,6 @@ export default function App() {
             user={user}
             profile={profile}
             greetingName={greetingName}
-            onSignIn={signInWithGoogle}
             onSignOut={signOut}
             onChangeView={setView}
           />
@@ -159,7 +163,6 @@ export default function App() {
             onAcceptRequest={acceptRequest}
             onDeclineRequest={declineRequest}
             onSignOut={signOut}
-            onSignIn={signInWithGoogle}
             selectedFriendId={selectedFriendId}
             onViewFriendStats={viewFriendStats}
             onCloseFriendStats={closeFriendStats}

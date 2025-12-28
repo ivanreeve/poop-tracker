@@ -1,6 +1,5 @@
 import type { User } from '@supabase/supabase-js';
 import type { FormEvent } from 'react';
-import { LogIn } from 'lucide-react';
 import { STOOL_TYPES } from '../../../lib/constants';
 import type { AppView, Friendship, PoopLog, Profile, StatsSummary } from '../../../types/models';
 import { Dashboard } from '../dashboard/Dashboard';
@@ -8,7 +7,6 @@ import { Statistics } from '../statistics/Statistics';
 import { ProfileSection } from '../profile/Profile';
 import { FriendProfile } from '../profile/FriendProfile';
 import { Settings } from '../settings/Settings';
-import { JuicyButton } from '../../ui/JuicyButton';
 import { SectionHeaderSkeleton, LogCardSkeleton } from '../../ui/skeleton';
 
 type AppContentProps = {
@@ -41,7 +39,6 @@ type AppContentProps = {
   onAcceptRequest: (id: string) => void;
   onDeclineRequest: (id: string) => void;
   onSignOut: () => void;
-  onSignIn: () => void;
   selectedFriendId: string | null;
   onViewFriendStats: (friendId: string) => void;
   onCloseFriendStats: () => void;
@@ -77,7 +74,6 @@ export const AppContent = ({
   onAcceptRequest,
   onDeclineRequest,
   onSignOut,
-  onSignIn,
   selectedFriendId,
   onViewFriendStats,
   onCloseFriendStats,
@@ -121,26 +117,6 @@ export const AppContent = ({
           {logsError && <div>{logsError}</div>}
           {friendsError && <div>{friendsError}</div>}
         </div>
-      )}
-
-      {!user && !authLoading && (
-          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
-              <LogIn size={20} className="text-white" />
-            </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-black text-gray-700">Sign in to start tracking</h2>
-              <p className="text-xs sm:text-sm font-bold text-gray-400">
-                Google login unlocks logging and friend sharing.
-              </p>
-            </div>
-          </div>
-          <JuicyButton variant="secondary" size="md" onClick={onSignIn} disabled={authLoading}>
-            <LogIn size={18} />
-            CONTINUE WITH GOOGLE
-          </JuicyButton>
-        </section>
       )}
 
       {user && view === 'dashboard' && (
