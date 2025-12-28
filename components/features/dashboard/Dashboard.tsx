@@ -91,7 +91,7 @@ export const Dashboard = ({
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
+        <div className="flex-1 flex flex-col items-center justify-center text-center mt-14 sm:mt-16">
           <p className="text-lg sm:text-xl font-bold">You Pooped</p>
           <p className="mt-2 text-6xl sm:text-7xl lg:text-8xl font-black text-[#d9d9d9]">{todayCount}</p>
           <p className="mt-2 text-sm sm:text-base font-semibold text-white/80">Times Today</p>
