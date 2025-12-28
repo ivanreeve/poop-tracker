@@ -68,14 +68,22 @@ export const Statistics = ({
           {Array.from({ length: 30 }, (_, i) => {
             const date = new Date();
             date.setDate(date.getDate() - (29 - i));
-            const hasLog = userLogs.some((log) => new Date(log.occurred_at).toDateString() === date.toDateString());
+            const logCount = userLogs.filter((log) => new Date(log.occurred_at).toDateString() === date.toDateString()).length;
+            
+            const getHeatmapColor = (count: number) => {
+              if (count === 0) return 'bg-gray-100';
+              if (count === 1) return 'bg-[var(--flo-coral)]';
+              if (count <= 3) return 'bg-[var(--flo-pink)]';
+              return 'bg-[var(--flo-pink-dark)]';
+            };
+            
             return (
               <div
                 key={i}
-                className={`aspect-square rounded-lg sm:rounded-xl cursor-default ${
-                  hasLog ? 'bg-[var(--flo-pink)] text-white shadow-md' : 'bg-gray-100 text-gray-300'
+                className={`aspect-square rounded-md cursor-default ${getHeatmapColor(logCount)} ${
+                  logCount > 0 ? 'shadow-md' : ''
                 }`}
-                title={date.toLocaleDateString()}
+                title={`${date.toLocaleDateString()}: ${logCount} log${logCount !== 1 ? 's' : ''}`}
               />
             );
           })}

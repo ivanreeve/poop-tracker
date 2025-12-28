@@ -24,9 +24,9 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
         <item.icon
           size={24}
           strokeWidth={2.5}
-          className={`transition-all duration-200 ${view === item.id ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
+          className={`transition-all duration-200 ${view === item.id ? 'text-[#5c1916] scale-110' : 'text-gray-400'}`}
         />
-        <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === item.id ? 'text-[#5c1916]' : 'text-gray-300'}`}>
+        <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === item.id ? 'text-[#5c1916]' : 'text-gray-400'}`}>
           {item.label}
         </span>
       </button>
@@ -49,9 +49,9 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
       <Users
         size={24}
         strokeWidth={2.5}
-        className={`transition-all duration-200 ${view === 'profile' ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
+        className={`transition-all duration-200 ${view === 'profile' ? 'text-[#5c1916] scale-110' : 'text-gray-400'}`}
       />
-      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#5c1916]' : 'text-gray-300'}`}>
+      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#5c1916]' : 'text-gray-400'}`}>
         Friends
       </span>
     </button>
@@ -65,9 +65,9 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
       <Settings
         size={24}
         strokeWidth={2.5}
-        className={`transition-all duration-200 ${view === 'settings' ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
+        className={`transition-all duration-200 ${view === 'settings' ? 'text-[#5c1916] scale-110' : 'text-gray-400'}`}
       />
-      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'settings' ? 'text-[#5c1916]' : 'text-gray-300'}`}>
+      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'settings' ? 'text-[#5c1916]' : 'text-gray-400'}`}>
         Settings
       </span>
     </button>
