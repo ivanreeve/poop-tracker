@@ -51,8 +51,8 @@ export const Dashboard = ({
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:gap-6">
-        <section className="relative overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg">
+      <section className="relative w-full min-h-[320px] sm:min-h-[360px] lg:min-h-[420px] overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
+        <div className="space-y-4 sm:space-y-5">
           <div className="grid grid-cols-3 items-center">
             <div className="flex items-center">
               <Avatar
@@ -71,7 +71,7 @@ export const Dashboard = ({
             </div>
           </div>
 
-          <div className="mt-4 sm:mt-5 grid grid-cols-7 gap-2 sm:gap-3 text-center">
+          <div className="grid grid-cols-7 gap-2 sm:gap-3 text-center">
             {weekDates.map((date, index) => {
               const isToday = date.toDateString() === todayKey;
               const dayLabel = dayLabels[index];
@@ -94,14 +94,14 @@ export const Dashboard = ({
               );
             })}
           </div>
+        </div>
 
-          <div className="mt-6 sm:mt-8 text-center">
-            <p className="text-lg sm:text-xl font-bold">You Pooped</p>
-            <p className="mt-2 text-6xl sm:text-7xl lg:text-8xl font-black text-[#d9d9d9]">{todayCount}</p>
-            <p className="mt-2 text-sm sm:text-base font-semibold text-white/80">Times Today</p>
-          </div>
-        </section>
-      </div>
+        <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <p className="text-lg sm:text-xl font-bold">You Pooped</p>
+          <p className="mt-2 text-6xl sm:text-7xl lg:text-8xl font-black text-[#d9d9d9]">{todayCount}</p>
+          <p className="mt-2 text-sm sm:text-base font-semibold text-white/80">Times Today</p>
+        </div>
+      </section>
 
       <section>
         <div className="flex justify-between items-center mb-4">
