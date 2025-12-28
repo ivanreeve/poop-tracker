@@ -97,7 +97,7 @@ export const ProfileSection = ({
                         onClick={() => onViewFriendStats(friendId)}
                       >
                         <BarChart size={14} />
-                        VIEW STATS
+                        VIEW
                       </JuicyButton>
                     </div>
                   );
