@@ -17,16 +17,6 @@ export const Sidebar = ({
   onOpenLogging,
 }: SidebarProps) => (
   <aside className="hidden lg:flex lg:w-72 xl:w-80 bg-white border-r-2 border-gray-100 flex-col fixed h-full z-20">
-    <div className="px-6 py-6 flex items-center gap-3 border-b border-gray-100">
-      <div className="bg-[#5c1916] p-3 rounded-xl">
-        <span className="text-2xl">💩</span>
-      </div>
-      <div>
-        <h1 className="text-2xl font-extrabold text-gray-700 tracking-tight">PoopPal</h1>
-        <p className="text-xs font-bold text-gray-400">Track your health</p>
-      </div>
-    </div>
-
     <div className="p-4">
       <JuicyButton variant="primary" size="md" fullWidth onClick={onOpenLogging} disabled={!user}>
         <Plus size={20} />
