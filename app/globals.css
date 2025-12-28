@@ -88,6 +88,7 @@
 
 body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
 }
 
 /* Hide scrollbar for clean UI */
@@ -316,7 +317,7 @@ body {
 
 /* Gradient Background */
 .bg-gradient-flo {
-  background: linear-gradient(135deg, #fcf6f4 0%, #ead2cb 50%, #f2e6e2 100%);
+  background-color: #ffffff;
 }
 
 /* Glass Effect */
