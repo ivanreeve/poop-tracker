@@ -18,15 +18,15 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
         onClick={() => onChangeView(item.id as AppView)}
         className={`
           flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
-          ${view === item.id ? 'bg-[#FFF0F3]' : 'bg-transparent'}
+          ${view === item.id ? 'bg-[#f4e9e5]' : 'bg-transparent'}
         `}
       >
         <item.icon
           size={24}
           strokeWidth={2.5}
-          className={`transition-all duration-200 ${view === item.id ? 'text-[#FF8096] scale-110' : 'text-gray-300'}`}
+          className={`transition-all duration-200 ${view === item.id ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
         />
-        <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === item.id ? 'text-[#FF8096]' : 'text-gray-300'}`}>
+        <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === item.id ? 'text-[#5c1916]' : 'text-gray-300'}`}>
           {item.label}
         </span>
       </button>
@@ -34,7 +34,7 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
 
     <button
       onClick={onOpenLogging}
-      className="absolute left-1/2 -translate-x-1/2 -top-7 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FF8096] text-white border-b-4 border-[#D65D73] shadow-lg transition-all duration-150 active:border-b-0 active:translate-y-[4px] hover:scale-[1.03] z-30 cursor-pointer"
+      className="absolute left-1/2 -translate-x-1/2 -top-7 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#5c1916] text-white border-b-4 border-[#3f0f0d] shadow-lg transition-all duration-150 active:border-b-0 active:translate-y-[4px] hover:scale-[1.03] z-30 cursor-pointer"
     >
       <Plus size={26} strokeWidth={3} />
     </button>
@@ -43,15 +43,15 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
       onClick={() => onChangeView('profile')}
       className={`
         flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
-        ${view === 'profile' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
+        ${view === 'profile' ? 'bg-[#f4e9e5]' : 'bg-transparent'}
       `}
     >
       <Users
         size={24}
         strokeWidth={2.5}
-        className={`transition-all duration-200 ${view === 'profile' ? 'text-[#FF8096] scale-110' : 'text-gray-300'}`}
+        className={`transition-all duration-200 ${view === 'profile' ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
       />
-      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#FF8096]' : 'text-gray-300'}`}>
+      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'profile' ? 'text-[#5c1916]' : 'text-gray-300'}`}>
         Friends
       </span>
     </button>
@@ -59,15 +59,15 @@ export const BottomNav = ({ view, onChangeView, onOpenLogging }: BottomNavProps)
       onClick={() => onChangeView('settings')}
       className={`
         flex-1 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl transition-all duration-200 mb-2
-        ${view === 'settings' ? 'bg-[#FFF0F3]' : 'bg-transparent'}
+        ${view === 'settings' ? 'bg-[#f4e9e5]' : 'bg-transparent'}
       `}
     >
       <Settings
         size={24}
         strokeWidth={2.5}
-        className={`transition-all duration-200 ${view === 'settings' ? 'text-[#FF8096] scale-110' : 'text-gray-300'}`}
+        className={`transition-all duration-200 ${view === 'settings' ? 'text-[#5c1916] scale-110' : 'text-gray-300'}`}
       />
-      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'settings' ? 'text-[#FF8096]' : 'text-gray-300'}`}>
+      <span className={`text-[10px] sm:text-xs font-bold mt-1 ${view === 'settings' ? 'text-[#5c1916]' : 'text-gray-300'}`}>
         Settings
       </span>
     </button>

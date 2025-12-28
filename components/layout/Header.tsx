@@ -27,7 +27,7 @@ type HeaderProps = {
 export const Header = ({ streak, user, profile, greetingName, onSignOut, onChangeView }: HeaderProps) => (
   <header className="lg:hidden px-4 sm:px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-lg border-b border-gray-100 z-10 sticky top-0">
     <div className="flex items-center gap-2 sm:gap-3">
-      <div className="bg-[#FF8096] p-2 sm:p-2.5 rounded-xl">
+      <div className="bg-[#5c1916] p-2 sm:p-2.5 rounded-xl">
         <span className="text-lg sm:text-xl">💩</span>
       </div>
       <h1 className="text-lg sm:text-xl font-extrabold text-gray-700 tracking-tight">PoopPal</h1>
@@ -43,9 +43,9 @@ export const Header = ({ streak, user, profile, greetingName, onSignOut, onChang
             <button
               type="button"
               aria-label="Open account menu"
-              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8096] focus-visible:ring-offset-2 cursor-pointer"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5c1916] focus-visible:ring-offset-2 cursor-pointer"
             >
-              <Avatar className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-[#D65D73] bg-[#FF8096]">
+              <Avatar className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-[#3f0f0d] bg-[#5c1916]">
                 {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
                 <AvatarFallback>
                   <Sparkles size={16} className="text-white" />

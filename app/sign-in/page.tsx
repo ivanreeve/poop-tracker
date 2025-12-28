@@ -20,7 +20,7 @@ export default function SignInPage() {
       <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col flex-1">
           {authError && (
-            <div className="mt-4 bg-white/80 border-2 border-[#FFE8EC] rounded-2xl p-3 text-xs sm:text-sm font-bold text-[#D65D73]">
+            <div className="mt-4 bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 text-xs sm:text-sm font-bold text-[#3f0f0d]">
               {authError}
             </div>
           )}

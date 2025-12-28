@@ -58,7 +58,7 @@ export const Dashboard = ({
         <button
           onClick={onToggleShowAll}
           disabled={userLogs.length <= 4}
-          className="cursor-pointer text-[#FF8096] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
         </button>

@@ -26,14 +26,14 @@ export const LogModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
-      <div className="w-full max-w-lg bg-[#FFF9F9] rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="w-full max-w-lg bg-[#fcf6f4] rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
         <div className="px-4 sm:px-6 py-4 bg-white border-b border-gray-100 flex items-center justify-between shrink-0">
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-xl transition-colors">
             <X size={24} className="text-gray-400 hover:text-gray-600" strokeWidth={3} />
           </button>
           <div className="bg-gray-100 rounded-full h-2 w-full max-w-[50%] mx-4">
             <div
-              className={`bg-[#FF8096] h-2 rounded-full transition-all duration-500 ${selectedType ? 'w-[100%]' : 'w-[33%]'}`}
+              className={`bg-[#5c1916] h-2 rounded-full transition-all duration-500 ${selectedType ? 'w-[100%]' : 'w-[33%]'}`}
             />
           </div>
           <div className="w-10"></div>

@@ -16,8 +16,8 @@ export const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }: St
       relative p-3 sm:p-4 rounded-2xl border-2 transition-all duration-200
       flex flex-col items-center gap-1 sm:gap-2
       ${selected
-        ? 'border-[#FF8096] bg-[#FFF0F3] scale-[1.02] shadow-lg'
-        : 'border-gray-200 bg-white hover:border-[#FFB7B2] hover:-translate-y-1 hover:shadow-md shadow-sm'}
+        ? 'border-[#5c1916] bg-[#f4e9e5] scale-[1.02] shadow-lg'
+        : 'border-gray-200 bg-white hover:border-[#c07865] hover:-translate-y-1 hover:shadow-md shadow-sm'}
     `}
   >
     <div
@@ -28,12 +28,12 @@ export const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }: St
       {emoji}
     </div>
     <div className="text-center">
-      <div className={`font-bold text-sm sm:text-base ${selected ? 'text-[#FF8096]' : 'text-gray-600'}`}>
+      <div className={`font-bold text-sm sm:text-base ${selected ? 'text-[#5c1916]' : 'text-gray-600'}`}>
         {label}
       </div>
     </div>
     {selected && (
-      <div className="absolute top-2 right-2 bg-[#FF8096] text-white rounded-full p-1">
+      <div className="absolute top-2 right-2 bg-[#5c1916] text-white rounded-full p-1">
         <Check size={12} strokeWidth={4} />
       </div>
     )}

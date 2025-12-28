@@ -111,7 +111,7 @@ export const AppContent = ({
       )}
 
       {hasError && (
-        <div className="bg-white/80 border-2 border-[#FFE8EC] rounded-2xl p-3 sm:p-4 text-xs sm:text-sm font-bold text-[#D65D73]">
+        <div className="bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 sm:p-4 text-xs sm:text-sm font-bold text-[#3f0f0d]">
           {authError && <div>{authError}</div>}
           {profileError && <div>{profileError}</div>}
           {logsError && <div>{logsError}</div>}

@@ -54,7 +54,7 @@ export const Statistics = ({
     ) : (
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard icon={Check} value={userLogs.length} label="Total Logs" color="bg-[#A6D8D4]" delay={100} />
-        <StatCard icon={Flame} value={streak} label="Day Streak" color="bg-[#FFB7B2]" delay={200} />
+        <StatCard icon={Flame} value={streak} label="Day Streak" color="bg-[#c07865]" delay={200} />
         <StatCard icon={Activity} value={avgTypeDisplay} label="Avg Type" color="bg-[#B4A7D6]" delay={300} />
         <StatCard icon={Target} value={healthScoreDisplay} label="Healthy Score" color="bg-[#98DE8F]" delay={400} />
       </section>
@@ -75,7 +75,7 @@ export const Statistics = ({
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
-            <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Last 7 Days</span>
+            <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 7 Days</span>
           </div>
           <WeeklyChart logs={userLogs} />
         </section>
@@ -95,7 +95,7 @@ export const Statistics = ({
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Type Distribution</h3>
-            <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Bristol Scale</span>
+            <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Bristol Scale</span>
           </div>
           <div className="space-y-3">
             {stoolTypes.map((type) => {
@@ -114,7 +114,7 @@ export const Statistics = ({
                     <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-500 ${
-                          percentage > 0 ? 'bg-gradient-to-r from-[#FF8096] to-[#A6D8D4]' : 'bg-gray-200'
+                          percentage > 0 ? 'bg-gradient-to-r from-[#5c1916] to-[#A6D8D4]' : 'bg-gray-200'
                         }`}
                         style={{ width: `${percentage}%` }}
                       />
@@ -141,7 +141,7 @@ export const Statistics = ({
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
-            <span className="text-xs sm:text-sm font-bold text-[#FF8096]">By Time</span>
+            <span className="text-xs sm:text-sm font-bold text-[#5c1916]">By Time</span>
           </div>
           <div className="space-y-3">
             {timePeriodStats.map((period) => (
@@ -157,7 +157,7 @@ export const Statistics = ({
                   <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
-                        period.percentage > 0 ? 'bg-gradient-to-r from-[#FFD966] to-[#FFB7B2]' : 'bg-gray-200'
+                        period.percentage > 0 ? 'bg-gradient-to-r from-[#FFD966] to-[#c07865]' : 'bg-gray-200'
                       }`}
                       style={{ width: `${period.percentage}%` }}
                     />
@@ -170,7 +170,7 @@ export const Statistics = ({
       )}
 
       {loading ? (
-        <section className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm">
+        <section className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb] shadow-sm">
           <div className="space-y-3 mb-4 sm:mb-6">
             <Skeleton className="h-8 w-10 rounded-xl" />
             <div className="space-y-2">
@@ -186,10 +186,10 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-gradient-to-br from-[#FFF0F3] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#FFE8EC] shadow-sm"
+          className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb] shadow-sm"
         >
           <div className="flex items-center gap-3 mb-4 sm:mb-6">
-            <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl">
+            <div className="bg-[#5c1916] p-2 sm:p-3 rounded-xl">
               <Award size={20} className="text-white sm:w-6 sm:h-6" />
             </div>
             <div>
@@ -254,7 +254,7 @@ export const Statistics = ({
       >
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>
-          <span className="text-xs sm:text-sm font-bold text-[#FF8096]">Last 30 Days</span>
+          <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 30 Days</span>
         </div>
         <div className="grid grid-cols-10 gap-1 sm:gap-2">
           {Array.from({ length: 30 }, (_, i) => {
@@ -268,7 +268,7 @@ export const Statistics = ({
                 className={`aspect-square rounded-lg sm:rounded-xl flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all hover:scale-110 cursor-default ${
                   hasLog
                     ? `bg-gradient-to-br ${
-                        isToday ? 'from-[#FF8096] to-[#D65D73]' : 'from-[#A6D8D4] to-[#7CB2AE]'
+                        isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
                       } text-white shadow-md`
                     : 'bg-gray-100 text-gray-300'
                 }`}

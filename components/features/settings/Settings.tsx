@@ -46,7 +46,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
 
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-3 mb-6">
-          <div className="bg-[#FF8096] p-2 sm:p-3 rounded-xl">
+          <div className="bg-[#5c1916] p-2 sm:p-3 rounded-xl">
             <LogOut size={18} className="text-white" />
           </div>
           <div>
@@ -55,7 +55,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
           </div>
         </div>
 
-        <JuicyButton variant="outline" size="sm" onClick={onSignOut} fullWidth className="hover:!bg-[#FF8080] hover:!border-[#D66060] hover:!text-white cursor-pointer">
+        <JuicyButton variant="outline" size="sm" onClick={onSignOut} fullWidth className="hover:!bg-[#b25a4b] hover:!border-[#7f332a] hover:!text-white cursor-pointer">
           <LogOut size={16} />
           SIGN OUT
         </JuicyButton>

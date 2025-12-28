@@ -22,7 +22,7 @@ export const WeeklyChart = ({ logs }: { logs: PoopLog[] }) => {
         <div key={data.day} className="flex-1 flex flex-col items-center gap-1 sm:gap-2">
           <div
             className={`w-full rounded-t-xl transition-all duration-500 ease-out ${
-              data.isToday ? 'bg-[#FF8096]' : 'bg-[#A6D8D4]'
+              data.isToday ? 'bg-[#5c1916]' : 'bg-[#A6D8D4]'
             }`}
             style={{
               height: `${(data.count / maxCount) * 100}%`,
@@ -30,7 +30,7 @@ export const WeeklyChart = ({ logs }: { logs: PoopLog[] }) => {
               animationDelay: `${index * 100}ms`,
             }}
           />
-          <span className={`text-[10px] sm:text-xs font-bold ${data.isToday ? 'text-[#FF8096]' : 'text-gray-400'}`}>
+          <span className={`text-[10px] sm:text-xs font-bold ${data.isToday ? 'text-[#5c1916]' : 'text-gray-400'}`}>
             {data.day}
           </span>
         </div>

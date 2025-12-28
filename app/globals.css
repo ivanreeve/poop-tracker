@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --flo-pink: #FF8096;
-  --flo-pink-dark: #D65D73;
+  --flo-pink: #5c1916;
+  --flo-pink-dark: #3f0f0d;
   --flo-teal: #A6D8D4;
-  --flo-coral: #FFB7B2;
+  --flo-coral: #c07865;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -108,12 +108,12 @@ body {
   0%,
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 128, 150, 0.4);
+    box-shadow: 0 0 0 0 rgba(92, 25, 22, 0.4);
   }
 
   50% {
     transform: scale(1.02);
-    box-shadow: 0 0 20px 10px rgba(255, 128, 150, 0);
+    box-shadow: 0 0 20px 10px rgba(92, 25, 22, 0);
   }
 }
 
@@ -280,21 +280,21 @@ body {
 
 .animate-shimmer {
   background: linear-gradient(90deg,
-      rgba(255, 128, 150, 0.1) 0%,
-      rgba(255, 128, 150, 0.3) 50%,
-      rgba(255, 128, 150, 0.1) 100%);
+      rgba(92, 25, 22, 0.1) 0%,
+      rgba(92, 25, 22, 0.3) 50%,
+      rgba(92, 25, 22, 0.1) 100%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
 /* Glow Effect */
 .glow-pink {
-  box-shadow: 0 0 20px rgba(255, 128, 150, 0.3), 0 0 40px rgba(255, 128, 150, 0.1);
+  box-shadow: 0 0 20px rgba(92, 25, 22, 0.3), 0 0 40px rgba(92, 25, 22, 0.1);
 }
 
 /* Gradient Background */
 .bg-gradient-flo {
-  background: linear-gradient(135deg, #FFF9F9 0%, #FFE8EC 50%, #E8F4F3 100%);
+  background: linear-gradient(135deg, #fcf6f4 0%, #ead2cb 50%, #f2e6e2 100%);
 }
 
 /* Glass Effect */

@@ -53,10 +53,10 @@ export const ProfileSection = ({
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-4 mb-4">
-          <Avatar className="h-14 w-14 rounded-2xl bg-[#FFF0F3] border-2 border-[#FFE8EC]">
+          <Avatar className="h-14 w-14 rounded-2xl bg-[#f4e9e5] border-2 border-[#ead2cb]">
             {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
-            <AvatarFallback className="rounded-2xl bg-[#FFF0F3]">
-              <Users size={24} className="text-[#FF8096]" />
+            <AvatarFallback className="rounded-2xl bg-[#f4e9e5]">
+              <Users size={24} className="text-[#5c1916]" />
             </AvatarFallback>
           </Avatar>
           <div>
@@ -84,7 +84,7 @@ export const ProfileSection = ({
               placeholder="friend@example.com"
               value={friendEmail}
               onChange={(event) => onFriendEmailChange(event.target.value)}
-              className="w-full rounded-2xl border-2 border-gray-100 bg-[#FFF9F9] px-9 py-2 text-sm font-bold text-gray-600 placeholder:text-gray-300 focus:outline-none focus:border-[#A6D8D4]"
+              className="w-full rounded-2xl border-2 border-gray-100 bg-[#fcf6f4] px-9 py-2 text-sm font-bold text-gray-600 placeholder:text-gray-300 focus:outline-none focus:border-[#A6D8D4]"
             />
           </div>
           <JuicyButton variant="primary" size="sm" fullWidth disabled={!friendEmail || friendActionLoading}>
@@ -98,7 +98,7 @@ export const ProfileSection = ({
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <Users size={18} className="text-[#FF8096]" />
+          <Users size={18} className="text-[#5c1916]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friend Requests</h3>
         </div>
         {friendsLoading ? (
@@ -118,7 +118,7 @@ export const ProfileSection = ({
                   return (
                     <div
                       key={request.id}
-                      className="flex flex-wrap items-center justify-between gap-3 bg-[#FFF9F9] border-2 border-[#FFE8EC] rounded-2xl p-3"
+                      className="flex flex-wrap items-center justify-between gap-3 bg-[#fcf6f4] border-2 border-[#ead2cb] rounded-2xl p-3"
                     >
                       <div>
                         <div className="font-bold text-sm text-gray-700">{requesterName}</div>

@@ -18,7 +18,7 @@ export const Sidebar = ({
 }: SidebarProps) => (
   <aside className="hidden lg:flex lg:w-72 xl:w-80 bg-white border-r-2 border-gray-100 flex-col fixed h-full z-20">
     <div className="px-6 py-6 flex items-center gap-3 border-b border-gray-100">
-      <div className="bg-[#FF8096] p-3 rounded-xl">
+      <div className="bg-[#5c1916] p-3 rounded-xl">
         <span className="text-2xl">💩</span>
       </div>
       <div>
@@ -46,12 +46,12 @@ export const Sidebar = ({
           onClick={() => onChangeView(item.id as AppView)}
           className={`
             cursor-pointer w-full flex items-center gap-4 p-4 rounded-md transition-all duration-200
-            ${view === item.id ? 'bg-[#FFF0F3] text-[#FF8096]' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'}
+            ${view === item.id ? 'bg-[#f4e9e5] text-[#5c1916]' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'}
           `}
         >
-          <item.icon size={24} strokeWidth={2.5} className={view === item.id ? 'text-[#FF8096]' : ''} />
+          <item.icon size={24} strokeWidth={2.5} className={view === item.id ? 'text-[#5c1916]' : ''} />
           <span className="font-bold">{item.label}</span>
-          {view === item.id && <ChevronRight size={18} className="ml-auto text-[#FF8096]" />}
+          {view === item.id && <ChevronRight size={18} className="ml-auto text-[#5c1916]" />}
         </button>
       ))}
     </nav>

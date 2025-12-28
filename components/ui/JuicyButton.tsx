@@ -21,10 +21,10 @@ export const JuicyButton = ({
 }: JuicyButtonProps) => {
   const variants = {
     primary: {
-      bg: 'bg-[#FF8096]',
-      border: 'border-[#D65D73]',
+      bg: 'bg-[#5c1916]',
+      border: 'border-[#3f0f0d]',
       text: 'text-white',
-      hover: 'hover:bg-[#FF94A8]',
+      hover: 'hover:bg-[#732622]',
     },
     secondary: {
       bg: 'bg-[#A6D8D4]',
@@ -39,10 +39,10 @@ export const JuicyButton = ({
       hover: 'hover:bg-[#ECECEC]',
     },
     danger: {
-      bg: 'bg-[#FFB7B2]',
-      border: 'border-[#E08F8A]',
+      bg: 'bg-[#c07865]',
+      border: 'border-[#9a4d3e]',
       text: 'text-white',
-      hover: 'hover:bg-[#FFC9C5]',
+      hover: 'hover:bg-[#d08c7b]',
     },
     success: {
       bg: 'bg-[#98DE8F]',
