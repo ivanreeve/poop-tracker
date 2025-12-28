@@ -16,16 +16,17 @@ export default function SignInPage() {
   }, [authLoading, router, user]);
 
   return (
-    <div className="min-h-screen bg-[#5c1916] font-sans text-slate-800">
-      <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8">
-        <div className="w-full max-w-2xl mx-auto flex flex-col flex-1">
-          {authError && (
-            <div className="mt-4 bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 text-xs sm:text-sm font-bold text-[#3f0f0d]">
-              {authError}
-            </div>
-          )}
+    <div className="min-h-screen bg-white font-sans text-slate-800">
+      <div className="min-h-screen flex flex-col">
+        <div className="flex-1" />
 
-          <div className="mt-auto pt-10 pb-6">
+        <div className="bg-[#5c1916] px-4 sm:px-6 lg:px-8 py-16">
+          <div className="w-full max-w-2xl mx-auto">
+            {authError && (
+              <div className="mb-4 bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 text-xs sm:text-sm font-bold text-[#3f0f0d]">
+                {authError}
+              </div>
+            )}
             <JuicyButton
               variant="outline"
               size="lg"
