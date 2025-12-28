@@ -69,16 +69,11 @@ export const Statistics = ({
             const date = new Date();
             date.setDate(date.getDate() - (29 - i));
             const hasLog = userLogs.some((log) => new Date(log.occurred_at).toDateString() === date.toDateString());
-            const isToday = date.toDateString() === new Date().toDateString();
             return (
               <div
                 key={i}
                 className={`aspect-square rounded-lg sm:rounded-xl cursor-default ${
-                  hasLog
-                    ? `bg-gradient-to-br ${
-                        isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
-                      } text-white shadow-md`
-                    : 'bg-gray-100 text-gray-300'
+                  hasLog ? 'bg-[var(--flo-pink)] text-white shadow-md' : 'bg-gray-100 text-gray-300'
                 }`}
                 title={date.toLocaleDateString()}
               />
