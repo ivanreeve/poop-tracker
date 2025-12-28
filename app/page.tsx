@@ -9,7 +9,6 @@ import { useFriends } from '../hooks/useFriends';
 import { useLogs } from '../hooks/useLogs';
 import { useStats } from '../hooks/useStats';
 import { BottomNav } from '../components/layout/BottomNav';
-import { Header } from '../components/layout/Header';
 import { Sidebar } from '../components/layout/Sidebar';
 import { LogModal } from '../components/features/logging/LogModal';
 import { AppContent } from '../components/features/app/AppContent';
@@ -121,14 +120,6 @@ export default function App() {
         />
 
         <main className="flex-1 lg:ml-72 xl:ml-80">
-          <Header
-            streak={stats.streak}
-            user={user}
-            profile={profile}
-            greetingName={greetingName}
-            onChangeView={setView}
-          />
-
           <AppContent
             user={user}
             authLoading={authLoading}

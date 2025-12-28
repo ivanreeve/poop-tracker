@@ -70,8 +70,12 @@ export const AppContent = ({
   onViewFriendStats,
   onCloseFriendStats,
 }: AppContentProps) => {
+  const containerClassName = `p-4 sm:p-6 lg:p-8 xl:p-10 pb-24 lg:pb-10 space-y-6 sm:space-y-8 ${
+    view === 'dashboard' ? 'max-w-none' : 'max-w-6xl mx-auto'
+  }`;
+
   return (
-    <div className="p-4 sm:p-6 lg:p-8 xl:p-10 pb-24 lg:pb-10 space-y-6 sm:space-y-8 max-w-6xl mx-auto">
+    <div className={containerClassName}>
       {authLoading && (
         <div className="space-y-6 sm:space-y-8">
           <SectionHeaderSkeleton />
