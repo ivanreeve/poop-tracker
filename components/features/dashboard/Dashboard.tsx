@@ -45,10 +45,6 @@ export const Dashboard = ({
 
   return (
     <>
-      <section>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Hello, {greetingName}!</h2>
-      </section>
-
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 sm:gap-6">
         <section className="relative overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg">
           <div className="grid grid-cols-3 items-center">
