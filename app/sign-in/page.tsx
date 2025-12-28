@@ -6,7 +6,7 @@ import { JuicyButton } from '../../components/ui/JuicyButton';
 import { useAuth } from '../../hooks/useAuth';
 
 export default function SignInPage() {
-  const { user, authLoading, authError, signInWithGoogle } = useAuth();
+  const { user, authLoading, signInWithGoogle } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -34,11 +34,6 @@ export default function SignInPage() {
 
       <div className="px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="w-full max-w-2xl mx-auto">
-          {authError && (
-            <div className="mb-4 bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 text-xs sm:text-sm font-bold text-[#3f0f0d]">
-              {authError}
-            </div>
-          )}
           <JuicyButton
             variant="outline"
             size="lg"

@@ -27,13 +27,11 @@ export default function App() {
     user,
     profile,
     authLoading,
-    authError,
-    profileError,
     signOut,
     greetingName,
   } = useAuth();
 
-  const { logs: userLogs, logsLoading, isSavingLog, logsError, addLog } = useLogs(user);
+  const { logs: userLogs, logsLoading, isSavingLog, addLog } = useLogs(user);
 
   const {
     friendEmail,
@@ -45,7 +43,6 @@ export default function App() {
     profilesById,
     friendsLoading,
     friendActionLoading,
-    friendsError,
     handleAddFriend,
     acceptRequest,
     declineRequest,
@@ -135,10 +132,6 @@ export default function App() {
           <AppContent
             user={user}
             authLoading={authLoading}
-            authError={authError}
-            profileError={profileError}
-            logsError={logsError}
-            friendsError={friendsError}
             view={view}
             greetingName={greetingName}
             profile={profile}

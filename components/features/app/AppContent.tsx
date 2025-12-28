@@ -12,10 +12,6 @@ import { SectionHeaderSkeleton, LogCardSkeleton } from '../../ui/skeleton';
 type AppContentProps = {
   user: User | null;
   authLoading: boolean;
-  authError: string | null;
-  profileError: string | null;
-  logsError: string | null;
-  friendsError: string | null;
   view: AppView;
   greetingName: string;
   profile: Profile | null;
@@ -47,10 +43,6 @@ type AppContentProps = {
 export const AppContent = ({
   user,
   authLoading,
-  authError,
-  profileError,
-  logsError,
-  friendsError,
   view,
   greetingName,
   profile,
@@ -78,8 +70,6 @@ export const AppContent = ({
   onViewFriendStats,
   onCloseFriendStats,
 }: AppContentProps) => {
-  const hasError = authError || profileError || logsError || friendsError;
-
   return (
     <div className="p-4 sm:p-6 lg:p-8 xl:p-10 pb-24 lg:pb-10 space-y-6 sm:space-y-8 max-w-6xl mx-auto">
       {authLoading && (
@@ -107,15 +97,6 @@ export const AppContent = ({
               ))}
             </div>
           </section>
-        </div>
-      )}
-
-      {hasError && (
-        <div className="bg-white/80 border-2 border-[#ead2cb] rounded-2xl p-3 sm:p-4 text-xs sm:text-sm font-bold text-[#3f0f0d]">
-          {authError && <div>{authError}</div>}
-          {profileError && <div>{profileError}</div>}
-          {logsError && <div>{logsError}</div>}
-          {friendsError && <div>{friendsError}</div>}
         </div>
       )}
 
