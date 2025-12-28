@@ -233,6 +233,27 @@ body {
   animation: wiggle 0.5s ease-in-out;
 }
 
+/* Check Pop Animation */
+@keyframes check-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-check-pop {
+  animation: check-pop 0.3s ease-out forwards;
+}
+
 /* Stagger Children Animation */
 .stagger-children>* {
   opacity: 0;

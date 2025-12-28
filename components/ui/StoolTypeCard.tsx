@@ -33,7 +33,7 @@ export const StoolTypeCard = ({ label, selected, onClick, emoji, delay = 0 }: St
       </div>
     </div>
     {selected && (
-      <div className="absolute top-2 right-2 bg-[#5c1916] text-white rounded-full p-1">
+      <div className="absolute top-2 right-2 bg-[#5c1916] text-white rounded-full p-1 animate-check-pop">
         <Check size={12} strokeWidth={4} />
       </div>
     )}
