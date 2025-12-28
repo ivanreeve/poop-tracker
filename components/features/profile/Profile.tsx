@@ -50,22 +50,7 @@ export const ProfileSection = ({
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Profile & Friends</h2>
     </section>
 
-    <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-        <div className="flex items-center gap-4 mb-4">
-          <Avatar className="h-14 w-14 rounded-2xl bg-[#f4e9e5] border-2 border-[#ead2cb]">
-            {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
-            <AvatarFallback className="rounded-2xl bg-[#f4e9e5]">
-              <Users size={24} className="text-[#5c1916]" />
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <div className="text-lg sm:text-xl font-extrabold text-gray-700">{greetingName}</div>
-            <div className="text-xs sm:text-sm font-bold text-gray-400">{user.email}</div>
-          </div>
-        </div>
-      </div>
-
+    <section className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-3 mb-3">
           <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
@@ -95,7 +80,7 @@ export const ProfileSection = ({
       </div>
     </section>
 
-    <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+    <section className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#5c1916]" />
