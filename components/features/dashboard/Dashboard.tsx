@@ -1,10 +1,12 @@
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
 import { Calendar, Flame } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { LogCardSkeleton } from '../../ui/skeleton';
 
 type DashboardProps = {
   greetingName: string;
+  profile: Profile | null;
   streak: number;
   userLogs: PoopLog[];
   visibleLogs: PoopLog[];
@@ -20,6 +22,7 @@ type DashboardProps = {
 
 export const Dashboard = ({
   greetingName,
+  profile,
   streak,
   userLogs,
   visibleLogs,
@@ -42,6 +45,7 @@ export const Dashboard = ({
   });
   const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   const dayLabels = ['SU', 'M', 'T', 'W', 'TH', 'F', 'S'];
+  const avatarInitial = greetingName.trim().charAt(0).toUpperCase();
 
   return (
     <>
@@ -49,7 +53,15 @@ export const Dashboard = ({
         <section className="relative overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-3xl p-5 sm:p-6 lg:p-8 text-white shadow-lg">
           <div className="grid grid-cols-3 items-center">
             <div className="flex items-center">
-              <span className="block h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-white/90" />
+              <Avatar
+                className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-white/80 bg-white/90"
+                aria-label={greetingName}
+              >
+                {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
+                <AvatarFallback className="bg-white/90 text-[#5c1916] text-[10px] sm:text-xs font-bold">
+                  {avatarInitial}
+                </AvatarFallback>
+              </Avatar>
             </div>
             <div className="text-center text-sm sm:text-base font-bold">{formattedDate}</div>
             <div className="flex justify-end">

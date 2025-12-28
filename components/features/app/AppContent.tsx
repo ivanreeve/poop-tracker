@@ -103,6 +103,7 @@ export const AppContent = ({
       {user && view === 'dashboard' && (
         <Dashboard
           greetingName={greetingName}
+          profile={profile}
           streak={stats.streak}
           userLogs={userLogs}
           visibleLogs={visibleLogs}
