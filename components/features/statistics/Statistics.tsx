@@ -161,7 +161,7 @@ export const Statistics = ({
                     <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-500 ${
-                          percentage > 0 ? 'bg-gradient-to-r from-[#5c1916] to-[#A6D8D4]' : 'bg-gray-200'
+                          percentage > 0 ? 'bg-[#5c1916]' : 'bg-gray-200'
                         }`}
                         style={{ width: `${percentage}%` }}
                       />
@@ -205,7 +205,7 @@ export const Statistics = ({
                     <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-500 ${
-                          period.percentage > 0 ? 'bg-gradient-to-r from-[#FFD966] to-[#c07865]' : 'bg-gray-200'
+                          period.percentage > 0 ? 'bg-[#FFD966]' : 'bg-gray-200'
                         }`}
                         style={{ width: `${period.percentage}%` }}
                       />
