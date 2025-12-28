@@ -52,7 +52,7 @@ export const Statistics = ({
         </div>
         <div className="grid grid-cols-10 gap-1 sm:gap-2">
           {Array.from({ length: 30 }).map((_, i) => (
-            <Skeleton key={i} className="aspect-square rounded-lg sm:rounded-xl" />
+            <Skeleton key={i} className="aspect-square rounded-sm" />
           ))}
         </div>
       </section>
@@ -80,7 +80,7 @@ export const Statistics = ({
             return (
               <div
                 key={i}
-                className={`aspect-square rounded-md cursor-default ${getHeatmapColor(logCount)} ${
+                className={`aspect-square rounded-sm cursor-default ${getHeatmapColor(logCount)} ${
                   logCount > 0 ? 'shadow-md' : ''
                 }`}
                 title={`${date.toLocaleDateString()}: ${logCount} log${logCount !== 1 ? 's' : ''}`}
