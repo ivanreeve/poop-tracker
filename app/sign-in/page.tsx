@@ -16,7 +16,7 @@ export default function SignInPage() {
   }, [authLoading, router, user]);
 
   return (
-    <div className="min-h-screen bg-[#FF8096] font-sans text-slate-800">
+    <div className="min-h-screen bg-[#5c1916] font-sans text-slate-800">
       <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col flex-1">
           {authError && (
