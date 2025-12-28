@@ -50,7 +50,7 @@ export const Dashboard = ({
 
   return (
     <>
-      <section className="relative min-h-[320px] sm:min-h-[360px] lg:min-h-[420px] -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-10 -mt-4 sm:-mt-6 lg:-mt-8 xl:-mt-10 overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-none p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
+      <section className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[480px] -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-10 -mt-4 sm:-mt-6 lg:-mt-8 xl:-mt-10 overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-none p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
         <div className="space-y-4 sm:space-y-5">
           <div className="grid grid-cols-7 items-center gap-2 sm:gap-3">
             <div className="flex items-center justify-center">
