@@ -67,7 +67,7 @@ export const Dashboard = ({
             <div className="col-span-5 text-center text-sm sm:text-base font-bold">{formattedDate}</div>
           </div>
 
-          <div className="grid grid-cols-7 gap-2 sm:gap-3 text-center">
+          <div className="grid grid-cols-7 gap-2 sm:gap-3 text-center mt-6 sm:mt-7">
             {weekDates.map((date, index) => {
               const isToday = date.toDateString() === todayKey;
               const dayLabel = dayLabels[index];
