@@ -73,7 +73,7 @@ export const Statistics = ({
             return (
               <div
                 key={i}
-                className={`aspect-square rounded-lg sm:rounded-xl transition-all hover:scale-110 cursor-default ${
+                className={`aspect-square rounded-lg sm:rounded-xl cursor-default ${
                   hasLog
                     ? `bg-gradient-to-br ${
                         isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
