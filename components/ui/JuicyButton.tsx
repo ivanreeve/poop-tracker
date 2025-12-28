@@ -85,8 +85,7 @@ export const JuicyButton = ({
         ${currentVariant.bg} 
         ${currentVariant.border} 
         ${currentVariant.text}
-        ${!disabled ? currentVariant.hover : 'opacity-50 cursor-not-allowed'}
-        ${!disabled ? 'active:border-b-0 active:translate-y-[4px] hover:scale-[1.02]' : ''}
+        ${!disabled ? 'active:border-b-0 active:translate-y-[4px]' : 'opacity-50 cursor-not-allowed'}
         ${fullWidth ? 'w-full' : ''}
         ${currentSize}
         ${className}
