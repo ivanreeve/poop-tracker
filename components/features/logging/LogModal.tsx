@@ -72,7 +72,7 @@ export const LogModal = ({
             ) : selectedType ? (
               <>
                 <Check size={20} />
-                CONFIRM LOG
+                CONFIRM
               </>
             ) : (
               'SELECT A TYPE'
