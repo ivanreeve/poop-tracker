@@ -56,7 +56,7 @@ export const JuicyButton = ({
     sm: 'px-4 py-2 text-sm border-b-4',
     md: 'px-6 py-3 text-base border-b-4',
     lg: 'px-8 py-4 text-lg md:text-xl font-bold border-b-[6px]',
-    icon: 'p-3 border-b-4 rounded-2xl',
+    icon: 'p-3 border-b-4 rounded-md',
   };
 
   const currentVariant = variants[variant];
@@ -79,7 +79,7 @@ export const JuicyButton = ({
         transition-all 
         duration-150 
         transform 
-        rounded-2xl 
+        rounded-md 
         font-extrabold 
         flex items-center justify-center gap-2
         ${currentVariant.bg} 
