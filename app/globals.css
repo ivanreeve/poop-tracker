@@ -315,11 +315,6 @@ body {
   box-shadow: 0 0 20px rgba(92, 25, 22, 0.3), 0 0 40px rgba(92, 25, 22, 0.1);
 }
 
-/* Gradient Background */
-.bg-gradient-flo {
-  background-color: #ffffff;
-}
-
 /* Glass Effect */
 .glass {
   background: rgba(255, 255, 255, 0.8);

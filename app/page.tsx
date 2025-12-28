@@ -110,7 +110,7 @@ export default function App() {
   if (!mounted || (!user && !authLoading)) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-flo font-sans text-slate-800">
+    <div className="min-h-screen bg-white font-sans text-slate-800">
       <div className="w-full min-h-screen flex flex-col lg:flex-row">
         <Sidebar
           user={user}
