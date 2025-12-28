@@ -77,9 +77,8 @@ export const Dashboard = ({
               const dayLabel = dayLabels[index];
               return (
                 <div key={date.toISOString()} className="flex flex-col items-center gap-1">
-                  <span className="text-[10px] sm:text-xs font-semibold text-white/70">{dayLabel}</span>
-                  <span className="text-[9px] sm:text-[10px] font-semibold text-white/60 min-h-[12px]">
-                    {isToday ? 'Today' : ''}
+                  <span className="text-[10px] sm:text-xs font-semibold text-white/70">
+                    {isToday ? 'Today' : dayLabel}
                   </span>
                   <div
                     className={`flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-full ${
