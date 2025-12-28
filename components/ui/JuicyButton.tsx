@@ -61,11 +61,19 @@ export const JuicyButton = ({
 
   const currentVariant = variants[variant];
   const currentSize = sizes[size] || sizes.md;
+  const dangerStyle = variant === 'danger'
+    ? {
+        backgroundColor: 'var(--destructive, #ea3c53)',
+        borderColor: 'var(--destructive, #ea3c53)',
+        color: '#ffffff',
+      }
+    : undefined;
 
   return (
     <button
       onClick={!disabled ? onClick : undefined}
       disabled={disabled}
+      style={dangerStyle}
       className={`
         relative 
         transition-all 
