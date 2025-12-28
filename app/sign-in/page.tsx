@@ -96,11 +96,12 @@ export default function SignInPage() {
 
           <div className="mt-auto pt-10 pb-6">
             <JuicyButton
-              variant="secondary"
+              variant="outline"
               size="lg"
               fullWidth
               onClick={signInWithGoogle}
               disabled={authLoading}
+              className="bg-white text-gray-900 border-gray-200 hover:bg-gray-50"
             >
               <LogIn size={20} />
               {authLoading ? 'CHECKING SESSION...' : 'CONTINUE WITH GOOGLE'}
