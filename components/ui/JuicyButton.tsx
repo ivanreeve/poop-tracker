@@ -39,10 +39,10 @@ export const JuicyButton = ({
       hover: 'hover:bg-[#ECECEC]',
     },
     danger: {
-      bg: 'bg-[#c07865]',
-      border: 'border-[#9a4d3e]',
+      bg: 'bg-destructive',
+      border: 'border-destructive',
       text: 'text-white',
-      hover: 'hover:bg-[#d08c7b]',
+      hover: 'hover:bg-destructive',
     },
     success: {
       bg: 'bg-[#98DE8F]',
