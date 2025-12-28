@@ -265,7 +265,7 @@ export const Statistics = ({
             return (
               <div
                 key={i}
-                className={`aspect-square rounded-lg sm:rounded-xl flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all hover:scale-110 cursor-default ${
+                className={`aspect-square rounded-lg sm:rounded-xl transition-all hover:scale-110 cursor-default ${
                   hasLog
                     ? `bg-gradient-to-br ${
                         isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
@@ -273,9 +273,7 @@ export const Statistics = ({
                     : 'bg-gray-100 text-gray-300'
                 }`}
                 title={date.toLocaleDateString()}
-              >
-                {isToday ? '📍' : hasLog ? '✓' : ''}
-              </div>
+              />
             );
           })}
         </div>

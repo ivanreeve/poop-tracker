@@ -87,7 +87,7 @@ export const Header = ({ streak, user, profile, greetingName, onSignOut, onChang
               onClick={onSignOut}
               className="text-red-500 focus:text-red-500 data-[variant=destructive]:text-red-500 hover:bg-red-50 cursor-pointer"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-4 w-4 text-red-500" />
               <span>Sign out</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
