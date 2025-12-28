@@ -1,6 +1,5 @@
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
-import { Calendar } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { LogCardSkeleton } from '../../ui/skeleton';
 
@@ -53,8 +52,8 @@ export const Dashboard = ({
     <>
       <section className="relative min-h-[320px] sm:min-h-[360px] lg:min-h-[420px] -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-10 -mt-4 sm:-mt-6 lg:-mt-8 xl:-mt-10 overflow-hidden bg-gradient-to-b from-[var(--flo-pink-dark)] to-[var(--flo-pink)] rounded-none p-5 sm:p-6 lg:p-8 text-white shadow-lg flex flex-col">
         <div className="space-y-4 sm:space-y-5">
-          <div className="grid grid-cols-3 items-center">
-            <div className="flex items-center">
+          <div className="grid grid-cols-7 items-center gap-2 sm:gap-3">
+            <div className="flex items-center justify-center">
               <Avatar
                 className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-white/80 bg-white/90"
                 aria-label={greetingName}
@@ -65,10 +64,7 @@ export const Dashboard = ({
                 </AvatarFallback>
               </Avatar>
             </div>
-            <div className="text-center text-sm sm:text-base font-bold">{formattedDate}</div>
-            <div className="flex justify-end">
-              <Calendar size={20} className="text-white/90 sm:size-6" />
-            </div>
+            <div className="col-span-5 text-center text-sm sm:text-base font-bold">{formattedDate}</div>
           </div>
 
           <div className="grid grid-cols-7 gap-2 sm:gap-3 text-center">
