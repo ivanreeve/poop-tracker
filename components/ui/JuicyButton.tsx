@@ -64,7 +64,7 @@ export const JuicyButton = ({
   const dangerStyle = variant === 'danger'
     ? {
         backgroundColor: 'var(--destructive, #ea3c53)',
-        borderColor: 'var(--destructive, #ea3c53)',
+        borderBottomColor: 'var(--destructive-dark, #c02e44)',
         color: '#ffffff',
       }
     : undefined;
