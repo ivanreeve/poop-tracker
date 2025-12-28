@@ -104,7 +104,7 @@ export const Statistics = ({
       </section>
     )}
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 gap-4 sm:gap-6">
       {loading ? (
         <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
           <div className="space-y-2 mb-4 sm:mb-6">
