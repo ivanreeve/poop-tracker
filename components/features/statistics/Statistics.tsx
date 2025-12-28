@@ -45,6 +45,50 @@ export const Statistics = ({
     )}
 
     {loading ? (
+      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+        <div className="space-y-2 mb-4 sm:mb-6">
+          <Skeleton className="h-5 w-40 rounded" />
+          <Skeleton className="h-4 w-24 rounded" />
+        </div>
+        <div className="grid grid-cols-10 gap-1 sm:gap-2">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <Skeleton key={i} className="aspect-square rounded-lg sm:rounded-xl" />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <section
+        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
+      >
+        <div className="flex justify-between items-center mb-4 sm:mb-6">
+          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>
+          <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 30 Days</span>
+        </div>
+        <div className="grid grid-cols-10 gap-1 sm:gap-2">
+          {Array.from({ length: 30 }, (_, i) => {
+            const date = new Date();
+            date.setDate(date.getDate() - (29 - i));
+            const hasLog = userLogs.some((log) => new Date(log.occurred_at).toDateString() === date.toDateString());
+            const isToday = date.toDateString() === new Date().toDateString();
+            return (
+              <div
+                key={i}
+                className={`aspect-square rounded-lg sm:rounded-xl transition-all hover:scale-110 cursor-default ${
+                  hasLog
+                    ? `bg-gradient-to-br ${
+                        isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
+                      } text-white shadow-md`
+                    : 'bg-gray-100 text-gray-300'
+                }`}
+                title={date.toLocaleDateString()}
+              />
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+    {loading ? (
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCardSkeleton />
         <StatCardSkeleton />
@@ -235,49 +279,5 @@ export const Statistics = ({
         </section>
       )}
     </div>
-
-    {loading ? (
-      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-        <div className="space-y-2 mb-4 sm:mb-6">
-          <Skeleton className="h-5 w-40 rounded" />
-          <Skeleton className="h-4 w-24 rounded" />
-        </div>
-        <div className="grid grid-cols-10 gap-1 sm:gap-2">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <Skeleton key={i} className="aspect-square rounded-lg sm:rounded-xl" />
-          ))}
-        </div>
-      </section>
-    ) : (
-      <section
-        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
-      >
-        <div className="flex justify-between items-center mb-4 sm:mb-6">
-          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>
-          <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 30 Days</span>
-        </div>
-        <div className="grid grid-cols-10 gap-1 sm:gap-2">
-          {Array.from({ length: 30 }, (_, i) => {
-            const date = new Date();
-            date.setDate(date.getDate() - (29 - i));
-            const hasLog = userLogs.some((log) => new Date(log.occurred_at).toDateString() === date.toDateString());
-            const isToday = date.toDateString() === new Date().toDateString();
-            return (
-              <div
-                key={i}
-                className={`aspect-square rounded-lg sm:rounded-xl transition-all hover:scale-110 cursor-default ${
-                  hasLog
-                    ? `bg-gradient-to-br ${
-                        isToday ? 'from-[#5c1916] to-[#3f0f0d]' : 'from-[#A6D8D4] to-[#7CB2AE]'
-                      } text-white shadow-md`
-                    : 'bg-gray-100 text-gray-300'
-                }`}
-                title={date.toLocaleDateString()}
-              />
-            );
-          })}
-        </div>
-      </section>
-    )}
   </>
 );
