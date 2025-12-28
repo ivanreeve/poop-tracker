@@ -126,11 +126,6 @@ export default function App() {
         <main className="flex-1 lg:ml-72 xl:ml-80">
           <Header
             streak={stats.streak}
-            user={user}
-            profile={profile}
-            greetingName={greetingName}
-            onSignOut={signOut}
-            onChangeView={setView}
           />
 
           <AppContent
