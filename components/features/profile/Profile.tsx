@@ -52,35 +52,62 @@ export const ProfileSection = ({
 
     <section className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
-            <UserPlus size={18} className="text-white" />
-          </div>
-          <div>
-            <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Add a friend</h3>
-            <p className="text-xs sm:text-sm font-bold text-gray-400">Invite by email to share logs.</p>
-          </div>
+        <div className="flex items-center gap-2 mb-4">
+          <Users size={18} className="text-[#A6D8D4]" />
+          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>
         </div>
-        <form onSubmit={onAddFriend} className="space-y-3">
-          <div className="relative">
-            <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
-            <input
-              type="email"
-              placeholder="friend@example.com"
-              value={friendEmail}
-              onChange={(event) => onFriendEmailChange(event.target.value)}
-              className="w-full rounded-2xl border-2 border-gray-100 bg-[#fcf6f4] px-9 py-2 text-sm font-bold text-gray-600 placeholder:text-gray-300 focus:outline-none focus:border-[#A6D8D4]"
-            />
+        {friendsLoading ? (
+          <div className="space-y-3">
+            <FriendCardSkeleton />
+            <FriendCardSkeleton />
+            <FriendCardSkeleton />
           </div>
-          <JuicyButton variant="primary" size="sm" fullWidth disabled={!friendEmail || friendActionLoading}>
-            {friendActionLoading ? <Loader2 size={16} className="animate-spin" /> : <UserPlus size={16} />}
-            SEND FRIEND REQUEST
-          </JuicyButton>
-        </form>
+        ) : (
+          <>
+            {acceptedFriendships.length === 0 ? (
+              <div className="text-xs sm:text-sm font-bold text-gray-400">
+                No friends yet. Add someone to start sharing logs.
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {acceptedFriendships.map((friendship) => {
+                  const friendId = friendship.user_id === user.id ? friendship.friend_id : friendship.user_id;
+                  const friendProfile = profilesById[friendId];
+                  const friendName = friendProfile?.full_name || friendProfile?.email || 'Friend';
+                  return (
+                    <div
+                      key={friendship.id}
+                      className="flex items-center justify-between gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
+                          {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
+                          <AvatarFallback className="rounded-xl bg-white">
+                            <Users size={16} className="text-[#A6D8D4]" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-bold text-sm text-gray-700">{friendName}</div>
+                          <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
+                        </div>
+                      </div>
+                      <JuicyButton
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onViewFriendStats(friendId)}
+                      >
+                        <BarChart size={14} />
+                        VIEW STATS
+                      </JuicyButton>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        )}
       </div>
-    </section>
 
-    <section className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#5c1916]" />
@@ -153,60 +180,31 @@ export const ProfileSection = ({
       </div>
 
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
-        <div className="flex items-center gap-2 mb-4">
-          <Users size={18} className="text-[#A6D8D4]" />
-          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>
-        </div>
-        {friendsLoading ? (
-          <div className="space-y-3">
-            <FriendCardSkeleton />
-            <FriendCardSkeleton />
-            <FriendCardSkeleton />
+        <div className="flex items-center gap-3 mb-3">
+          <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
+            <UserPlus size={18} className="text-white" />
           </div>
-        ) : (
-          <>
-            {acceptedFriendships.length === 0 ? (
-              <div className="text-xs sm:text-sm font-bold text-gray-400">
-                No friends yet. Add someone to start sharing logs.
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {acceptedFriendships.map((friendship) => {
-                  const friendId = friendship.user_id === user.id ? friendship.friend_id : friendship.user_id;
-                  const friendProfile = profilesById[friendId];
-                  const friendName = friendProfile?.full_name || friendProfile?.email || 'Friend';
-                  return (
-                    <div
-                      key={friendship.id}
-                      className="flex items-center justify-between gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
-                          {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
-                          <AvatarFallback className="rounded-xl bg-white">
-                            <Users size={16} className="text-[#A6D8D4]" />
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <div className="font-bold text-sm text-gray-700">{friendName}</div>
-                          <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
-                        </div>
-                      </div>
-                      <JuicyButton
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onViewFriendStats(friendId)}
-                      >
-                        <BarChart size={14} />
-                        VIEW STATS
-                      </JuicyButton>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </>
-        )}
+          <div>
+            <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Add a friend</h3>
+            <p className="text-xs sm:text-sm font-bold text-gray-400">Invite by email to share logs.</p>
+          </div>
+        </div>
+        <form onSubmit={onAddFriend} className="space-y-3">
+          <div className="relative">
+            <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
+            <input
+              type="email"
+              placeholder="friend@example.com"
+              value={friendEmail}
+              onChange={(event) => onFriendEmailChange(event.target.value)}
+              className="w-full rounded-2xl border-2 border-gray-100 bg-[#fcf6f4] px-9 py-2 text-sm font-bold text-gray-600 placeholder:text-gray-300 focus:outline-none focus:border-[#A6D8D4]"
+            />
+          </div>
+          <JuicyButton variant="primary" size="sm" fullWidth disabled={!friendEmail || friendActionLoading}>
+            {friendActionLoading ? <Loader2 size={16} className="animate-spin" /> : <UserPlus size={16} />}
+            SEND FRIEND REQUEST
+          </JuicyButton>
+        </form>
       </div>
     </section>
   </>
