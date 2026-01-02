@@ -322,6 +322,28 @@ body {
   animation: shimmer 2s infinite;
 }
 
+.striped-yellow {
+  background-color: #FFD966;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0,
+    rgba(255, 255, 255, 0.35) 6px,
+    rgba(255, 255, 255, 0) 6px,
+    rgba(255, 255, 255, 0) 12px
+  );
+}
+
+.striped-brown {
+  background-color: #5c1916;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 0,
+    rgba(255, 255, 255, 0.2) 6px,
+    rgba(255, 255, 255, 0) 6px,
+    rgba(255, 255, 255, 0) 12px
+  );
+}
+
 /* Glow Effect */
 .glow-pink {
   box-shadow: 0 0 20px rgba(92, 25, 22, 0.3), 0 0 40px rgba(92, 25, 22, 0.1);

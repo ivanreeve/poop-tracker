@@ -58,12 +58,6 @@ export const FriendProfile = ({
         avgTypeDisplay={stats.avgTypeDisplay}
         healthScoreDisplay={stats.healthScoreDisplay}
         timePeriodStats={stats.timePeriodStats}
-        averageInsightTitle={stats.averageInsightTitle}
-        averageInsightSubtitle={stats.averageInsightSubtitle}
-        streakInsightTitle={stats.streakInsightTitle}
-        streakInsightSubtitle={stats.streakInsightSubtitle}
-        bestPeriodInsightTitle={stats.bestPeriodInsightTitle}
-        bestPeriodInsightSubtitle={stats.bestPeriodInsightSubtitle}
         loading={loading}
       />
     </>

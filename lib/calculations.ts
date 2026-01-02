@@ -26,9 +26,9 @@ export const calculateAvgType = (logs: PoopLog[]): number | null => {
 export const calculateTimePeriodStats = (logs: PoopLog[]): TimePeriodStat[] => {
   const periods: Omit<TimePeriodStat, 'count' | 'percentage'>[] = [
     { label: 'Morning', hours: [6, 7, 8, 9, 10, 11], emoji: '🌅' },
-    { label: 'Afternoon', hours: [12, 13, 14, 15, 16, 17], emoji: '☀️' },
+    { label: 'Afternoon', hours: [12, 13, 14, 15, 16, 17], emoji: '🌇' },
     { label: 'Evening', hours: [18, 19, 20, 21], emoji: '🌆' },
-    { label: 'Night', hours: [22, 23, 0, 1, 2, 3, 4, 5], emoji: '🌙' },
+    { label: 'Night', hours: [22, 23, 0, 1, 2, 3, 4, 5], emoji: '🌃' },
   ];
 
   return periods.map((period) => {
