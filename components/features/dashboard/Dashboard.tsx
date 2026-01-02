@@ -197,14 +197,13 @@ export const Dashboard = ({
       <section>
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
-          {shouldShowAllRecent && (
-            <button
-              onClick={onToggleShowAll}
-              className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all"
-            >
-              {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
-            </button>
-          )}
+          <button
+            onClick={onToggleShowAll}
+            disabled={!shouldShowAllRecent}
+            className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
+          </button>
         </div>
         {logsLoading ? (
           <div
@@ -276,14 +275,13 @@ export const Dashboard = ({
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends&apos; Logs</h3>
           <div className="flex items-center gap-3">
             <span className="text-[10px] sm:text-xs font-bold text-gray-400">{acceptedFriendsCount} friends</span>
-            {shouldShowAllFriends && (
-              <button
-                onClick={() => setShowAllFriendLogs((prev) => !prev)}
-                className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all"
-              >
-                {showAllFriendLogs ? 'VIEW LESS' : 'VIEW ALL'}
-              </button>
-            )}
+            <button
+              onClick={() => setShowAllFriendLogs((prev) => !prev)}
+              disabled={!shouldShowAllFriends}
+              className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {showAllFriendLogs ? 'VIEW LESS' : 'VIEW ALL'}
+            </button>
           </div>
         </div>
         {friendsLoading ? (

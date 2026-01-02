@@ -30,7 +30,7 @@ export const FriendProfile = ({
   return (
     <>
       <div className="mb-4">
-        <JuicyButton variant="outline" size="sm" onClick={onBack}>
+        <JuicyButton variant="coral" size="sm" onClick={onBack}>
           <ArrowLeft size={16} />
           BACK TO PROFILE
         </JuicyButton>

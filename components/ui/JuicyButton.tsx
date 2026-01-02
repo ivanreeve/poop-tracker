@@ -3,7 +3,7 @@ import React from 'react';
 type JuicyButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'success';
+  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'success' | 'coral';
   size?: 'sm' | 'md' | 'lg' | 'icon';
   className?: string;
   fullWidth?: boolean;
@@ -49,6 +49,12 @@ export const JuicyButton = ({
       border: 'border-[#7BC172]',
       text: 'text-white',
       hover: 'hover:bg-[#A9EFA0]',
+    },
+    coral: {
+      bg: 'bg-[var(--flo-coral)]',
+      border: 'border-[#9f5f4f]',
+      text: 'text-white',
+      hover: 'hover:bg-[var(--flo-coral)]',
     },
   };
 
