@@ -248,7 +248,7 @@ export const Dashboard = ({
         {logsLoading ? (
           <div
             ref={recentGridRef}
-            className="flex flex-row justify-start gap-2 sm:gap-3 stagger-children overflow-hidden"
+            className="flex flex-row justify-start gap-2 sm:gap-3 stagger-children py-4"
           >
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="flex-shrink-0 w-[120px]">
@@ -265,14 +265,15 @@ export const Dashboard = ({
             ) : (
               <div
                 ref={recentGridRef}
-                className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
+                className="flex flex-row justify-start gap-2 sm:gap-3 py-4"
               >
-                {recentLogsToShow.map((log) => {
+                {recentLogsToShow.map((log, index) => {
                   const logType = stoolTypes.find((type) => type.type === log.type);
 
                   return (
                     <div
                       key={log.id}
+                      style={{ zIndex: recentLogsToShow.length - index }}
                       className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 cursor-pointer flex-shrink-0 w-[120px] ${
                         isEditMode ? 'animate-shake' : ''
                       }`}
@@ -359,7 +360,7 @@ export const Dashboard = ({
         {friendsLoading ? (
           <div
             ref={friendGridRef}
-            className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
+            className="flex flex-row justify-start gap-2 sm:gap-3 py-4"
           >
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="flex-shrink-0 w-[120px]">
@@ -376,9 +377,9 @@ export const Dashboard = ({
             ) : (
               <div
                 ref={friendGridRef}
-                className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
+                className="flex flex-row justify-start gap-2 sm:gap-3 py-4"
               >
-                {friendLogsToShow.map((log) => {
+                {friendLogsToShow.map((log, index) => {
                   const logType = stoolTypes.find((type) => type.type === log.type);
                   const friendProfile = profilesById[log.user_id];
                   const friendName = friendProfile?.full_name || friendProfile?.email || 'Friend';
@@ -386,6 +387,7 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
+                      style={{ zIndex: friendLogsToShow.length - index }}
                       className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 flex-shrink-0 w-[120px]"
                     >
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
