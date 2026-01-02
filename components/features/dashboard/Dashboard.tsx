@@ -248,10 +248,12 @@ export const Dashboard = ({
         {logsLoading ? (
           <div
             ref={recentGridRef}
-            className="grid grid-cols-[repeat(auto-fill,minmax(120px,120px))] justify-start gap-2 sm:gap-3 stagger-children"
+            className="flex flex-row justify-start gap-2 sm:gap-3 stagger-children overflow-hidden"
           >
             {Array.from({ length: 4 }).map((_, i) => (
-              <LogCardSkeleton key={i} />
+              <div key={i} className="flex-shrink-0 w-[120px]">
+                <LogCardSkeleton />
+              </div>
             ))}
           </div>
         ) : (
@@ -263,7 +265,7 @@ export const Dashboard = ({
             ) : (
               <div
                 ref={recentGridRef}
-                className="grid grid-cols-[repeat(auto-fill,minmax(120px,120px))] justify-start gap-2 sm:gap-3"
+                className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
               >
                 {recentLogsToShow.map((log) => {
                   const logType = stoolTypes.find((type) => type.type === log.type);
@@ -271,7 +273,7 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 cursor-pointer ${
+                      className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 cursor-pointer flex-shrink-0 w-[120px] ${
                         isEditMode ? 'animate-shake' : ''
                       }`}
                       onTouchStart={handleTouchStart}
@@ -357,10 +359,12 @@ export const Dashboard = ({
         {friendsLoading ? (
           <div
             ref={friendGridRef}
-            className="grid grid-cols-[repeat(auto-fill,minmax(120px,120px))] justify-start gap-2 sm:gap-3"
+            className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
           >
             {Array.from({ length: 3 }).map((_, i) => (
-              <LogCardSkeleton key={i} />
+              <div key={i} className="flex-shrink-0 w-[120px]">
+                <LogCardSkeleton />
+              </div>
             ))}
           </div>
         ) : (
@@ -372,7 +376,7 @@ export const Dashboard = ({
             ) : (
               <div
                 ref={friendGridRef}
-                className="grid grid-cols-[repeat(auto-fill,minmax(120px,120px))] justify-start gap-2 sm:gap-3"
+                className="flex flex-row justify-start gap-2 sm:gap-3 overflow-hidden"
               >
                 {friendLogsToShow.map((log) => {
                   const logType = stoolTypes.find((type) => type.type === log.type);
@@ -382,7 +386,7 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2"
+                      className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 flex-shrink-0 w-[120px]"
                     >
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
                       <div className="font-bold text-[#5c1916] text-sm sm:text-base">{logType?.label}</div>
