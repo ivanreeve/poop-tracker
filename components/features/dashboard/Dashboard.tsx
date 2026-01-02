@@ -210,7 +210,7 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className="bg-white p-3 sm:p-4 rounded-2xl border-2 border-gray-200 flex flex-col items-center text-center gap-1 sm:gap-2"
+                      className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2"
                     >
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
                       <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
@@ -285,7 +285,7 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className="bg-white p-3 sm:p-4 rounded-2xl border-2 border-gray-200 flex flex-col items-center text-center gap-1 sm:gap-2"
+                      className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2"
                     >
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
                       <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
