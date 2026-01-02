@@ -19,7 +19,7 @@ export const WeeklyChart = ({ logs }: { logs: PoopLog[] }) => {
   return (
     <div className="flex items-end justify-between gap-1 sm:gap-2 h-24 sm:h-32 md:h-40">
       {weekData.map((data, index) => (
-        <div key={data.day} className="flex-1 flex flex-col items-center gap-1 sm:gap-2">
+        <div key={data.day} className="flex-1 h-full flex flex-col items-center justify-end gap-1 sm:gap-2">
           <div
             className={`w-full rounded-t-xl transition-all duration-500 ease-out ${
               data.isToday ? 'bg-[#5c1916]' : 'bg-[#A6D8D4]'

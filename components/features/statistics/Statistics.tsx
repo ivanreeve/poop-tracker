@@ -1,6 +1,7 @@
 import { Activity, Check, Flame, Target } from 'lucide-react';
 import type { PoopLog, StoolType, TimePeriodStat } from '../../../types/models';
 import { StatCard } from '../../ui/StatCard';
+import { SpiderChart } from '../../ui/SpiderChart';
 import { WeeklyChart } from '../../ui/WeeklyChart';
 import { Skeleton, StatCardSkeleton, BarChartSkeleton, SectionHeaderSkeleton } from '../../ui/skeleton';
 
@@ -96,22 +97,24 @@ export const Statistics = ({
     <div className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {loading ? (
-          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
+          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 h-full flex flex-col">
             <div className="space-y-2 mb-4 sm:mb-6">
               <Skeleton className="h-5 w-40 rounded" />
               <Skeleton className="h-4 w-20 rounded" />
             </div>
-            <Skeleton className="h-40 w-full rounded-xl" />
+            <Skeleton className="h-40 w-full rounded-xl mt-auto" />
           </section>
         ) : (
           <section
-            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
+            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 h-full flex flex-col"
           >
             <div className="flex justify-between items-center mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
               <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 7 Days</span>
             </div>
-            <WeeklyChart logs={userLogs} />
+            <div className="mt-auto">
+              <WeeklyChart logs={userLogs} />
+            </div>
           </section>
         )}
 
@@ -164,7 +167,7 @@ export const Statistics = ({
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-20 rounded" />
           </div>
-          <BarChartSkeleton />
+          <Skeleton className="h-56 w-full rounded-2xl" />
         </section>
       ) : (
         <section
@@ -174,32 +177,18 @@ export const Statistics = ({
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Type Distribution</h3>
             <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Bristol Scale</span>
           </div>
-          <div className="space-y-3">
-            {stoolTypes.map((type) => {
-              const count = userLogs.filter((log) => log.type === type.type).length;
-              const percentage = userLogs.length > 0 ? (count / userLogs.length) * 100 : 0;
-              return (
-                <div key={type.type} className="flex items-center gap-3">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#F0F8FF] rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
-                    {type.emoji}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="font-bold text-sm sm:text-base text-gray-700">{type.label}</span>
-                      <span className="font-bold text-xs sm:text-sm text-gray-400">{Math.round(percentage)}%</span>
-                    </div>
-                    <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          percentage > 0 ? 'striped-brown' : 'bg-gray-200'
-                        }`}
-                        style={{ width: `${percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="w-full h-56 sm:h-64 md:h-72">
+            <SpiderChart
+              data={stoolTypes.map((type) => {
+                const count = userLogs.filter((log) => log.type === type.type).length;
+                const percentage = userLogs.length > 0 ? (count / userLogs.length) * 100 : 0;
+                return {
+                  label: type.label,
+                  value: percentage,
+                  emoji: type.emoji,
+                };
+              })}
+            />
           </div>
         </section>
       )}
