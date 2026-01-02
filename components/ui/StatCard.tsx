@@ -31,8 +31,15 @@ export const StatCard = ({ icon: Icon, value, label, accentColor, delay = 0 }: S
   >
     <Icon size={32} className="sm:w-9 sm:h-9" style={{ color: accentColor }} />
     <div>
-      <div className="text-xl sm:text-2xl md:text-3xl font-black text-gray-700">{value}</div>
-      <div className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wide">{label}</div>
+      <div className="text-xl sm:text-2xl md:text-3xl font-black" style={{ color: accentColor }}>
+        {value}
+      </div>
+      <div
+        className="text-xs sm:text-sm font-bold uppercase tracking-wide"
+        style={{ color: toRgba(accentColor, 0.65) }}
+      >
+        {label}
+      </div>
     </div>
   </div>
 );
