@@ -55,9 +55,6 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
 
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-3 mb-6">
-          <div className="bg-[#5c1916] p-2 sm:p-3 rounded-xl">
-            <LogOut size={18} className="text-white" />
-          </div>
           <div>
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Sign Out</h3>
             <p className="text-xs sm:text-sm font-bold text-gray-400">Sign out of your account</p>
