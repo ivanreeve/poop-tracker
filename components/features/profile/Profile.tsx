@@ -53,7 +53,7 @@ export const ProfileSection = ({
     <section className="grid grid-cols-1 gap-4 sm:gap-6">
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-2 mb-4">
-          <Users size={18} className="text-[#A6D8D4]" />
+          <Users size={18} className="text-[var(--flo-pink)]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>
         </div>
         {friendsLoading ? (
@@ -77,10 +77,10 @@ export const ProfileSection = ({
                   return (
                     <div
                       key={friendship.id}
-                      className="flex items-center justify-between gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
+                      className="flex items-center justify-between gap-3 bg-[rgba(92,25,22,0.08)] border-2 border-[var(--flo-pink)]/10 rounded-md p-3"
                     >
                       <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10 rounded-full bg-white border-2 border-[#E8F4F3]">
+                        <Avatar className="h-10 w-10 rounded-full bg-white">
                           {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
                           <AvatarFallback className="rounded-full bg-white">
                             <Users size={16} className="text-flo-pink" />
