@@ -271,8 +271,8 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 ${
-                        isEditMode ? 'animate-shake cursor-pointer' : ''
+                      className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 cursor-pointer ${
+                        isEditMode ? 'animate-shake' : ''
                       }`}
                       onTouchStart={handleTouchStart}
                       onTouchEnd={handleTouchEnd}
@@ -309,16 +309,16 @@ export const Dashboard = ({
 
       {/* Snackbar */}
       <div
-        className={`fixed bottom-28 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-4 z-50 transition-all duration-300 ${
-          deletedLog ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        className={`fixed bottom-28 left-1/2 transform -translate-x-1/2 bg-white text-slate-800 border-2 border-gray-100 px-4 py-3 rounded-xl shadow-xl flex items-center gap-4 z-50 transition-opacity duration-300 ${
+          deletedLog ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <span className="text-sm font-semibold">Log deleted</span>
+        <span className="text-sm font-bold">Log deleted</span>
         <JuicyButton
-          variant="secondary"
+          variant="coral"
           size="sm"
           onClick={handleUndo}
-          className="text-[#5c1916] bg-[#ead2cb] border-none hover:bg-[#dec0b7] h-8 px-3 py-0 text-xs"
+          className="h-8 px-3 py-0 text-xs"
         >
           UNDO
         </JuicyButton>
