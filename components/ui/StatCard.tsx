@@ -26,6 +26,7 @@ export const StatCard = ({ icon: Icon, value, label, accentColor, delay = 0 }: S
       animationDelay: `${delay}ms`,
       borderColor: accentColor,
       backgroundColor: toRgba(accentColor, 0.14),
+      boxShadow: `0 0 0 1px ${toRgba(accentColor, 0.45)}, 0 6px 18px ${toRgba(accentColor, 0.25)}`,
     }}
     className="rounded-md p-3 sm:p-4 md:p-5 border-2 flex items-center gap-3 sm:gap-4"
   >
