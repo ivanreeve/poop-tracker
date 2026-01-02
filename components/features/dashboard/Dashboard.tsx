@@ -255,8 +255,8 @@ export const Dashboard = ({
               className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Next recent logs"
             >
-              <ChevronRight size={14} strokeWidth={3} />
               <span className="text-[10px] sm:text-xs font-black tracking-wide">NEXT</span>
+              <ChevronRight size={14} strokeWidth={3} />
             </JuicyButton>
           </div>
         </div>
@@ -414,8 +414,8 @@ export const Dashboard = ({
               className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Next friends logs"
             >
-              <ChevronRight size={14} strokeWidth={3} />
               <span className="text-[10px] sm:text-xs font-black tracking-wide">NEXT</span>
+              <ChevronRight size={14} strokeWidth={3} />
             </JuicyButton>
           </div>
         </div>
