@@ -92,7 +92,7 @@ export const ProfileSection = ({
                         </div>
                       </div>
                       <JuicyButton
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         onClick={() => onViewFriendStats(friendId)}
                       >
