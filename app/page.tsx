@@ -30,7 +30,7 @@ export default function App() {
     greetingName,
   } = useAuth();
 
-  const { logs: userLogs, logsLoading, isSavingLog, addLog } = useLogs(user);
+  const { logs: userLogs, logsLoading, isSavingLog, addLog, deleteLog, restoreLog } = useLogs(user);
 
   const {
     friendEmail,
@@ -132,6 +132,8 @@ export default function App() {
             showAllLogs={showAllLogs}
             onToggleShowAll={() => setShowAllLogs((prev) => !prev)}
             logsLoading={logsLoading}
+            onDeleteLog={deleteLog}
+            onRestoreLog={restoreLog}
             friendLogs={friendLogs}
             acceptedFriendsCount={acceptedFriendships.length}
             friendsLoading={friendsLoading}

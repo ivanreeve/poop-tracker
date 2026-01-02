@@ -21,6 +21,8 @@ type AppContentProps = {
   showAllLogs: boolean;
   onToggleShowAll: () => void;
   logsLoading: boolean;
+  onDeleteLog: (id: string) => Promise<boolean>;
+  onRestoreLog: (log: PoopLog) => Promise<boolean>;
   friendLogs: PoopLog[];
   acceptedFriendsCount: number;
   friendsLoading: boolean;
@@ -52,6 +54,8 @@ export const AppContent = ({
   showAllLogs,
   onToggleShowAll,
   logsLoading,
+  onDeleteLog,
+  onRestoreLog,
   friendLogs,
   acceptedFriendsCount,
   friendsLoading,
@@ -113,6 +117,8 @@ export const AppContent = ({
           showAllLogs={showAllLogs}
           onToggleShowAll={onToggleShowAll}
           logsLoading={logsLoading}
+          onDeleteLog={onDeleteLog}
+          onRestoreLog={onRestoreLog}
           stoolTypes={STOOL_TYPES}
           friendLogs={friendLogs}
           acceptedFriendsCount={acceptedFriendsCount}

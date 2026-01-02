@@ -9,6 +9,8 @@ type UseLogsResult = {
   isSavingLog: boolean;
   logsError: string | null;
   addLog: (type: number) => Promise<boolean>;
+  deleteLog: (id: string) => Promise<boolean>;
+  restoreLog: (log: PoopLog) => Promise<boolean>;
   refreshLogs: () => Promise<void>;
 };
 
@@ -79,12 +81,88 @@ export const useLogs = (user: User | null): UseLogsResult => {
     [user]
   );
 
+  const deleteLog = useCallback(
+    async (id: string) => {
+      if (!user) return false;
+      // Optimistic update
+      const previousLogs = [...logs];
+      setLogs((prev) => prev.filter((log) => log.id !== id));
+
+      const { error } = await supabase.from('poop_logs').delete().eq('id', id);
+
+      if (error) {
+        setLogsError(error.message);
+        setLogs(previousLogs); // Revert on error
+        return false;
+      }
+
+      return true;
+    },
+    [user, logs]
+  );
+
+  const restoreLog = useCallback(
+    async (log: PoopLog) => {
+      if (!user) return false;
+      // Optimistic update
+      setLogs((prev) => {
+        const newLogs = [log, ...prev].sort((a, b) => 
+          new Date(b.occurred_at).getTime() - new Date(a.occurred_at).getTime()
+        );
+        return newLogs;
+      });
+
+      const { error } = await supabase
+        .from('poop_logs')
+        .insert({
+          id: log.id, // Try to preserve ID if possible, or let DB generate new one if policy allows. 
+                      // Usually better to let DB handle ID and just re-insert data. 
+                      // But for undo, strict ID restoration might be needed if other things link to it. 
+                      // For now, let's just re-insert data.
+          user_id: user.id,
+          type: log.type,
+          notes: log.notes,
+          occurred_at: log.occurred_at,
+        });
+
+      if (error) {
+        // If restoring with same ID fails (e.g. key conflict though unlikely after delete), 
+        // try without ID to let Postgres generate a new one.
+        const { data: newData, error: retryError } = await supabase
+          .from('poop_logs')
+          .insert({
+            user_id: user.id,
+            type: log.type,
+            notes: log.notes,
+            occurred_at: log.occurred_at,
+          })
+          .select()
+          .single();
+
+        if (retryError) {
+          setLogsError(retryError.message);
+          setLogs((prev) => prev.filter((l) => l.id !== log.id)); // Revert optimistic add
+          return false;
+        }
+        
+        // Update the optimistic log with the real one from DB
+        setLogs((prev) => prev.map(l => l.id === log.id ? newData : l));
+        return true;
+      }
+      
+      return true;
+    },
+    [user]
+  );
+
   return {
     logs,
     logsLoading,
     isSavingLog,
     logsError,
     addLog,
+    deleteLog,
+    restoreLog,
     refreshLogs: loadLogs,
   };
 };

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
@@ -14,6 +14,8 @@ type DashboardProps = {
   showAllLogs: boolean;
   onToggleShowAll: () => void;
   logsLoading: boolean;
+  onDeleteLog: (id: string) => Promise<boolean>;
+  onRestoreLog: (log: PoopLog) => Promise<boolean>;
   stoolTypes: StoolType[];
   friendLogs: PoopLog[];
   acceptedFriendsCount: number;
@@ -26,6 +28,8 @@ export const Dashboard = ({
   profile,
   userLogs,
   logsLoading,
+  onDeleteLog,
+  onRestoreLog,
   stoolTypes,
   friendLogs,
   acceptedFriendsCount,
@@ -37,6 +41,9 @@ export const Dashboard = ({
   const [friendPage, setFriendPage] = useState(1);
   const [recentRowCapacity, setRecentRowCapacity] = useState(4);
   const [friendRowCapacity, setFriendRowCapacity] = useState(4);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [deletedLog, setDeletedLog] = useState<PoopLog | null>(null);
+  const pressTimer = useRef<NodeJS.Timeout | null>(null);
   const recentGridRef = useRef<HTMLDivElement | null>(null);
   const friendGridRef = useRef<HTMLDivElement | null>(null);
   const today = new Date();
@@ -107,6 +114,60 @@ export const Dashboard = ({
 
     return () => observer.disconnect();
   }, [cardWidth]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (isEditMode) {
+        // If clicking on something that isn't a delete button or a log card, exit edit mode
+        const target = e.target as HTMLElement;
+        if (!target.closest('.log-card') && !target.closest('.delete-btn')) {
+          setIsEditMode(false);
+        }
+      }
+    };
+
+    if (isEditMode) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isEditMode]);
+
+  const handleTouchStart = () => {
+    pressTimer.current = setTimeout(() => {
+      setIsEditMode(true);
+      // Haptic feedback if available
+      if (navigator.vibrate) navigator.vibrate(50);
+    }, 500);
+  };
+
+  const handleTouchEnd = () => {
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current);
+    }
+  };
+
+  const handleDelete = async (log: PoopLog) => {
+    // Optimistic delete happens in parent, but we handle the Undo UI here
+    setDeletedLog(log);
+    await onDeleteLog(log.id);
+    
+    // Clear snackbar after 4 seconds
+    setTimeout(() => {
+      setDeletedLog((current) => (current?.id === log.id ? null : current));
+    }, 4000);
+  };
+
+  const handleUndo = async () => {
+    if (deletedLog) {
+      await onRestoreLog(deletedLog);
+      setDeletedLog(null);
+    }
+  };
 
   return (
     <>
@@ -210,8 +271,27 @@ export const Dashboard = ({
                   return (
                     <div
                       key={log.id}
-                      className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2"
+                      className={`log-card relative bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2 transition-transform duration-100 ${
+                        isEditMode ? 'animate-shake cursor-pointer' : ''
+                      }`}
+                      onTouchStart={handleTouchStart}
+                      onTouchEnd={handleTouchEnd}
+                      onMouseDown={handleTouchStart}
+                      onMouseUp={handleTouchEnd}
+                      onMouseLeave={handleTouchEnd}
                     >
+                      {isEditMode && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(log);
+                          }}
+                          className="delete-btn absolute -top-3 -right-3 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors z-10 animate-bounce-in"
+                          aria-label="Delete log"
+                        >
+                          <X size={16} strokeWidth={3} />
+                        </button>
+                      )}
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
                       <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
                       <div className="text-[10px] sm:text-xs font-bold text-gray-400">
@@ -226,6 +306,23 @@ export const Dashboard = ({
           </>
         )}
       </section>
+
+      {/* Snackbar */}
+      <div
+        className={`fixed bottom-28 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-4 z-50 transition-all duration-300 ${
+          deletedLog ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        }`}
+      >
+        <span className="text-sm font-semibold">Log deleted</span>
+        <JuicyButton
+          variant="secondary"
+          size="sm"
+          onClick={handleUndo}
+          className="text-[#5c1916] bg-[#ead2cb] border-none hover:bg-[#dec0b7] h-8 px-3 py-0 text-xs"
+        >
+          UNDO
+        </JuicyButton>
+      </div>
 
       {acceptedFriendsCount > 0 && (
       <section>
