@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Minus } from 'lucide-react';
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
@@ -43,6 +43,7 @@ export const Dashboard = ({
   const [friendRowCapacity, setFriendRowCapacity] = useState(4);
   const [isEditMode, setIsEditMode] = useState(false);
   const [deletedLog, setDeletedLog] = useState<PoopLog | null>(null);
+  const [pendingDeleteLog, setPendingDeleteLog] = useState<PoopLog | null>(null);
   const pressTimer = useRef<NodeJS.Timeout | null>(null);
   const recentGridRef = useRef<HTMLDivElement | null>(null);
   const friendGridRef = useRef<HTMLDivElement | null>(null);
@@ -160,6 +161,13 @@ export const Dashboard = ({
     setTimeout(() => {
       setDeletedLog((current) => (current?.id === log.id ? null : current));
     }, 4000);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!pendingDeleteLog) return;
+    const logToDelete = pendingDeleteLog;
+    setPendingDeleteLog(null);
+    await handleDelete(logToDelete);
   };
 
   const handleUndo = async () => {
@@ -294,12 +302,12 @@ export const Dashboard = ({
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleDelete(log);
+                            setPendingDeleteLog(log);
                           }}
                           className="delete-btn absolute -top-3 -right-3 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors z-10 animate-bounce-in"
                           aria-label="Delete log"
                         >
-                          <X size={16} strokeWidth={3} />
+                          <Minus size={16} strokeWidth={3} />
                         </button>
                       )}
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
@@ -318,6 +326,51 @@ export const Dashboard = ({
       </section>
 
       {/* Snackbar */}
+      {pendingDeleteLog && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-log-title"
+          onClick={() => setPendingDeleteLog(null)}
+        >
+          <div
+            className="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-[#ead2cb]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-4 py-4">
+              <h2 id="delete-log-title" className="text-lg font-black text-gray-700 text-center">
+                Delete log?
+              </h2>
+            </div>
+            <div className="p-4 text-center">
+              <p className="text-sm font-semibold text-gray-500">
+                Are you sure you want to delete this log?
+              </p>
+            </div>
+            <div className="p-4 pt-2 flex gap-2">
+              <JuicyButton
+                variant="outline"
+                size="md"
+                fullWidth
+                onClick={() => setPendingDeleteLog(null)}
+                className="bg-[#e5e5e5] border-[#cfcfcf] text-[#6b6b6b] hover:bg-[#dcdcdc]"
+              >
+                Cancel
+              </JuicyButton>
+              <JuicyButton
+                variant="primary"
+                size="md"
+                fullWidth
+                onClick={handleConfirmDelete}
+                className="bg-red-500 border-red-700 hover:bg-red-600"
+              >
+                Delete
+              </JuicyButton>
+            </div>
+          </div>
+        </div>
+      )}
       <div
         className={`fixed bottom-28 left-1/2 transform -translate-x-1/2 bg-white text-slate-800 border-2 border-gray-100 px-4 py-3 rounded-xl shadow-xl flex items-center gap-4 z-50 transition-opacity duration-300 ${
           deletedLog ? 'opacity-100' : 'opacity-0 pointer-events-none'

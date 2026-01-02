@@ -62,7 +62,11 @@ export const LogModal = ({
             fullWidth
             disabled={!selectedType || isSaving}
             onClick={onConfirm}
-            className={''}
+            className={
+              selectedType
+                ? ''
+                : 'bg-[#e5e5e5] border-[#cfcfcf] text-[#6b6b6b] hover:bg-[#dcdcdc]'
+            }
           >
             {isSaving ? (
               <>
