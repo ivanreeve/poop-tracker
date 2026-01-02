@@ -230,23 +230,25 @@ export const Dashboard = ({
           <div className="flex items-center gap-2">
             <JuicyButton
               variant="secondary"
-              size="icon"
+              size="sm"
               onClick={() => setRecentPage((prev) => Math.max(1, prev - 1))}
               disabled={recentPage === 1}
-              className="text-[#5c1916] p-2"
+              className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Previous recent logs"
             >
               <ChevronLeft size={14} strokeWidth={3} />
+              <span className="text-[10px] sm:text-xs font-black tracking-wide">PREV</span>
             </JuicyButton>
             <JuicyButton
               variant="secondary"
-              size="icon"
+              size="sm"
               onClick={() => setRecentPage((prev) => Math.min(totalRecentPages, prev + 1))}
               disabled={recentPage === totalRecentPages}
-              className="text-[#5c1916] p-2"
+              className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Next recent logs"
             >
               <ChevronRight size={14} strokeWidth={3} />
+              <span className="text-[10px] sm:text-xs font-black tracking-wide">NEXT</span>
             </JuicyButton>
           </div>
         </div>
@@ -342,23 +344,25 @@ export const Dashboard = ({
           <div className="flex items-center gap-2">
             <JuicyButton
               variant="secondary"
-              size="icon"
+              size="sm"
               onClick={() => setFriendPage((prev) => Math.max(1, prev - 1))}
               disabled={friendPage === 1}
-              className="text-[#5c1916] p-2"
+              className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Previous friends logs"
             >
               <ChevronLeft size={14} strokeWidth={3} />
+              <span className="text-[10px] sm:text-xs font-black tracking-wide">PREV</span>
             </JuicyButton>
             <JuicyButton
               variant="secondary"
-              size="icon"
+              size="sm"
               onClick={() => setFriendPage((prev) => Math.min(totalFriendPages, prev + 1))}
               disabled={friendPage === totalFriendPages}
-              className="text-[#5c1916] p-2"
+              className="px-2.5 py-0.5 h-7 text-[10px] sm:text-xs bg-[var(--flo-pink)] hover:bg-[var(--flo-pink)] text-white gap-1 border-[var(--flo-pink-dark)] border-b-[3px]"
               aria-label="Next friends logs"
             >
               <ChevronRight size={14} strokeWidth={3} />
+              <span className="text-[10px] sm:text-xs font-black tracking-wide">NEXT</span>
             </JuicyButton>
           </div>
         </div>
