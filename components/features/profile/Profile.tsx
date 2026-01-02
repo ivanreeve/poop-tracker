@@ -83,7 +83,7 @@ export const ProfileSection = ({
                         <Avatar className="h-10 w-10 rounded-full bg-white border-2 border-[#E8F4F3]">
                           {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
                           <AvatarFallback className="rounded-full bg-white">
-                            <Users size={16} className="text-[#A6D8D4]" />
+                            <Users size={16} className="text-flo-pink" />
                           </AvatarFallback>
                         </Avatar>
                         <div>
@@ -92,7 +92,7 @@ export const ProfileSection = ({
                         </div>
                       </div>
                       <JuicyButton
-                        variant="primary"
+                        variant="pink"
                         size="sm"
                         onClick={() => onViewFriendStats(friendId)}
                       >
@@ -181,26 +181,23 @@ export const ProfileSection = ({
 
       <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-3 mb-3">
-          <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
-            <UserPlus size={18} className="text-white" />
-          </div>
           <div>
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Add a friend</h3>
             <p className="text-xs sm:text-sm font-bold text-gray-400">Invite by email to share logs.</p>
           </div>
         </div>
-        <form onSubmit={onAddFriend} className="space-y-3">
-          <div className="relative">
-            <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
+        <form onSubmit={onAddFriend} className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative flex-1">
+            <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--flo-teal)]" />
             <input
               type="email"
               placeholder="friend@example.com"
               value={friendEmail}
               onChange={(event) => onFriendEmailChange(event.target.value)}
-              className="w-full rounded-2xl border-2 border-gray-100 bg-[#fcf6f4] px-9 py-2 text-sm font-bold text-gray-600 placeholder:text-gray-300 focus:outline-none focus:border-[#A6D8D4]"
+              className="w-full rounded-md border-2 border-gray-100 bg-[rgba(166,216,212,0.2)] px-9 py-2 text-sm font-bold text-[var(--flo-teal)] placeholder:text-[var(--flo-teal)] focus:outline-none focus:border-[#A6D8D4]"
             />
           </div>
-          <JuicyButton variant="primary" size="sm" fullWidth disabled={!friendEmail || friendActionLoading}>
+          <JuicyButton variant="teal" size="sm" disabled={!friendEmail || friendActionLoading}>
             {friendActionLoading ? <Loader2 size={16} className="animate-spin" /> : <UserPlus size={16} />}
             SEND FRIEND REQUEST
           </JuicyButton>
