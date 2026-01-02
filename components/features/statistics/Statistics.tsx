@@ -28,7 +28,7 @@ export const Statistics = ({
       <SectionHeaderSkeleton />
     ) : (
       <section>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Statistics</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--flo-pink-dark)] mb-2">Statistics</h2>
       </section>
     )}
 
@@ -94,25 +94,69 @@ export const Statistics = ({
     )}
 
     <div className="grid grid-cols-1 gap-4 sm:gap-6">
-      {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
-          <div className="space-y-2 mb-4 sm:mb-6">
-            <Skeleton className="h-5 w-40 rounded" />
-            <Skeleton className="h-4 w-20 rounded" />
-          </div>
-          <Skeleton className="h-40 w-full rounded-xl" />
-        </section>
-      ) : (
-        <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
-        >
-          <div className="flex justify-between items-center mb-4 sm:mb-6">
-            <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
-            <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 7 Days</span>
-          </div>
-          <WeeklyChart logs={userLogs} />
-        </section>
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        {loading ? (
+          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
+            <div className="space-y-2 mb-4 sm:mb-6">
+              <Skeleton className="h-5 w-40 rounded" />
+              <Skeleton className="h-4 w-20 rounded" />
+            </div>
+            <Skeleton className="h-40 w-full rounded-xl" />
+          </section>
+        ) : (
+          <section
+            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
+          >
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
+              <span className="text-xs sm:text-sm font-bold text-[#5c1916]">Last 7 Days</span>
+            </div>
+            <WeeklyChart logs={userLogs} />
+          </section>
+        )}
+
+        {loading ? (
+          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
+            <div className="space-y-2 mb-4 sm:mb-6">
+              <Skeleton className="h-5 w-40 rounded" />
+              <Skeleton className="h-4 w-16 rounded" />
+            </div>
+            <BarChartSkeleton />
+          </section>
+        ) : (
+          <section
+            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
+          >
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
+              <span className="text-xs sm:text-sm font-bold text-[#5c1916]">By Time</span>
+            </div>
+            <div className="space-y-3">
+              {timePeriodStats.map((period) => (
+                <div key={period.label} className="flex items-center gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFF9F3] rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
+                    {period.emoji}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="font-bold text-sm sm:text-base text-gray-700">{period.label}</span>
+                      <span className="font-bold text-xs sm:text-sm text-gray-400">{period.count} logs</span>
+                    </div>
+                    <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all duration-500 ${
+                          period.percentage > 0 ? 'striped-yellow' : 'bg-gray-200'
+                        }`}
+                        style={{ width: `${period.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
 
       {loading ? (
         <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
@@ -159,51 +203,6 @@ export const Statistics = ({
           </div>
         </section>
       )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        {loading ? (
-          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
-            <div className="space-y-2 mb-4 sm:mb-6">
-              <Skeleton className="h-5 w-40 rounded" />
-              <Skeleton className="h-4 w-16 rounded" />
-            </div>
-            <BarChartSkeleton />
-          </section>
-        ) : (
-          <section
-            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
-          >
-            <div className="flex justify-between items-center mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
-              <span className="text-xs sm:text-sm font-bold text-[#5c1916]">By Time</span>
-            </div>
-            <div className="space-y-3">
-              {timePeriodStats.map((period) => (
-                <div key={period.label} className="flex items-center gap-3">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFF9F3] rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
-                    {period.emoji}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="font-bold text-sm sm:text-base text-gray-700">{period.label}</span>
-                      <span className="font-bold text-xs sm:text-sm text-gray-400">{period.count} logs</span>
-                    </div>
-                    <div className="h-3 sm:h-4 bg-gray-100 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          period.percentage > 0 ? 'striped-yellow' : 'bg-gray-200'
-                        }`}
-                        style={{ width: `${period.percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-      </div>
     </div>
   </>
 );

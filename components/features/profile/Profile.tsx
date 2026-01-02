@@ -47,7 +47,7 @@ export const ProfileSection = ({
 }: ProfileSectionProps) => (
   <>
     <section>
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Profile & Friends</h2>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--flo-pink-dark)] mb-2">Profile & Friends</h2>
     </section>
 
     <section className="grid grid-cols-1 gap-4 sm:gap-6">
@@ -87,8 +87,8 @@ export const ProfileSection = ({
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-bold text-sm text-gray-700">{friendName}</div>
-                          <div className="text-[10px] font-bold text-gray-400">{friendProfile?.email}</div>
+                          <div className="font-bold text-sm text-[var(--flo-pink-dark)]">{friendName}</div>
+                          <div className="text-[10px] font-bold text-[color:var(--flo-pink)] opacity-70">{friendProfile?.email}</div>
                         </div>
                       </div>
                       <JuicyButton

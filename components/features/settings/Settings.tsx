@@ -19,7 +19,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
   return (
     <>
       <section>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-700 mb-2">Settings</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--flo-pink-dark)] mb-2">Settings</h2>
       </section>
 
       <div className="grid grid-cols-1 gap-4 sm:gap-6">
