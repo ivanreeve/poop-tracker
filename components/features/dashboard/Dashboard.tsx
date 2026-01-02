@@ -58,7 +58,7 @@ export const Dashboard = ({
     date.setDate(startOfWeek.getDate() + i);
     return date;
   });
-  const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const dayLabels = ['M', 'T', 'W', 'TH', 'F', 'S', 'SU'];
   const avatarInitial = greetingName.trim().charAt(0).toUpperCase();
   const totalRecentPages = Math.max(1, Math.ceil(userLogs.length / recentRowCapacity));
