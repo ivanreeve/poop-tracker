@@ -30,7 +30,7 @@ export const StatCard = ({ icon: Icon, value, label, accentColor, delay = 0 }: S
     }}
     className="rounded-md p-3 sm:p-4 md:p-5 border-2 flex items-center gap-3 sm:gap-4"
   >
-    <Icon size={32} className="sm:w-9 sm:h-9" style={{ color: accentColor }} />
+    <span style={{ color: accentColor }}><Icon size={32} className="sm:w-9 sm:h-9" /></span>
     <div>
       <div className="text-xl sm:text-2xl md:text-3xl font-black" style={{ color: accentColor }}>
         {value}
