@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { PoopLog, Profile, StoolType } from '../../../types/models';
 import { getDayName } from '../../../lib/calculations';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
+import { JuicyButton } from '../../ui/JuicyButton';
 import { LogCardSkeleton } from '../../ui/skeleton';
 
 type DashboardProps = {
@@ -23,9 +25,6 @@ export const Dashboard = ({
   greetingName,
   profile,
   userLogs,
-  visibleLogs,
-  showAllLogs,
-  onToggleShowAll,
   logsLoading,
   stoolTypes,
   friendLogs,
@@ -34,10 +33,7 @@ export const Dashboard = ({
   profilesById,
 }: DashboardProps) => {
   const cardWidth = 120;
-  const logsPerPage = 8;
-  const friendLogsPerPage = 6;
   const [recentPage, setRecentPage] = useState(1);
-  const [showAllFriendLogs, setShowAllFriendLogs] = useState(false);
   const [friendPage, setFriendPage] = useState(1);
   const [recentRowCapacity, setRecentRowCapacity] = useState(4);
   const [friendRowCapacity, setFriendRowCapacity] = useState(4);
@@ -58,54 +54,22 @@ export const Dashboard = ({
   const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   const dayLabels = ['M', 'T', 'W', 'TH', 'F', 'S', 'SU'];
   const avatarInitial = greetingName.trim().charAt(0).toUpperCase();
-  const totalRecentPages = showAllLogs ? Math.max(1, Math.ceil(userLogs.length / logsPerPage)) : 1;
-  const totalFriendPages = showAllFriendLogs ? Math.max(1, Math.ceil(friendLogs.length / friendLogsPerPage)) : 1;
-  const shouldShowAllRecent = userLogs.length > 0 && userLogs.length >= recentRowCapacity;
-  const shouldShowAllFriends = friendLogs.length > 0 && friendLogs.length >= friendRowCapacity;
-  const recentLogsToShow = showAllLogs
-    ? userLogs.slice((recentPage - 1) * logsPerPage, recentPage * logsPerPage)
-    : userLogs.slice(0, recentRowCapacity);
-  const friendLogsToShow = showAllFriendLogs
-    ? friendLogs.slice((friendPage - 1) * friendLogsPerPage, friendPage * friendLogsPerPage)
-    : friendLogs.slice(0, friendRowCapacity);
+  const totalRecentPages = Math.max(1, Math.ceil(userLogs.length / recentRowCapacity));
+  const totalFriendPages = Math.max(1, Math.ceil(friendLogs.length / friendRowCapacity));
+  const recentLogsToShow = userLogs.slice((recentPage - 1) * recentRowCapacity, recentPage * recentRowCapacity);
+  const friendLogsToShow = friendLogs.slice((friendPage - 1) * friendRowCapacity, friendPage * friendRowCapacity);
 
   useEffect(() => {
-    if (!showAllLogs) {
-      setRecentPage(1);
-    }
-  }, [showAllLogs]);
-
-  useEffect(() => {
-    if (!showAllFriendLogs) {
-      setFriendPage(1);
-    }
-  }, [showAllFriendLogs]);
-
-  useEffect(() => {
-    if (showAllLogs && !shouldShowAllRecent) {
-      onToggleShowAll();
-    }
-  }, [onToggleShowAll, shouldShowAllRecent, showAllLogs]);
-
-  useEffect(() => {
-    if (showAllFriendLogs && !shouldShowAllFriends) {
-      setShowAllFriendLogs(false);
-    }
-  }, [shouldShowAllFriends, showAllFriendLogs]);
-
-  useEffect(() => {
-    if (!showAllLogs) return;
     if (recentPage > totalRecentPages) {
       setRecentPage(totalRecentPages);
     }
-  }, [recentPage, showAllLogs, totalRecentPages]);
+  }, [recentPage, totalRecentPages]);
 
   useEffect(() => {
-    if (!showAllFriendLogs) return;
     if (friendPage > totalFriendPages) {
       setFriendPage(totalFriendPages);
     }
-  }, [friendPage, showAllFriendLogs, totalFriendPages]);
+  }, [friendPage, totalFriendPages]);
 
   useEffect(() => {
     const updateCapacity = (element: HTMLDivElement | null, setter: (value: number) => void) => {
@@ -197,13 +161,28 @@ export const Dashboard = ({
       <section>
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Recent Logs</h3>
-          <button
-            onClick={onToggleShowAll}
-            disabled={!shouldShowAllRecent}
-            className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            {showAllLogs ? 'VIEW LESS' : 'VIEW ALL'}
-          </button>
+          <div className="flex items-center gap-2">
+            <JuicyButton
+              variant="secondary"
+              size="icon"
+              onClick={() => setRecentPage((prev) => Math.max(1, prev - 1))}
+              disabled={recentPage === 1}
+              className="text-[#5c1916] p-2"
+              aria-label="Previous recent logs"
+            >
+              <ChevronLeft size={14} strokeWidth={3} />
+            </JuicyButton>
+            <JuicyButton
+              variant="secondary"
+              size="icon"
+              onClick={() => setRecentPage((prev) => Math.min(totalRecentPages, prev + 1))}
+              disabled={recentPage === totalRecentPages}
+              className="text-[#5c1916] p-2"
+              aria-label="Next recent logs"
+            >
+              <ChevronRight size={14} strokeWidth={3} />
+            </JuicyButton>
+          </div>
         </div>
         {logsLoading ? (
           <div
@@ -244,27 +223,6 @@ export const Dashboard = ({
                 })}
               </div>
             )}
-            {showAllLogs && totalRecentPages > 1 && (
-              <div className="mt-4 flex items-center justify-between">
-                <button
-                  onClick={() => setRecentPage((prev) => Math.max(1, prev - 1))}
-                  disabled={recentPage === 1}
-                  className="text-xs sm:text-sm font-bold text-[#5c1916] disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  PREV
-                </button>
-                <span className="text-[10px] sm:text-xs font-bold text-gray-400">
-                  Page {recentPage} of {totalRecentPages}
-                </span>
-                <button
-                  onClick={() => setRecentPage((prev) => Math.min(totalRecentPages, prev + 1))}
-                  disabled={recentPage === totalRecentPages}
-                  className="text-xs sm:text-sm font-bold text-[#5c1916] disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  NEXT
-                </button>
-              </div>
-            )}
           </>
         )}
       </section>
@@ -272,16 +230,31 @@ export const Dashboard = ({
       {acceptedFriendsCount > 0 && (
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends&apos; Logs</h3>
-          <div className="flex items-center gap-3">
+          <div>
+            <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friends&apos; Logs</h3>
             <span className="text-[10px] sm:text-xs font-bold text-gray-400">{acceptedFriendsCount} friends</span>
-            <button
-              onClick={() => setShowAllFriendLogs((prev) => !prev)}
-              disabled={!shouldShowAllFriends}
-              className="cursor-pointer text-[#5c1916] font-bold text-xs sm:text-sm hover:underline transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          </div>
+          <div className="flex items-center gap-2">
+            <JuicyButton
+              variant="secondary"
+              size="icon"
+              onClick={() => setFriendPage((prev) => Math.max(1, prev - 1))}
+              disabled={friendPage === 1}
+              className="text-[#5c1916] p-2"
+              aria-label="Previous friends logs"
             >
-              {showAllFriendLogs ? 'VIEW LESS' : 'VIEW ALL'}
-            </button>
+              <ChevronLeft size={14} strokeWidth={3} />
+            </JuicyButton>
+            <JuicyButton
+              variant="secondary"
+              size="icon"
+              onClick={() => setFriendPage((prev) => Math.min(totalFriendPages, prev + 1))}
+              disabled={friendPage === totalFriendPages}
+              className="text-[#5c1916] p-2"
+              aria-label="Next friends logs"
+            >
+              <ChevronRight size={14} strokeWidth={3} />
+            </JuicyButton>
           </div>
         </div>
         {friendsLoading ? (
@@ -326,27 +299,6 @@ export const Dashboard = ({
                     </div>
                   );
                 })}
-              </div>
-            )}
-            {showAllFriendLogs && totalFriendPages > 1 && (
-              <div className="mt-4 flex items-center justify-between">
-                <button
-                  onClick={() => setFriendPage((prev) => Math.max(1, prev - 1))}
-                  disabled={friendPage === 1}
-                  className="text-xs sm:text-sm font-bold text-[#5c1916] disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  PREV
-                </button>
-                <span className="text-[10px] sm:text-xs font-bold text-gray-400">
-                  Page {friendPage} of {totalFriendPages}
-                </span>
-                <button
-                  onClick={() => setFriendPage((prev) => Math.min(totalFriendPages, prev + 1))}
-                  disabled={friendPage === totalFriendPages}
-                  className="text-xs sm:text-sm font-bold text-[#5c1916] disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  NEXT
-                </button>
               </div>
             )}
           </>
