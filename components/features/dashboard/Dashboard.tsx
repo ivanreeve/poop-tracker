@@ -113,7 +113,7 @@ export const Dashboard = ({
     updateCapacity(friendElement, setFriendRowCapacity);
 
     return () => observer.disconnect();
-  }, [cardWidth]);
+  }, [cardWidth, logsLoading, friendsLoading]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
