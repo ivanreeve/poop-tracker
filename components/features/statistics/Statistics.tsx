@@ -45,7 +45,7 @@ export const Statistics = ({
     )}
 
     {loading ? (
-      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+      <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="space-y-2 mb-4 sm:mb-6">
           <Skeleton className="h-5 w-40 rounded" />
           <Skeleton className="h-4 w-24 rounded" />
@@ -58,7 +58,7 @@ export const Statistics = ({
       </section>
     ) : (
       <section
-        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
+        className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
       >
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Monthly Trend</h3>
@@ -80,9 +80,7 @@ export const Statistics = ({
             return (
               <div
                 key={i}
-                className={`aspect-square rounded-sm cursor-default ${getHeatmapColor(logCount)} ${
-                  logCount > 0 ? 'shadow-md' : ''
-                }`}
+                className={`aspect-square rounded-sm cursor-default ${getHeatmapColor(logCount)}`}
                 title={`${date.toLocaleDateString()}: ${logCount} log${logCount !== 1 ? 's' : ''}`}
               />
             );
@@ -100,16 +98,16 @@ export const Statistics = ({
       </section>
     ) : (
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <StatCard icon={Check} value={userLogs.length} label="Total Logs" color="bg-[#A6D8D4]" delay={100} />
-        <StatCard icon={Flame} value={streak} label="Day Streak" color="bg-[#c07865]" delay={200} />
-        <StatCard icon={Activity} value={avgTypeDisplay} label="Avg Type" color="bg-[#B4A7D6]" delay={300} />
-        <StatCard icon={Target} value={healthScoreDisplay} label="Healthy Score" color="bg-[#98DE8F]" delay={400} />
+        <StatCard icon={Check} value={userLogs.length} label="Total Logs" accentColor="#A6D8D4" delay={100} />
+        <StatCard icon={Flame} value={streak} label="Day Streak" accentColor="#c07865" delay={200} />
+        <StatCard icon={Activity} value={avgTypeDisplay} label="Avg Type" accentColor="#B4A7D6" delay={300} />
+        <StatCard icon={Target} value={healthScoreDisplay} label="Healthy Score" accentColor="#98DE8F" delay={400} />
       </section>
     )}
 
     <div className="grid grid-cols-1 gap-4 sm:gap-6">
       {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
           <div className="space-y-2 mb-4 sm:mb-6">
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-20 rounded" />
@@ -118,7 +116,7 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
+          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Weekly Activity</h3>
@@ -129,7 +127,7 @@ export const Statistics = ({
       )}
 
       {loading ? (
-        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+        <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
           <div className="space-y-2 mb-4 sm:mb-6">
             <Skeleton className="h-5 w-40 rounded" />
             <Skeleton className="h-4 w-20 rounded" />
@@ -138,7 +136,7 @@ export const Statistics = ({
         </section>
       ) : (
         <section
-          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
+          className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Type Distribution</h3>
@@ -176,7 +174,7 @@ export const Statistics = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {loading ? (
-          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+          <section className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
             <div className="space-y-2 mb-4 sm:mb-6">
               <Skeleton className="h-5 w-40 rounded" />
               <Skeleton className="h-4 w-16 rounded" />
@@ -185,7 +183,7 @@ export const Statistics = ({
           </section>
         ) : (
           <section
-            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm"
+            className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100"
           >
             <div className="flex justify-between items-center mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Daily Pattern</h3>
@@ -218,7 +216,7 @@ export const Statistics = ({
         )}
 
         {loading ? (
-          <section className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb] shadow-sm">
+          <section className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb]">
             <div className="space-y-3 mb-4 sm:mb-6">
               <Skeleton className="h-8 w-10 rounded-xl" />
               <div className="space-y-2">
@@ -234,7 +232,7 @@ export const Statistics = ({
           </section>
         ) : (
           <section
-            className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb] shadow-sm"
+            className="bg-gradient-to-br from-[#f4e9e5] to-[#E8F4F3] rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-[#ead2cb]"
           >
             <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <div className="bg-[#5c1916] p-2 sm:p-3 rounded-xl">

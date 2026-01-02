@@ -23,7 +23,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
       </section>
 
       <div className="grid grid-cols-1 gap-4 sm:gap-6">
-        <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
           <div className="flex items-center gap-3 mb-6">
             <Avatar className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-[#A6D8D4]">
               {profile?.avatar_url && <AvatarImage src={profile.avatar_url} alt={greetingName} />}
@@ -53,7 +53,7 @@ export const Settings = ({ user, profile, greetingName, onSignOut }: SettingsPro
           </div>
         </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-[#5c1916] p-2 sm:p-3 rounded-xl">
             <LogOut size={18} className="text-white" />

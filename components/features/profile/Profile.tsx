@@ -51,7 +51,7 @@ export const ProfileSection = ({
     </section>
 
     <section className="grid grid-cols-1 gap-4 sm:gap-6">
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#A6D8D4]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Your Friends</h3>
@@ -80,9 +80,9 @@ export const ProfileSection = ({
                       className="flex items-center justify-between gap-3 bg-[#F7FAFA] border-2 border-[#E8F4F3] rounded-2xl p-3"
                     >
                       <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10 rounded-xl bg-white border-2 border-[#E8F4F3]">
+                        <Avatar className="h-10 w-10 rounded-full bg-white border-2 border-[#E8F4F3]">
                           {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
-                          <AvatarFallback className="rounded-xl bg-white">
+                          <AvatarFallback className="rounded-full bg-white">
                             <Users size={16} className="text-[#A6D8D4]" />
                           </AvatarFallback>
                         </Avatar>
@@ -108,7 +108,7 @@ export const ProfileSection = ({
         )}
       </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-2 mb-4">
           <Users size={18} className="text-[#5c1916]" />
           <h3 className="text-base sm:text-lg font-extrabold text-gray-700">Friend Requests</h3>
@@ -179,7 +179,7 @@ export const ProfileSection = ({
         )}
       </div>
 
-      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100 shadow-sm">
+      <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-gray-100">
         <div className="flex items-center gap-3 mb-3">
           <div className="bg-[#A6D8D4] p-2 sm:p-3 rounded-xl">
             <UserPlus size={18} className="text-white" />
