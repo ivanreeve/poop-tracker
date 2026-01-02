@@ -293,11 +293,11 @@ export const Dashboard = ({
                         </button>
                       )}
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
-                      <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
-                      <div className="text-[10px] sm:text-xs font-bold text-gray-400">
+                      <div className="font-bold text-[#5c1916] text-sm sm:text-base">{logType?.label}</div>
+                      <div className="text-[10px] sm:text-xs font-bold text-[#8a5d55]">
                         {new Date(log.occurred_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
-                      <div className="font-extrabold text-gray-300 text-[10px] sm:text-xs">{getDayName(log.occurred_at)}</div>
+                      <div className="font-extrabold text-[#cbb0a8] text-[10px] sm:text-xs">{getDayName(log.occurred_at)}</div>
                     </div>
                   );
                 })}
@@ -385,12 +385,12 @@ export const Dashboard = ({
                       className="bg-[#fcf6f4] p-3 sm:p-4 rounded-md border-2 border-[#ead2cb] flex flex-col items-center text-center gap-1 sm:gap-2"
                     >
                       <div className="text-3xl sm:text-4xl md:text-5xl filter drop-shadow-sm">{logType?.emoji}</div>
-                      <div className="font-bold text-gray-700 text-sm sm:text-base">{logType?.label}</div>
-                      <div className="text-[10px] sm:text-xs font-bold text-gray-400">{friendName}</div>
-                      <div className="text-[10px] sm:text-xs font-bold text-gray-400">
+                      <div className="font-bold text-[#5c1916] text-sm sm:text-base">{logType?.label}</div>
+                      <div className="text-[10px] sm:text-xs font-bold text-[#8a5d55]">{friendName}</div>
+                      <div className="text-[10px] sm:text-xs font-bold text-[#8a5d55]">
                         {new Date(log.occurred_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
-                      <div className="font-extrabold text-gray-300 text-[10px] sm:text-xs">
+                      <div className="font-extrabold text-[#cbb0a8] text-[10px] sm:text-xs">
                         {getDayName(log.occurred_at)}
                       </div>
                     </div>
