@@ -36,7 +36,7 @@ export const FriendProfile = ({
         </JuicyButton>
       </div>
 
-      <section className="bg-white rounded-md sm:p-6 lg:p-4 border-2">
+      <section className="bg-white rounded-md p-4 sm:p-6 lg:p-4 border-2">
         <div className="flex items-center gap-4">
           <Avatar className="h-14 w-14 rounded-full bg-[#F0F8FF] border-2 border-[#E8F4F3]">
             {friendProfile?.avatar_url && <AvatarImage src={friendProfile.avatar_url} alt={friendName} />}
